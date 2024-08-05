@@ -8,10 +8,11 @@ import OrganicSnacks from "../assets/images/organic_snacks.png";
 const PopularProducts = () => {
     const popularProducts = popularProductsData;
     return (
-        <section className="px-[5rem] rounded-t-[3.5rem] absolute -translate-y-14 bg-white w-full pt-24">
+        // <section className="px-[5rem] rounded-t-[3.5rem] absolute -translate-y-14 bg-white w-full pt-24">
+        <section className="px-[5rem] rounded-t-[3.5rem] bg-white w-full pt-24">
             <div>
                 <div>
-                    <h2 className="text-5xl font-bold">Our Popular Products</h2>
+                    <h2 className="text-5xl font-bold text-black">Our Popular Products</h2>
                     <div className="flex justify-between items-center py-5">
                         <p className="text-grey-600">
                             Browse our most popular snacks and make your day <br /> more beautiful
