@@ -1,4 +1,5 @@
 import HomeMain from "../components/HomeMain";
+import NewProducts from "../components/NewProducts";
 import PopularProducts from "../components/PopularProducts";
 
 const HomePage = () => {
@@ -6,6 +7,7 @@ const HomePage = () => {
         <main>
             <HomeMain />
             <PopularProducts />
+            <NewProducts />
         </main>
     );
 };
