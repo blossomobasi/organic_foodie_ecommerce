@@ -35,7 +35,7 @@ const buttonVariant = cva("py-2.5 px-6", {
             primary:
                 "border border-primaryGreen-700 text-white bg-primaryGreen-700 rounded-md font-semibold",
             secondary:
-                "bg-secondaryOrange-500 text-white rounded-md border border-secondaryOrange-500 font-semibold",
+                "bg-secondaryOrange-400 text-white rounded-md border border-secondaryOrange-400 font-semibold",
             "primary-outline":
                 "border border-primaryGreen-700 rounded-md text-primaryGreen-700 font-semibold",
         },
