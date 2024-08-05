@@ -6,7 +6,7 @@ import { IoStarSharp } from "react-icons/io5";
 const NewProducts = () => {
     const newProducts = newProductsData;
     return (
-        <section className="px-[5rem] bg-white w-full pt-24">
+        <section className="px-[5rem] bg-white w-full pt-10 pb-20">
             <div>
                 <div>
                     <h2 className="text-5xl font-bold">Our New Products</h2>
