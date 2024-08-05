@@ -66,7 +66,7 @@ const HomeMain = () => {
             </div>
 
             <div
-                className="shadow-2xl relative bg-primaryGreen-400 rounded-t-[3.5rem] h-60 text-white flex items-center justify-center text-center space-x-14"
+                className="shadow-2xl relative bg-primaryGreen-400 rounded-t-[3.5rem] h-[18rem] pt-[5rem] text-white flex justify-center text-center space-x-14"
                 style={{
                     backgroundImage: `url(${GreenDesign})`,
                     boxShadow: "5rem 5rem 5rem 5rem rgba(255,255,255, 0.4)",
