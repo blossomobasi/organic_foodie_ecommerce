@@ -13,6 +13,7 @@ const HomeMain = () => {
     const SATISFIED_CLIENTS = 2880;
     const PRODUCT_SALES = 3219;
     const GUARANTEE = 100;
+
     return (
         <section>
             <div className="flex justify-between items-center px-[5rem] pt-10 max-w-[120rem]">
