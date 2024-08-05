@@ -16,7 +16,7 @@ const NavBar = () => {
 
     return (
         <header className="sticky top-0 z-[100] bg-white">
-            <div className="flex items-center justify-between px-[5rem] py-3 max-w-[120rem] ">
+            <div className="flex items-center justify-between px-[5rem] py-3 max-w-[120rem]">
                 <span className="flex-[0.5]">
                     <Logo />
                 </span>
