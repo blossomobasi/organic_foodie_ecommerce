@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 type ButtonProps = React.HTMLAttributes<HTMLButtonElement> & {
     children: React.ReactNode;
-    variant?: "primary" | "secondary" | "tertiary" | "tertiary-outline";
+    variant?: "primary" | "secondary" | "primary-outline";
     icon?: React.ReactNode;
     url?: string;
 };
@@ -29,13 +29,15 @@ const Button = ({ children, variant, icon, className, url, ...props }: ButtonPro
     );
 };
 
-const buttonVariant = cva("py-2.5 px-14 border", {
+const buttonVariant = cva("py-2.5 px-6", {
     variants: {
         variant: {
-            primary: "border border-byc-black text-byc-black font-semibold",
-            secondary: "bg-byc-black text-white border-2 border-byc-black font-semibold",
-            tertiary: "bg-byc-red-500 rounded-md border-byc-red-500 text-white",
-            "tertiary-outline": "border-byc-red-500 rounded-md text-byc-red-500",
+            primary:
+                "border border-primaryGreen-700 text-white bg-primaryGreen-700 rounded-md font-semibold",
+            secondary:
+                "bg-secondaryOrange-500 text-white rounded-md border border-secondaryOrange-500 font-semibold",
+            "primary-outline":
+                "border border-primaryGreen-700 rounded-md text-primaryGreen-700 font-semibold",
         },
     },
     defaultVariants: {
