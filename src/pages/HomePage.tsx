@@ -1,6 +1,7 @@
 import BulkOrders from "../components/BulkOrders";
 import HomeMain from "../components/HomeMain";
 import NewProducts from "../components/NewProducts";
+import Offers from "../components/Offers";
 import PopularProducts from "../components/PopularProducts";
 
 const HomePage = () => {
@@ -10,6 +11,7 @@ const HomePage = () => {
             <PopularProducts />
             <NewProducts />
             <BulkOrders />
+            <Offers />
         </main>
     );
 };
