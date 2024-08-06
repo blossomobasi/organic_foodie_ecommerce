@@ -4,6 +4,9 @@
 
 body {
     font-family: "Inter", sans-serif;
-    @apply text-grey-900;
+    @apply text-grey-900 selection:bg-primaryGreen-300 selection:text-white;
     overflow-x: hidden;
+}
+.active {
+    @apply text-primaryGreen-300 font-bold;
 }
