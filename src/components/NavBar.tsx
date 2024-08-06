@@ -17,9 +17,9 @@ const NavBar = () => {
     return (
         <header className="sticky top-0 z-[100] bg-white">
             <div className="flex items-center justify-between px-[5rem] py-3 max-w-[120rem]">
-                <span className="flex-[0.5]">
+                <div className="flex-[0.5]">
                     <Logo />
-                </span>
+                </div>
 
                 <nav className="flex-[1.8]">
                     <ul className="flex justify-between">
@@ -33,13 +33,13 @@ const NavBar = () => {
 
                 <div className="flex-[0.5]">
                     <span className="border-x border-grey-200 flex items-center w-fit justify-center mx-auto px-2">
-                        <SlMagnifier size={25} />
+                        <SlMagnifier size={25} className="cursor-pointer" />
                     </span>
                 </div>
 
                 <span className="flex items-center gap-x-4">
-                    <FiHeart size={25} />
-                    <BsHandbag size={25} />
+                    <FiHeart size={25} className="cursor-pointer" />
+                    <BsHandbag size={25} className="cursor-pointer" />
                     <Button>Contact Us</Button>
                 </span>
             </div>
