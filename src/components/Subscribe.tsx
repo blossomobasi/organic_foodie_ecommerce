@@ -18,13 +18,13 @@ const Subscribe = () => {
                 />
 
                 <div>
-                    <h3 className="text-4xl font-bold">Subscribe Our Newsletter</h3>
+                    <h3 className="text-4xl font-bold nichrome">Subscribe Our Newsletter</h3>
                     <p className="py-5">
                         Receive latest updates on our products and many other things every week.
                     </p>
                 </div>
 
-                <form className="bg-white p-2 rounded-md w-[25rem] flex justify-between items-center space-x-3">
+                <form className="bg-white py-2 px-3 rounded-xl w-[25rem] flex justify-between items-center space-x-3">
                     <input
                         type="email"
                         placeholder="Enter Your Email Address"

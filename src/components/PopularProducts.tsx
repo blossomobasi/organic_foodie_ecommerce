@@ -16,7 +16,7 @@ const PopularProducts = () => {
                     title="Our Popular Products"
                 />
 
-                <div className="flex items-center justify-between py-20">
+                <div className="flex items-center justify-between pt-20">
                     <div className="w-full flex flex-col items-center space-y-5">
                         <img src={OrganicSnacks} alt="Organic Snacks" />
                         <Button className="rounded-full shadow-sm shadow-primaryGreen-700">
@@ -24,8 +24,8 @@ const PopularProducts = () => {
                         </Button>
                     </div>
                     <div className="w-full">
-                        <h1 className="uppercase text-6xl text-primaryGreen-700 font-bold">
-                            High Quality <br />{" "}
+                        <h1 className="uppercase text-6xl text-primaryGreen-700 font-bold nichrome tracking-wide">
+                            High Quality <br />
                             <span className="text-secondaryOrange-400">Organic Snacks</span>
                         </h1>
                         <p className="text-sm pt-4">

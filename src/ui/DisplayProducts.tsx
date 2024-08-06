@@ -13,7 +13,7 @@ const DisplayProducts = ({ data, title, description }: Props) => {
     return (
         <div>
             <div className="pb-5">
-                <h2 className="text-5xl font-bold">{title}</h2>
+                <h2 className="text-5xl font-bold nichrome ">{title}</h2>
                 <div className="flex justify-between items-center py-5">
                     <p className="text-grey-600">
                         {description.split("<br />")[0]} <br /> {description.split("<br />")[1]}
@@ -37,7 +37,7 @@ const DisplayProducts = ({ data, title, description }: Props) => {
                                 <FiHeart size={20} />
                             </span>
                         </p>
-                        <h4 className="font-semibold text-lg">{product.title}</h4>
+                        <h4 className="font-semibold text-xl nichrome">{product.title}</h4>
                         <p className="flex items-center justify-between py-3">
                             <span className="flex items-center space-x-2 text-grey-600">
                                 <IoStarSharp size={20} className="text-secondaryOrange-400" />

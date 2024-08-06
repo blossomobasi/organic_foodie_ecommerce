@@ -23,7 +23,7 @@ const HomeMain = () => {
             <div className="flex justify-between items-center px-[5rem] pt-10 max-w-[120rem]">
                 <div className="w-1/2 flex flex-col items-start space-y-3">
                     <p>Discover the pure taste of Nature</p>
-                    <h1 className="text-6xl font-bold text-primaryGreen-700">
+                    <h1 className="text-6xl font-bold text-primaryGreen-700 nichrome pb-5">
                         Organic <span className="text-secondaryOrange-400">Snacks</span> Made{" "}
                         <span className="text-secondaryOrange-400">with</span> Love, Just{" "}
                         <span className="text-secondaryOrange-400">for </span>
@@ -59,7 +59,7 @@ const HomeMain = () => {
                     <div className="flex items-center">
                         <img src={FastDelivery} alt="Fast Delivery" />
                         <div>
-                            <h3 className="text-xl font-semibold">Fast Delivery</h3>
+                            <h3 className="text-xl font-medium nichrome">Fast Delivery</h3>
                             <p className="text-sm">
                                 Deliver within 30 <br /> minutes
                             </p>
@@ -68,7 +68,7 @@ const HomeMain = () => {
                     <div className="flex items-center">
                         <img src={DineIn} alt="Dine In" />
                         <div>
-                            <h3 className="text-xl font-semibold">Dine in</h3>
+                            <h3 className="text-xl font-medium nichrome">Dine in</h3>
                             <p className="text-sm">
                                 Enjoy you snacks <br /> fresh and healthy
                             </p>
@@ -77,7 +77,7 @@ const HomeMain = () => {
                     <div className="flex items-center">
                         <img src={PickUp} alt="Pick Up" />
                         <div>
-                            <h3 className="text-xl font-semibold">Pick Up</h3>
+                            <h3 className="text-xl font-medium nichrome">Pick Up</h3>
                             <p className="text-sm">
                                 Delivery at your <br /> doorstep
                             </p>
@@ -115,19 +115,19 @@ const HomeMain = () => {
                     className="h-[5rem] w-full absolute -top-0 right-0 -z-10 bg-[#3CB018]"
                 />
                 <span>
-                    <h2 className="text-5xl font-semibold">{TOTAL_PRODUCTS + "+"}</h2>
+                    <h2 className="text-5xl font-medium nichrome">{TOTAL_PRODUCTS + "+"}</h2>
                     <p>Total Products</p>
                 </span>
                 <span>
-                    <h2 className="text-5xl font-semibold">{SATISFIED_CLIENTS + "+"}</h2>
+                    <h2 className="text-5xl font-medium nichrome">{SATISFIED_CLIENTS + "+"}</h2>
                     <p>Satisfied Clients</p>
                 </span>
                 <span>
-                    <h2 className="text-5xl font-semibold">{PRODUCT_SALES + "+"}</h2>
+                    <h2 className="text-5xl font-medium nichrome">{PRODUCT_SALES + "+"}</h2>
                     <p>Product Sales</p>
                 </span>
                 <span>
-                    <h2 className="text-5xl font-semibold">{GUARANTEE + "%"}</h2>
+                    <h2 className="text-5xl font-medium nichrome">{GUARANTEE + "%"}</h2>
                     <p>Guarantee</p>
                 </span>
             </div>

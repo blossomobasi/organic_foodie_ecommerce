@@ -46,9 +46,9 @@ const Offers = () => {
     ];
 
     return (
-        <section className="mx-[5rem] py-20">
+        <section className="mx-[5rem] pb-20">
             <div className="flex justify-between items-end pb-10">
-                <h3 className="text-3xl font-extrabold">
+                <h3 className="text-4xl font-bold nichrome">
                     Hurry Do not Miss Out On <br /> This Offers
                 </h3>
                 <Button className="rounded-none">Browse All</Button>
@@ -78,7 +78,7 @@ const Offers = () => {
                                 <FiHeart size={20} />
                             </span>
                         </p>
-                        <h4 className="font-semibold text-lg">{product.title}</h4>
+                        <h4 className="font-semibold text-xl nichrome">{product.title}</h4>
                         <p className="flex items-center justify-between py-3">
                             <span className="flex items-center space-x-2 text-grey-600">
                                 <IoStarSharp size={20} className="text-secondaryOrange-400" />
