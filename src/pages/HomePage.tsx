@@ -10,8 +10,8 @@ const HomePage = () => {
         <main>
             <HomeMain />
             <PopularProducts />
-            <NewProducts />
             <BulkOrders />
+            <NewProducts />
             <Offers />
             <Subscribe />
         </main>
