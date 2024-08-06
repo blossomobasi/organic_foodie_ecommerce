@@ -48,7 +48,7 @@ const Offers = () => {
     return (
         <section className="mx-[5rem] py-20">
             <div className="flex justify-between items-end pb-10">
-                <h3 className="text-3xl font-bold">
+                <h3 className="text-3xl font-extrabold">
                     Hurry Do not Miss Out On <br /> This Offers
                 </h3>
                 <Button className="rounded-none">Browse All</Button>
