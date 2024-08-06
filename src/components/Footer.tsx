@@ -41,7 +41,7 @@ const Footer = () => {
         <section>
             <div className="bg-darkBlue px-20 py-10 text-white">
                 <div className="flex flex-col items-center text-center pb-10">
-                    <h3 className="text-3xl font-semibold pb-5">Excellent</h3>
+                    <h3 className="text-3xl font-medium pb-5 nichrome">Excellent</h3>
 
                     <div className="flex space-x-1">
                         {Array.from({ length: 5 }).map((_, index) => (
@@ -76,7 +76,7 @@ const Footer = () => {
                 {/* Footer */}
                 <footer className="flex justify-between py-10">
                     <div>
-                        <h4 className="text-xl font-semibold mb-5">Customer Service</h4>
+                        <h4 className="text-xl font-medium mb-5 nichrome">Customer Service</h4>
                         <ul className="text-[#A6B6B6] font-light flex flex-col space-y-3">
                             {customerService.map((item, index) => (
                                 <li key={index} className="hover:underline w-fit">
@@ -87,7 +87,7 @@ const Footer = () => {
                     </div>
 
                     <div>
-                        <h4 className="text-xl font-semibold mb-5">About Us</h4>
+                        <h4 className="text-xl font-medium mb-5 nichrome">About Us</h4>
                         <ul className="text-[#A6B6B6] font-light flex flex-col space-y-3">
                             {aboutUs.map((item, index) => (
                                 <li key={index} className="hover:underline w-fit">
@@ -98,7 +98,7 @@ const Footer = () => {
                     </div>
 
                     <div>
-                        <h4 className="text-xl font-semibold mb-5">Need Help?</h4>
+                        <h4 className="text-xl font-medium mb-5 nichrome">Need Help?</h4>
                         <ul className="text-[#A6B6B6] font-light flex flex-col space-y-3">
                             {help.map((item, index) => (
                                 <li key={index} className="hover:underline w-fit">
@@ -109,7 +109,7 @@ const Footer = () => {
                     </div>
 
                     <div>
-                        <h4 className="text-xl font-semibold mb-5">Privacy</h4>
+                        <h4 className="text-xl font-medium mb-5 nichrome">Privacy</h4>
                         <ul className="text-[#A6B6B6] font-light flex flex-col space-y-3">
                             {privacy.map((item, index) => (
                                 <li key={index} className="hover:underline w-fit">
@@ -120,7 +120,7 @@ const Footer = () => {
                     </div>
 
                     <div>
-                        <h4 className="text-xl font-semibold mb-5">Follow us</h4>
+                        <h4 className="text-xl font-medium mb-5 nichrome">Follow us</h4>
                         <ul className="flex space-x-3">
                             <li className="bg-secondaryOrange-400 w-8 h-8 grid place-content-center">
                                 <TiSocialFacebook size={20} />
