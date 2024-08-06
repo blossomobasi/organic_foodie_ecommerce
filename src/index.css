@@ -7,6 +7,9 @@ body {
     @apply text-grey-900 selection:bg-primaryGreen-300 selection:text-white;
     overflow-x: hidden;
 }
+.nichrome {
+    font-family: "MD Nichrome Test", sans-serif;
+}
 .active {
     @apply text-primaryGreen-300 font-bold;
 }
