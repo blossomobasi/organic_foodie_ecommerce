@@ -41,7 +41,10 @@ const BulkOrders = () => {
 
             <div className="flex space-x-8">
                 {bulkOrders.map((product) => (
-                    <div className="p-5 shadow-xl w-full rounded-lg">
+                    <div
+                        className="p-5 shadow-xl w-full rounded-lg"
+                        key={product.title + crypto.randomUUID()}
+                    >
                         <img src={product.image} alt={product.title} className="w-full h-[13rem]" />
                         <h4 className="font-bold pt-5 mb-3 text-lg">{product.title}</h4>
                         <p className="pb-7">{product.description}</p>
