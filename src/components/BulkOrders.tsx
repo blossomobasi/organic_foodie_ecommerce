@@ -42,13 +42,14 @@ const BulkOrders = () => {
             <div className="flex space-x-8">
                 {bulkOrders.map((product) => (
                     <div className="p-5 shadow-xl w-full rounded-lg">
-                        {/* <img src={product.image} alt={product.title} className="h-52 w-72" /> */}
                         <img src={product.image} alt={product.title} className="w-full h-[13rem]" />
                         <h4 className="font-bold pt-5 mb-3 text-lg">{product.title}</h4>
                         <p className="pb-7">{product.description}</p>
                         <Button
-                            className="uppercase flex items-center gap-x-3"
-                            icon={<FaAngleRight />}
+                            className="uppercase flex items-center gap-x-3 group w-fit mx-auto"
+                            icon={
+                                <FaAngleRight className="group-hover:translate-x-2 transition-all duration-100" />
+                            }
                             variant="primary-outline"
                         >
                             Order Now
@@ -60,12 +61,14 @@ const BulkOrders = () => {
                     className="bg-primaryGreen-700 shadow-xl w-full rounded-lg text-white flex flex-col items-start justify-center"
                     style={{ backgroundImage: `url(${imageTools})`, backgroundRepeat: "no-repeat" }}
                 >
-                    <div className="mx-auto">
+                    <div className="mx-auto grid place-content-center">
                         <h4 className="text-lg font-bold">Others</h4>
                         <p className="pb-5">Milk, Tools, Spice, e.t.c</p>
                         <Button
-                            icon={<FaAngleRight />}
-                            className="border border-white flex items-center gap-x-3"
+                            icon={
+                                <FaAngleRight className="group-hover:translate-x-2 transition-all duration-100" />
+                            }
+                            className="border border-white flex items-center gap-x-3 group"
                         >
                             See Others
                         </Button>
