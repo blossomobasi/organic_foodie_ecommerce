@@ -54,7 +54,9 @@ const Footer = () => {
                         ))}
                     </div>
 
-                    <p className="py-3 font-light">Based on {REVIEWS} reviews</p>
+                    <p className="py-3 font-light relative before:absolute before:bottom-3 before:right-3 before:bg-white before:w-24 before:h-px">
+                        Based on {REVIEWS} reviews
+                    </p>
 
                     <span className="flex items-center space-x-1">
                         <span className="relative">
