@@ -1,8 +1,9 @@
 import OrganicAlmondDelight from "../assets/images/organic_almond_delight.png";
 import BerryBlissBites from "../assets/images/berry_bliss_bites.png";
 import CoconutCrunchies from "../assets/images/coconut_crunchies.png";
+import { ProductsType } from "../types/products";
 
-export const popularProductsData = [
+export const popularProductsData: ProductsType[] = [
     {
         image: OrganicAlmondDelight,
         title: "Organic Almond Delight",
@@ -53,7 +54,7 @@ export const popularProductsData = [
     },
 ];
 
-export const newProductsData = [
+export const newProductsData: ProductsType[] = [
     {
         image: OrganicAlmondDelight,
         title: "Organic Almond Delight",
