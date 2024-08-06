@@ -29,7 +29,7 @@ const BulkOrders = () => {
     return (
         <section className="bg-primaryGreen-100 px-[5rem] py-20 text-center">
             <div className="flex items-center flex-col space-y-3 w-[70%] mx-auto mb-10">
-                <h1 className="text-6xl relative before:absolute before:-bottom-1 before:h-1 before:w-full before:bg-primaryGreen-700 w-fit font-bold">
+                <h1 className="text-6xl nichrome tracking-wide relative before:absolute before:-bottom-1 before:h-0.5 before:w-full before:bg-primaryGreen-700 w-fit font-bold">
                     Bulk Orders
                 </h1>
                 <p>
@@ -46,7 +46,7 @@ const BulkOrders = () => {
                         key={product.title + crypto.randomUUID()}
                     >
                         <img src={product.image} alt={product.title} className="w-full h-[13rem]" />
-                        <h4 className="font-bold pt-5 mb-3 text-lg">{product.title}</h4>
+                        <h4 className="font-bold pt-5 mb-3 text-xl nichrome">{product.title}</h4>
                         <p className="pb-7">{product.description}</p>
                         <Button
                             className="uppercase flex items-center gap-x-3 group w-fit mx-auto"
