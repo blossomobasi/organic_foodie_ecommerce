@@ -61,7 +61,7 @@ const Offers = () => {
                     className="h-full w-full col-span-2"
                 />
                 {blackFriday.map((product) => (
-                    <div key={product.title} className="w-[23.5rem]">
+                    <div key={product.title + crypto.randomUUID()} className="w-[23.5rem]">
                         <div className="relative w-full">
                             <img src={product.image} alt={product.title} className="w-full" />
 
