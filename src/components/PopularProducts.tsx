@@ -26,7 +26,10 @@ const PopularProducts = () => {
 
                 <div className="flex space-x-6 overflow-x-auto pb-8">
                     {popularProducts.map((product) => (
-                        <div key={product.title} className="w-[23.5rem] flex-shrink-0">
+                        <div
+                            key={product.title + crypto.randomUUID()}
+                            className="w-[23.5rem] flex-shrink-0"
+                        >
                             <img src={product.image} alt={product.title} className="w-full" />
                             <p className="flex justify-between items-center py-3">
                                 <span className="text-grey-600">{product.category}</span>
