@@ -9,7 +9,7 @@ const PopularProducts = () => {
     const popularProducts = popularProductsData;
     return (
         // <section className="px-[5rem] rounded-t-[3.5rem] absolute -translate-y-14 bg-white w-full pt-24">
-        <section className="px-[5rem] rounded-t-[3.5rem] bg-white w-full pt-24">
+        <section className="px-[5rem] rounded-t-[3.5rem] bg-white w-full pt-24 -translate-y-14">
             <div>
                 <div>
                     <h2 className="text-5xl font-bold text-black">Our Popular Products</h2>
