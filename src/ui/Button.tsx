@@ -33,11 +33,11 @@ const buttonVariant = cva("py-2.5 px-6", {
     variants: {
         variant: {
             primary:
-                "border border-primaryGreen-700 text-white bg-primaryGreen-700 rounded-md font-semibold",
+                "border border-primaryGreen-700 text-white bg-primaryGreen-700 rounded-md font-semibold hover:bg-primaryGreen-300 ring-offset-2 focus:ring ring-primaryGreen-300",
             secondary:
-                "bg-secondaryOrange-400 text-white rounded-md border border-secondaryOrange-400 font-semibold",
+                "bg-secondaryOrange-400 hover:bg-secondaryOrange-500 ring-offset-2 focus:ring ring-secondaryOrange-400 text-white rounded-md border border-secondaryOrange-400 font-semibold",
             "primary-outline":
-                "border border-primaryGreen-700 rounded-md text-primaryGreen-700 font-semibold",
+                "border border-primaryGreen-700 rounded-md text-primaryGreen-700 font-semibold hover:bg-primaryGreen-100",
         },
     },
     defaultVariants: {
