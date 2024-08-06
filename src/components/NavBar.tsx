@@ -1,11 +1,15 @@
-import { Link } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+
+import Button from "../ui/Button";
 import Logo from "./Logo";
+
 import { FiHeart } from "react-icons/fi";
 import { BsHandbag } from "react-icons/bs";
-import Button from "../ui/Button";
 import { SlMagnifier } from "react-icons/sl";
 
 const NavBar = () => {
+    const navigate = useNavigate();
+
     const navlinks = [
         { name: "Home", url: "/" },
         { name: "Our Products", url: "products" },
@@ -25,7 +29,7 @@ const NavBar = () => {
                     <ul className="flex justify-between">
                         {navlinks.map((link) => (
                             <li key={link.name} className="hover:font-bold">
-                                <Link to={link.url}>{link.name}</Link>
+                                <NavLink to={link.url}>{link.name}</NavLink>
                             </li>
                         ))}
                     </ul>
@@ -39,7 +43,11 @@ const NavBar = () => {
 
                 <span className="flex items-center gap-x-4">
                     <FiHeart size={25} className="cursor-pointer" />
-                    <BsHandbag size={25} className="cursor-pointer" />
+                    <BsHandbag
+                        size={25}
+                        className="cursor-pointer"
+                        onClick={() => navigate("/cart")}
+                    />
                     <Button>Contact Us</Button>
                 </span>
             </div>
