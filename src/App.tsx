@@ -5,6 +5,7 @@ import ProductsPage from "./pages/ProductsPage";
 import HealthBenefitsPage from "./pages/HealthBenefitsPage";
 import BlogsPage from "./pages/BlogsPage";
 import FaqPage from "./pages/FaqPage";
+import CartPage from "./pages/CartPage";
 import NotFoundPage from "./pages/NotFoundPage";
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
                     <Route path="health-benefits" element={<HealthBenefitsPage />} />
                     <Route path="blogs" element={<BlogsPage />} />
                     <Route path="faq" element={<FaqPage />} />
+                    <Route path="cart" element={<CartPage />} />
                 </Route>
 
                 <Route path="*" element={<NotFoundPage />} />
