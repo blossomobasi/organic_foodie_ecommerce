@@ -7,6 +7,10 @@ import GreenDesign from "../assets/images/green_design.png";
 import GreenDesign_1 from "../assets/images/green_design_1.png";
 import GreenDesign_2 from "../assets/images/green_design_2.png";
 import GreenDesignRectangle from "../assets/images/green_design_rectangle.png";
+import ShopNow from "../assets/images/shop_now.png";
+import Onions from "../assets/images/onions.png";
+import GreenPepper from "../assets/images/green_pepper.png";
+import Stars from "../assets/images/stars.png";
 
 const HomeMain = () => {
     const TOTAL_PRODUCTS = 1975;
@@ -25,16 +29,32 @@ const HomeMain = () => {
                         <span className="text-secondaryOrange-400">for </span>
                         You
                     </h1>
-                    <Button icon={"i"} variant="secondary">
+                    <Button
+                        icon={<img src={ShopNow} alt="Shop Now basket" />}
+                        variant="secondary"
+                        className="flex items-center gap-x-3"
+                    >
                         Shop Now
                     </Button>
                 </div>
 
-                <div className="w-1/2">
+                <div className="w-1/2 relative">
                     <img src={OrganicSnacks} alt="Organic Foodie snacks" className="mx-auto" />
+
+                    <img src={Onions} alt="onions" className="absolute top-0 right-10" />
+                    <img
+                        src={GreenPepper}
+                        alt="green pepper"
+                        className="absolute bottom-28 right-5"
+                    />
+                    <img
+                        src={Stars}
+                        alt="stars"
+                        className="absolute -bottom-10 right-1/2 translate-x-1/2"
+                    />
                 </div>
             </div>
-            <div className="flex justify-end px-[5rem] py-5 max-w-[120rem]">
+            <div className="flex justify-end px-[5rem] py-10 max-w-[120rem]">
                 <div className="flex space-x-10 text-white">
                     <div className="flex items-center">
                         <img src={FastDelivery} alt="Fast Delivery" />
