@@ -24,7 +24,7 @@ const DisplayProducts = ({ data, title, description }: Props) => {
                 </div>
             </div>
 
-            <div className="flex space-x-6 overflow-x-auto pb-8">
+            <div className="flex space-x-6 overflow-x-auto pb-8 scrollbar-thin scrollbar-thumb-grey-900 scrollbar-track-grey-500">
                 {data.map((product) => (
                     <div
                         key={product.title + crypto.randomUUID()}
