@@ -2,14 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+    @apply scrollbar-thin scrollbar-thumb-primaryGreen-700 scrollbar-track-grey-500;
+}
+
 body {
     font-family: "Inter", sans-serif;
-    @apply text-grey-900 selection:bg-primaryGreen-300 selection:text-white;
-    overflow-x: hidden;
+    @apply overflow-x-hidden text-grey-900 selection:bg-primaryGreen-300 selection:text-white;
 }
 .nichrome {
     font-family: "MD Nichrome Test", sans-serif;
 }
+.calligraffitti {
+    font-family: "Calligraffitti", cursive;
+}
 .active {
-    @apply text-primaryGreen-300 font-bold;
+    @apply text-primaryGreen-300 font-bold border-l-2 border-primaryGreen-700 rounded-full p-2;
 }
