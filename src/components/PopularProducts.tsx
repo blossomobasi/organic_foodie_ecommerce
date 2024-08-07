@@ -49,7 +49,7 @@ const PopularProducts = () => {
                             our commitment to quality and sustainability.
                         </p>
 
-                        <span>John Doe</span>
+                        <span className="calligraffitti">John Doe</span>
                         <p className="text-xs text-grey-600">Chief Executive Officer</p>
                     </div>
                 </div>
