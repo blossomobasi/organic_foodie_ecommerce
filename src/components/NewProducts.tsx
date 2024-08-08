@@ -5,7 +5,7 @@ const NewProducts = () => {
     const newProducts = newProductsData;
 
     return (
-        <section className="px-20 bg-white w-full pt-10 pb-20">
+        <section className="lg:px-20 px-5 bg-white w-full pt-10 pb-20">
             <DisplayProducts
                 data={newProducts}
                 title="Our New Products"
