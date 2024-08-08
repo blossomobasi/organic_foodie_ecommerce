@@ -20,7 +20,7 @@ const HomeMain = () => {
 
     return (
         <section>
-            <div className="flex justify-between items-center px-[5rem] pt-10 max-w-[120rem]">
+            <div className="flex justify-between items-center md:px-20 px-5 pt-10 max-w-[120rem]">
                 <div className="w-1/2 flex flex-col items-start space-y-3">
                     <p>Discover the pure taste of Nature</p>
                     <h1 className="text-6xl font-bold text-primaryGreen-700 nichrome pb-5">
@@ -54,7 +54,8 @@ const HomeMain = () => {
                     />
                 </div>
             </div>
-            <div className="flex justify-end px-[5rem] py-10 max-w-[120rem]">
+
+            <div className="flex justify-end px-20 py-10 max-w-[120rem]">
                 <div className="flex space-x-10 text-white">
                     <div className="flex items-center">
                         <img src={FastDelivery} alt="Fast Delivery" />
@@ -87,7 +88,7 @@ const HomeMain = () => {
             </div>
 
             <div
-                className="shadow-2xl relative bg-primaryGreen-400 rounded-t-[3.5rem] h-[18rem] pt-[5rem] text-white flex justify-center text-center space-x-14"
+                className="shadow-2xl relative bg-primaryGreen-400 rounded-t-[3.5rem] h-[18rem] md:pt-20 pt-5 pb-20 px-5 flex flex-col justify-center"
                 style={{
                     backgroundImage: `url(${GreenDesign})`,
                     boxShadow: "5rem 5rem 5rem 5rem rgba(255,255,255, 0.4)",
@@ -114,22 +115,33 @@ const HomeMain = () => {
                     }}
                     className="h-[5rem] w-full absolute -top-0 right-0 -z-10 bg-[#3CB018]"
                 />
-                <span>
-                    <h2 className="text-5xl font-medium nichrome">{TOTAL_PRODUCTS + "+"}</h2>
-                    <p>Total Products</p>
-                </span>
-                <span>
-                    <h2 className="text-5xl font-medium nichrome">{SATISFIED_CLIENTS + "+"}</h2>
-                    <p>Satisfied Clients</p>
-                </span>
-                <span>
-                    <h2 className="text-5xl font-medium nichrome">{PRODUCT_SALES + "+"}</h2>
-                    <p>Product Sales</p>
-                </span>
-                <span>
-                    <h2 className="text-5xl font-medium nichrome">{GUARANTEE + "%"}</h2>
-                    <p>Guarantee</p>
-                </span>
+
+                <div className="sm:flex sm:justify-center grid grid-cols-2 gap-y-5 text-white text-center md:space-x-14 space-x-5">
+                    <div>
+                        <h2 className="md:text-5xl text-4xl font-medium nichrome">
+                            {TOTAL_PRODUCTS + "+"}
+                        </h2>
+                        <p>Total Products</p>
+                    </div>
+                    <div>
+                        <h2 className="md:text-5xl text-4xl font-medium nichrome">
+                            {SATISFIED_CLIENTS + "+"}
+                        </h2>
+                        <p>Satisfied Clients</p>
+                    </div>
+                    <div>
+                        <h2 className="md:text-5xl text-4xl font-medium nichrome">
+                            {PRODUCT_SALES + "+"}
+                        </h2>
+                        <p>Product Sales</p>
+                    </div>
+                    <div>
+                        <h2 className="md:text-5xl text-4xl font-medium nichrome">
+                            {GUARANTEE + "%"}
+                        </h2>
+                        <p>Guarantee</p>
+                    </div>
+                </div>
             </div>
         </section>
     );
