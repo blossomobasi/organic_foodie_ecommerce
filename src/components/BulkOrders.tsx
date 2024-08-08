@@ -68,10 +68,11 @@ const BulkOrders = () => {
                         <h4 className="text-lg font-bold">Others</h4>
                         <p className="pb-5">Milk, Tools, Spice, e.t.c</p>
                         <Button
+                            variant="primary-outline"
                             icon={
                                 <FaAngleRight className="group-hover:translate-x-2 transition-all duration-100" />
                             }
-                            className="border border-white flex items-center gap-x-3 group"
+                            className="border border-white flex items-center gap-x-3 group text-white hover:bg-transparent"
                         >
                             See Others
                         </Button>
