@@ -44,24 +44,26 @@ const Offers = () => {
             averageReview: 5,
         },
     ];
+    const windowWidth = window.innerWidth;
+    const mobileView = windowWidth < 500;
 
     return (
-        <section className="mx-[5rem] pb-20">
-            <div className="flex justify-between items-end pb-10">
-                <h3 className="text-4xl font-bold nichrome">
-                    Hurry Do not Miss Out On <br /> This Offers
+        <section className="lg:px-20 px-5 pb-20">
+            <div className="flex justify-between items-end space-x-5 pb-10">
+                <h3 className="md:text-4xl text-3xl font-bold nichrome">
+                    Hurry Do not Miss Out On {mobileView ? " " : <br />} This Offers
                 </h3>
-                <Button className="rounded-none">Browse All</Button>
+                <Button className="rounded-none whitespace-nowrap">Browse All</Button>
             </div>
 
-            <div className="grid grid-cols-3 gap-5">
+            <div className="grid md:grid-cols-3 grid-cols-2 gap-5">
                 <img
                     src={BlackFridaySales}
                     alt="Black Friday Sales"
                     className="h-full w-full col-span-2"
                 />
                 {blackFriday.map((product) => (
-                    <div key={product.title + crypto.randomUUID()} className="w-[23.5rem]">
+                    <div key={product.title + crypto.randomUUID()} className="w-full">
                         <div className="relative w-full">
                             <img src={product.image} alt={product.title} className="w-full" />
 
@@ -73,13 +75,17 @@ const Offers = () => {
                         </div>
 
                         <p className="flex justify-between items-center py-3">
-                            <span className="text-grey-600">{product.category}</span>
+                            <span className="text-grey-600 md:text-base text-sm">
+                                {product.category}
+                            </span>
                             <span>
-                                <FiHeart size={20} />
+                                <FiHeart size={!mobileView ? 20 : ""} />
                             </span>
                         </p>
-                        <h4 className="font-semibold text-xl nichrome">{product.title}</h4>
-                        <p className="flex items-center justify-between py-3">
+                        <h4 className="font-semibold md:text-xl md:tracking-normal tracking-wide nichrome">
+                            {product.title}
+                        </h4>
+                        <p className="flex items-center justify-between py-3 md:text-base text-sm">
                             <span className="flex items-center space-x-2 text-grey-600">
                                 <IoStarSharp size={20} className="text-secondaryOrange-400" />
                                 <span>
@@ -88,7 +94,7 @@ const Offers = () => {
                             </span>
                             <span className="font-medium">${product.price}</span>
                         </p>
-                        <Button variant="primary-outline" className="w-full mt-3">
+                        <Button variant="primary-outline" className="w-full mt-3 pt-1.5">
                             Add to Cart
                         </Button>
                     </div>
