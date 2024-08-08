@@ -39,17 +39,17 @@ const Footer = () => {
 
     return (
         <section>
-            <div className="bg-darkBlue px-20 py-10 text-white">
+            <div className="bg-darkBlue lg:px-20 px-5 py-10 text-white">
                 <div className="flex flex-col items-center text-center pb-10">
-                    <h3 className="text-3xl font-medium pb-5 nichrome">Excellent</h3>
+                    <h3 className="text-3xl font-medium md:pb-5 mb-3 nichrome">Excellent</h3>
 
                     <div className="flex space-x-1">
                         {Array.from({ length: 5 }).map((_, index) => (
                             <div
                                 key={index}
-                                className="bg-primaryGreen-300 w-10 h-10 flex items-center justify-center rounded-sm"
+                                className="bg-primaryGreen-300 md:w-10 md:h-10 p-1 flex items-center justify-center rounded-sm"
                             >
-                                <img src={WhiteStar} alt="White Star" />
+                                <img src={WhiteStar} alt="White Star" className="w-6 h-6" />
                             </div>
                         ))}
                     </div>
@@ -74,7 +74,7 @@ const Footer = () => {
                 <hr className="border-[#404B4B] border-1 " />
 
                 {/* Footer */}
-                <footer className="flex justify-between py-10">
+                <footer className="grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2 py-10 gap-y-6">
                     <div>
                         <h4 className="text-xl font-medium mb-5 nichrome">Customer Service</h4>
                         <ul className="text-[#A6B6B6] font-light flex flex-col space-y-3">
@@ -86,7 +86,7 @@ const Footer = () => {
                         </ul>
                     </div>
 
-                    <div>
+                    <div className="lg:justify-self-center">
                         <h4 className="text-xl font-medium mb-5 nichrome">About Us</h4>
                         <ul className="text-[#A6B6B6] font-light flex flex-col space-y-3">
                             {aboutUs.map((item, index) => (
@@ -97,7 +97,7 @@ const Footer = () => {
                         </ul>
                     </div>
 
-                    <div>
+                    <div className="lg:justify-self-center">
                         <h4 className="text-xl font-medium mb-5 nichrome">Need Help?</h4>
                         <ul className="text-[#A6B6B6] font-light flex flex-col space-y-3">
                             {help.map((item, index) => (
@@ -108,7 +108,7 @@ const Footer = () => {
                         </ul>
                     </div>
 
-                    <div>
+                    <div className="lg:justify-self-center">
                         <h4 className="text-xl font-medium mb-5 nichrome">Privacy</h4>
                         <ul className="text-[#A6B6B6] font-light flex flex-col space-y-3">
                             {privacy.map((item, index) => (
@@ -119,7 +119,7 @@ const Footer = () => {
                         </ul>
                     </div>
 
-                    <div>
+                    <div className="lg:justify-self-center">
                         <h4 className="text-xl font-medium mb-5 nichrome">Follow us</h4>
                         <ul className="flex space-x-3">
                             <li className="bg-secondaryOrange-400 w-8 h-8 grid place-content-center">
