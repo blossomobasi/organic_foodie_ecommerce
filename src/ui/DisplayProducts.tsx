@@ -2,6 +2,7 @@ import { FiHeart } from "react-icons/fi";
 import Button from "./Button";
 import { IoStarSharp } from "react-icons/io5";
 import { ProductsType } from "../types/products";
+import React from "react";
 
 type Props = {
     data: ProductsType[];
@@ -10,17 +11,29 @@ type Props = {
 };
 
 const DisplayProducts = ({ data, title, description }: Props) => {
+    const windowWidth = window.innerWidth;
+    const mobileView = windowWidth < 500;
+
     return (
-        <div>
+        <React.Fragment>
             <div className="pb-5">
-                <h2 className="text-5xl font-bold nichrome ">{title}</h2>
-                <div className="flex justify-between items-center py-5">
-                    <p className="text-grey-600">
-                        {description.split("<br />")[0]} <br /> {description.split("<br />")[1]}
+                <h2 className="md:text-5xl text-4xl font-bold nichrome ">{title}</h2>
+                <div className="flex justify-between items-center py-5 space-x-5">
+                    <p className="text-grey-600 md:text-base text-sm">
+                        {mobileView
+                            ? description.replace("<br />", " ")
+                            : description.split("<br />")[0]}{" "}
+                        <br /> {mobileView ? "" : description.split("<br />")[1]}
                     </p>
-                    <Button url="products" variant="primary-outline">
-                        Browse All
-                    </Button>
+                    <div>
+                        <Button
+                            url="products"
+                            variant="primary-outline"
+                            className="w-full whitespace-nowrap"
+                        >
+                            Browse All
+                        </Button>
+                    </div>
                 </div>
             </div>
 
@@ -53,7 +66,7 @@ const DisplayProducts = ({ data, title, description }: Props) => {
                     </div>
                 ))}
             </div>
-        </div>
+        </React.Fragment>
     );
 };
 
