@@ -74,82 +74,86 @@ const Footer = () => {
                 <hr className="border-[#404B4B] border-1 " />
 
                 {/* Footer */}
-                <footer className="grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2 py-10 gap-y-6">
-                    <div>
-                        <h4 className="text-xl font-medium mb-5 nichrome">Customer Service</h4>
-                        <ul className="text-[#A6B6B6] font-light flex flex-col space-y-3">
-                            {customerService.map((item, index) => (
-                                <li key={index} className="hover:underline w-fit">
-                                    <Link to={item.href}>{item.name}</Link>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
+                <footer className="flex flex-col items-center">
+                    <div className="grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2 py-10 gap-y-6 max-w-[110rem] w-full">
+                        <div>
+                            <h4 className="text-xl font-medium mb-5 nichrome">Customer Service</h4>
+                            <ul className="text-[#A6B6B6] font-light flex flex-col space-y-3">
+                                {customerService.map((item, index) => (
+                                    <li key={index} className="hover:underline w-fit">
+                                        <Link to={item.href}>{item.name}</Link>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
 
-                    <div className="lg:justify-self-center">
-                        <h4 className="text-xl font-medium mb-5 nichrome">About Us</h4>
-                        <ul className="text-[#A6B6B6] font-light flex flex-col space-y-3">
-                            {aboutUs.map((item, index) => (
-                                <li key={index} className="hover:underline w-fit">
-                                    <Link to={item.href}>{item.name}</Link>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
+                        <div className="lg:justify-self-center">
+                            <h4 className="text-xl font-medium mb-5 nichrome">About Us</h4>
+                            <ul className="text-[#A6B6B6] font-light flex flex-col space-y-3">
+                                {aboutUs.map((item, index) => (
+                                    <li key={index} className="hover:underline w-fit">
+                                        <Link to={item.href}>{item.name}</Link>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
 
-                    <div className="lg:justify-self-center">
-                        <h4 className="text-xl font-medium mb-5 nichrome">Need Help?</h4>
-                        <ul className="text-[#A6B6B6] font-light flex flex-col space-y-3">
-                            {help.map((item, index) => (
-                                <li key={index} className="hover:underline w-fit">
-                                    <Link to={item.href}>{item.name}</Link>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
+                        <div className="lg:justify-self-center">
+                            <h4 className="text-xl font-medium mb-5 nichrome">Need Help?</h4>
+                            <ul className="text-[#A6B6B6] font-light flex flex-col space-y-3">
+                                {help.map((item, index) => (
+                                    <li key={index} className="hover:underline w-fit">
+                                        <Link to={item.href}>{item.name}</Link>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
 
-                    <div className="lg:justify-self-center">
-                        <h4 className="text-xl font-medium mb-5 nichrome">Privacy</h4>
-                        <ul className="text-[#A6B6B6] font-light flex flex-col space-y-3">
-                            {privacy.map((item, index) => (
-                                <li key={index} className="hover:underline w-fit">
-                                    <Link to={item.href}>{item.name}</Link>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
+                        <div className="lg:justify-self-center">
+                            <h4 className="text-xl font-medium mb-5 nichrome">Privacy</h4>
+                            <ul className="text-[#A6B6B6] font-light flex flex-col space-y-3">
+                                {privacy.map((item, index) => (
+                                    <li key={index} className="hover:underline w-fit">
+                                        <Link to={item.href}>{item.name}</Link>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
 
-                    <div className="lg:justify-self-center">
-                        <h4 className="text-xl font-medium mb-5 nichrome">Follow us</h4>
-                        <ul className="flex space-x-3">
-                            <li className="bg-secondaryOrange-400 w-8 h-8 grid place-content-center">
-                                <TiSocialFacebook size={20} />
-                            </li>
-                            <li className="bg-secondaryOrange-400 w-8 h-8 grid place-content-center">
-                                <FaLinkedinIn />
-                            </li>
-                            <li className="bg-secondaryOrange-400 w-8 h-8 grid place-content-center">
-                                <FaTwitter />
-                            </li>
-                        </ul>
+                        <div className="lg:justify-self-center">
+                            <h4 className="text-xl font-medium mb-5 nichrome">Follow us</h4>
+                            <ul className="flex space-x-3">
+                                <li className="bg-secondaryOrange-400 w-8 h-8 grid place-content-center">
+                                    <TiSocialFacebook size={20} />
+                                </li>
+                                <li className="bg-secondaryOrange-400 w-8 h-8 grid place-content-center">
+                                    <FaLinkedinIn />
+                                </li>
+                                <li className="bg-secondaryOrange-400 w-8 h-8 grid place-content-center">
+                                    <FaTwitter />
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </footer>
             </div>
 
             {/* Copyright */}
-            <div className="bg-grey-300 text-grey-900 flex justify-between items-center px-20 py-3">
-                <div className="w-full">
-                    <Logo />
-                </div>
-                <div className="flex items-center space-x-8 w-full justify-center">
-                    <img src={Paypal} alt="Paypal" />
-                    <img src={Visa} alt="Visa" />
-                    <img src={MastersCard} alt="Masters card" />
-                </div>
+            <div className="bg-grey-300 text-grey-900 flex flex-col items-center lg:px-20 px-5 py-3">
+                <div className="flex justify-between items-center md:flex-row flex-col space-y-5 max-w-[110rem] w-full">
+                    <div className="md:w-full">
+                        <Logo />
+                    </div>
+                    <div className="flex items-center space-x-8 md:w-full justify-center">
+                        <img src={Paypal} alt="Paypal" />
+                        <img src={Visa} alt="Visa" />
+                        <img src={MastersCard} alt="Masters card" />
+                    </div>
 
-                <p className="text-sm w-full text-end">
-                    Copyright &copy; {YEAR} FoodieAmazon. All Rights Reserved
-                </p>
+                    <p className="text-sm md:w-full text-end">
+                        Copyright &copy; {YEAR} FoodieAmazon. All Rights Reserved
+                    </p>
+                </div>
             </div>
         </section>
     );
