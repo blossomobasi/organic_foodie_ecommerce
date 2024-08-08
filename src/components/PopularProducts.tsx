@@ -7,7 +7,7 @@ import DisplayProducts from "../ui/DisplayProducts";
 const PopularProducts = () => {
     const popularProducts = popularProductsData;
     return (
-        <section className="px-[5rem] rounded-t-[3.5rem] bg-white w-full pt-24 -translate-y-14">
+        <section className="lg:px-20 px-5 rounded-t-[3.5rem] bg-white w-full md:pt-24 pt-14 -translate-y-14">
             <div>
                 <DisplayProducts
                     data={popularProducts}
@@ -16,15 +16,15 @@ const PopularProducts = () => {
                     title="Our Popular Products"
                 />
 
-                <div className="flex items-center justify-between pt-20">
+                <div className="flex md:flex-row flex-col-reverse items-center justify-between space-x-10 md:pt-20 pt-14">
                     <div className="w-full flex flex-col items-center space-y-5">
-                        <img src={OrganicSnacks} alt="Organic Snacks" />
+                        <img src={OrganicSnacks} alt="Organic Snacks" className="w-full" />
                         <Button className="rounded-full shadow-sm shadow-primaryGreen-700">
                             100% Organic
                         </Button>
                     </div>
                     <div className="w-full">
-                        <h1 className="uppercase text-6xl text-primaryGreen-700 font-bold nichrome tracking-wide">
+                        <h1 className="uppercase lg:text-6xl text-5xl text-primaryGreen-700 font-bold nichrome tracking-wide">
                             High Quality <br />
                             <span className="text-secondaryOrange-400">Organic Snacks</span>
                         </h1>
