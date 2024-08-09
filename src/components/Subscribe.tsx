@@ -37,7 +37,7 @@ const Subscribe = () => {
                             placeholder="Enter Your Email Address"
                             className="focus-within:outline-none w-full pl-2 text-grey-600"
                         />
-                        <button className="bg-primaryGreen-700 p-3 rounded-md">
+                        <button className="bg-primaryGreen-700 hover:bg-secondaryOrange-400 p-3 rounded-md">
                             <FaPaperPlane />
                         </button>
                     </form>
