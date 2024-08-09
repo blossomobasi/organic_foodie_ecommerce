@@ -20,68 +20,72 @@ const HomeMain = () => {
 
     return (
         <section>
-            <div className="flex justify-between items-center md:px-20 px-5 pt-10 max-w-[120rem]">
-                <div className="w-1/2 flex flex-col items-start space-y-3">
-                    <p>Discover the pure taste of Nature</p>
-                    <h1 className="text-6xl font-bold text-primaryGreen-700 nichrome pb-5">
-                        Organic <span className="text-secondaryOrange-400">Snacks</span> Made{" "}
-                        <span className="text-secondaryOrange-400">with</span> Love, Just{" "}
-                        <span className="text-secondaryOrange-400">for </span>
-                        You
-                    </h1>
-                    <Button
-                        icon={<img src={ShopNow} alt="Shop Now basket" />}
-                        variant="secondary"
-                        className="flex items-center gap-x-3"
-                    >
-                        Shop Now
-                    </Button>
+            <div className="flex flex-col items-center">
+                <div className="flex lg:flex-row flex-col justify-between items-center lg:space-y-0 space-y-14 lg:px-20 px-5 pt-10 max-w-[110rem]">
+                    <div className="lg:w-1/2 flex flex-col items-start space-y-3 lg:text-start text-center">
+                        <p className="lg:self-start self-center">
+                            Discover the pure taste of Nature
+                        </p>
+                        <h1 className="md:text-6xl text-5xl font-bold text-primaryGreen-700 nichrome pb-5">
+                            Organic <span className="text-secondaryOrange-400">Snacks</span> Made
+                            <span className="text-secondaryOrange-400"> with</span> Love, Just
+                            <span className="text-secondaryOrange-400"> for </span>
+                            You
+                        </h1>
+                        <Button
+                            icon={<img src={ShopNow} alt="Shop Now basket" />}
+                            variant="secondary"
+                            className="flex items-center gap-x-3 lg:self-start self-center"
+                        >
+                            Shop Now
+                        </Button>
+                    </div>
+
+                    <div className="relative ">
+                        <img src={OrganicSnacks} alt="Organic Foodie snacks" className="mx-auto" />
+
+                        <img src={Onions} alt="onions" className="absolute top-0 right-0" />
+                        <img
+                            src={GreenPepper}
+                            alt="green pepper"
+                            className="absolute bottom-28 -right-8"
+                        />
+                        <img
+                            src={Stars}
+                            alt="stars"
+                            className="absolute -bottom-10 right-1/2 translate-x-1/2"
+                        />
+                    </div>
                 </div>
 
-                <div className="w-1/2 relative">
-                    <img src={OrganicSnacks} alt="Organic Foodie snacks" className="mx-auto" />
-
-                    <img src={Onions} alt="onions" className="absolute top-0 right-10" />
-                    <img
-                        src={GreenPepper}
-                        alt="green pepper"
-                        className="absolute bottom-28 right-5"
-                    />
-                    <img
-                        src={Stars}
-                        alt="stars"
-                        className="absolute -bottom-10 right-1/2 translate-x-1/2"
-                    />
-                </div>
-            </div>
-
-            <div className="flex justify-end px-20 py-10 max-w-[120rem]">
-                <div className="flex space-x-10 text-white">
-                    <div className="flex items-center">
-                        <img src={FastDelivery} alt="Fast Delivery" />
-                        <div>
-                            <h3 className="text-xl font-medium nichrome">Fast Delivery</h3>
-                            <p className="text-sm">
-                                Deliver within 30 <br /> minutes
-                            </p>
+                <div className="flex justify-end px-20 py-10 max-w-[110rem] w-full md:bg-transparent bg-primaryGreen-100">
+                    <div className="flex md:flex-row flex-col  items-end md:text-start text-end md:w-fit w-full md:space-x-10 space-y-5 md:text-white text-primaryGreen-700">
+                        <div className="flex items-center md:flex-row flex-row-reverse">
+                            <img src={FastDelivery} alt="Fast Delivery" />
+                            <div>
+                                <h3 className="text-xl font-medium nichrome">Fast Delivery</h3>
+                                <p className="text-sm">
+                                    Deliver within 30 <br /> minutes
+                                </p>
+                            </div>
                         </div>
-                    </div>
-                    <div className="flex items-center">
-                        <img src={DineIn} alt="Dine In" />
-                        <div>
-                            <h3 className="text-xl font-medium nichrome">Dine in</h3>
-                            <p className="text-sm">
-                                Enjoy you snacks <br /> fresh and healthy
-                            </p>
+                        <div className="flex items-center md:flex-row flex-row-reverse">
+                            <img src={DineIn} alt="Dine In" />
+                            <div>
+                                <h3 className="text-xl font-medium nichrome">Dine in</h3>
+                                <p className="text-sm">
+                                    Enjoy you snacks <br /> fresh and healthy
+                                </p>
+                            </div>
                         </div>
-                    </div>
-                    <div className="flex items-center">
-                        <img src={PickUp} alt="Pick Up" />
-                        <div>
-                            <h3 className="text-xl font-medium nichrome">Pick Up</h3>
-                            <p className="text-sm">
-                                Delivery at your <br /> doorstep
-                            </p>
+                        <div className="flex items-center md:flex-row flex-row-reverse">
+                            <img src={PickUp} alt="Pick Up" />
+                            <div>
+                                <h3 className="text-xl font-medium nichrome">Pick Up</h3>
+                                <p className="text-sm">
+                                    Delivery at your <br /> doorstep
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -99,14 +103,14 @@ const HomeMain = () => {
                         backgroundImage: `url(${GreenDesign_1})`,
                         backgroundRepeat: "no-repeat",
                     }}
-                    className="h-[15rem] w-full absolute -top-[12rem] -z-10"
+                    className="h-[15rem] w-full absolute -top-[12rem] -z-10 left-0 2xl:right-1/2 2xl:translate-x-1/2 md:flex hidden"
                 />
                 <div
                     style={{
                         backgroundImage: `url(${GreenDesign_2})`,
                         backgroundRepeat: "no-repeat",
                     }}
-                    className="h-[15rem] w-full absolute -top-[15rem] -z-10"
+                    className="h-[15rem] w-full absolute -top-[15rem] -z-10 2xl:left-0 md:flex hidden"
                 />
                 <div
                     style={{
