@@ -19,8 +19,8 @@ const NavBar = () => {
     ];
 
     return (
-        <header className="sticky top-0 z-[100] bg-white shadow-md">
-            <div className="flex items-center justify-between px-[5rem] py-3 max-w-[110rem]">
+        <header className="sticky top-0 z-[100] bg-white shadow-md flex flex-col items-center lg:px-20 px-5">
+            <div className="flex items-center justify-between py-3 max-w-[110rem] w-full">
                 <div className="flex-[0.5]">
                     <Logo />
                 </div>
