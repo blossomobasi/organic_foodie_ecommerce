@@ -10,9 +10,12 @@ import { BsHandbag } from "react-icons/bs";
 import { SlMagnifier } from "react-icons/sl";
 import { GrMenu } from "react-icons/gr";
 import { FaArrowLeft } from "react-icons/fa";
+import Cart from "./Cart";
 
 const NavBar = () => {
     const [showNav, setShowNav] = useState(false);
+    const [openCart, setOpencart] = useState(false);
+
     const navigate = useNavigate();
     const location = useLocation();
     const pathname = location.pathname;
@@ -109,13 +112,13 @@ const NavBar = () => {
                         })}
                         onClick={() => navigate("/wishlist")}
                     />
+
                     <BsHandbag
                         size={25}
-                        className={clsx("cursor-pointer", {
-                            "text-primaryGreen-700": pathname === "/cart",
-                        })}
-                        onClick={() => navigate("/cart")}
+                        className="cursor-pointer"
+                        onClick={() => setOpencart(true)}
                     />
+
                     <Button className="hidden sm:block">Contact Us</Button>
                 </span>
 
@@ -126,6 +129,8 @@ const NavBar = () => {
                 >
                     <GrMenu size={25} className="text-primaryGreen-400" />
                 </span>
+
+                <Cart onOpen={setOpencart} openCart={openCart} />
             </div>
         </header>
     );
