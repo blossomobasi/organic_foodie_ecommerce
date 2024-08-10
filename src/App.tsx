@@ -6,6 +6,7 @@ import HealthBenefitsPage from "./pages/HealthBenefitsPage";
 import BlogsPage from "./pages/BlogsPage";
 import FaqPage from "./pages/FaqPage";
 import CartPage from "./pages/CartPage";
+import WishlistPage from "./pages/WishlistPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import ProductsIdPage from "./pages/ProductsIdPage";
 
@@ -21,6 +22,7 @@ function App() {
                     <Route path="blogs" element={<BlogsPage />} />
                     <Route path="faq" element={<FaqPage />} />
                     <Route path="cart" element={<CartPage />} />
+                    <Route path="wishlist" element={<WishlistPage />} />
                 </Route>
 
                 <Route path="*" element={<NotFoundPage />} />
