@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate, useLocation } from "react-router-dom";
 import clsx from "clsx";
 
 import Button from "../ui/Button";
@@ -14,6 +14,8 @@ import { FaArrowLeft } from "react-icons/fa";
 const NavBar = () => {
     const [showNav, setShowNav] = useState(false);
     const navigate = useNavigate();
+    const location = useLocation();
+    const pathname = location.pathname;
 
     useEffect(() => {
         if (showNav) {
@@ -100,10 +102,18 @@ const NavBar = () => {
                 </div>
 
                 <span className="flex items-center gap-x-4">
-                    <FiHeart size={25} className="cursor-pointer" />
+                    <FiHeart
+                        size={25}
+                        className={clsx("cursor-pointer", {
+                            "text-primaryGreen-700": pathname === "/wishlist",
+                        })}
+                        onClick={() => navigate("/wishlist")}
+                    />
                     <BsHandbag
                         size={25}
-                        className="cursor-pointer"
+                        className={clsx("cursor-pointer", {
+                            "text-primaryGreen-700": pathname === "/cart",
+                        })}
                         onClick={() => navigate("/cart")}
                     />
                     <Button className="hidden sm:block">Contact Us</Button>
