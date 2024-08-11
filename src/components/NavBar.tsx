@@ -116,7 +116,9 @@ const NavBar = () => {
                     <BsHandbag
                         size={25}
                         className="cursor-pointer"
-                        onClick={() => setOpencart(true)}
+                        onClick={() => {
+                            if (pathname !== "/cart") setOpencart(true);
+                        }}
                     />
 
                     <Button className="hidden sm:block">Contact Us</Button>
