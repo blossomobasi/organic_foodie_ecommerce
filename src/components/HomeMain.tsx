@@ -41,7 +41,7 @@ const HomeMain = () => {
                         </Button>
                     </div>
 
-                    <div className="relative ">
+                    <div className="relative">
                         <img src={OrganicSnacks} alt="Organic Foodie snacks" className="mx-auto" />
 
                         <img src={Onions} alt="onions" className="absolute top-0 right-0" />
