@@ -36,6 +36,8 @@ const NavBar = () => {
         { name: "FAQs", url: "faq" },
     ];
 
+    const FAKE_CART_LENGTH = 3;
+
     return (
         <header className="sticky top-0 z-[100] bg-white shadow-md flex flex-col items-center lg:px-20 px-5">
             <div className="flex items-center lg:justify-between py-3 max-w-[110rem] w-full">
@@ -112,14 +114,17 @@ const NavBar = () => {
                         })}
                         onClick={() => navigate("/wishlist")}
                     />
-
-                    <BsHandbag
-                        size={25}
-                        className="cursor-pointer"
+                    <span
                         onClick={() => {
                             if (pathname !== "/cart") setOpencart(true);
                         }}
-                    />
+                        className="cursor-pointer relative"
+                    >
+                        <div className="h-5 w-5 bg-secondaryOrange-400 text-white rounded-full absolute -top-1.5 -right-1.5 flex items-center justify-center">
+                            {FAKE_CART_LENGTH}
+                        </div>
+                        <BsHandbag size={25} />
+                    </span>
 
                     <Button className="hidden sm:block">Contact Us</Button>
                 </span>
