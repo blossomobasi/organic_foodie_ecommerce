@@ -7,14 +7,19 @@ type ButtonProps = React.HTMLAttributes<HTMLButtonElement> & {
     variant?: "primary" | "secondary" | "primary-outline";
     icon?: React.ReactNode;
     url?: string;
+    onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 };
 
-const Button = ({ children, variant, icon, className, url, ...props }: ButtonProps) => {
+const Button = ({ children, variant, icon, className, url, onClick, ...props }: ButtonProps) => {
     const navigate = useNavigate();
 
-    const handleClick = () => {
+    const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
         if (url) {
             navigate(url);
+        }
+
+        if (onClick) {
+            onClick(event);
         }
     };
     return (
