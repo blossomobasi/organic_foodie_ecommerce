@@ -53,7 +53,7 @@ const Cart = ({
                 "absolute pt-28 top-0 left-0 w-full h-screen lg:px-20 px-5 transition-transform duration-300 flex flex-col items-center",
                 {
                     "transform translate-y-0": openCart,
-                    "transform translate-y-full": !openCart,
+                    "transform translate-y-[calc(100vh+5rem)]": !openCart,
                 }
             )}
         >
