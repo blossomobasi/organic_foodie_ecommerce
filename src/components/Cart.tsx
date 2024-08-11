@@ -9,6 +9,27 @@ import CoconutCrunchies from "../assets/images/crispy_coconut_crunchies.png";
 import React from "react";
 import clsx from "clsx";
 
+const carts = [
+    {
+        image: OrganicSnacks,
+        title: "Coconut Date Energy Bars",
+        cartId: "1234567890",
+        price: 60,
+    },
+    {
+        image: BerryBlissBites,
+        title: "Organic Fruit Bites",
+        cartId: "12345678911",
+        price: 60,
+    },
+    {
+        image: CoconutCrunchies,
+        title: "Choco-chi Delight",
+        cartId: "12345678912",
+        price: 60,
+    },
+];
+
 const Cart = ({
     onOpen,
     openCart,
@@ -16,26 +37,6 @@ const Cart = ({
     onOpen: React.Dispatch<React.SetStateAction<boolean>>;
     openCart: boolean;
 }) => {
-    const carts = [
-        {
-            image: OrganicSnacks,
-            title: "Coconut Date Energy Bars",
-            cartId: "1234567890",
-            price: 60,
-        },
-        {
-            image: BerryBlissBites,
-            title: "Organic Fruit Bites",
-            cartId: "12345678911",
-            price: 60,
-        },
-        {
-            image: CoconutCrunchies,
-            title: "Choco-chi Delight",
-            cartId: "12345678912",
-            price: 60,
-        },
-    ];
     const cartLength = carts.length;
     const totalPrice = carts.reduce((acc, cart) => acc + cart.price, 0);
 
@@ -116,8 +117,14 @@ const Cart = ({
                         </div>
 
                         <div className="flex flex-col space-y-3">
-                            <Button className="py-3">View Cart</Button>
-                            <Button variant="secondary" className="py-3">
+                            <Button url="cart" className="py-3" onClick={() => onOpen(false)}>
+                                View Cart
+                            </Button>
+                            <Button
+                                variant="secondary"
+                                className="py-3"
+                                onClick={() => onOpen(false)}
+                            >
                                 Check Out
                             </Button>
                         </div>
