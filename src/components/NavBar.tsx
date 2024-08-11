@@ -56,7 +56,7 @@ const NavBar = () => {
                 {/* Mobile navigation */}
                 <nav
                     className={clsx(
-                        "p-5 lg:hidden absolute bg-white sm:w-1/2 w-full h-screen top-0 left-0 z-[100] transition-transform duration-300",
+                        "p-5 lg:hidden absolute bg-white sm:w-1/2 w-full h-[calc(100vh+5rem)] top-0 left-0 z-[100] transition-transform duration-300",
                         {
                             "transform translate-x-0": showNav,
                             "transform -translate-x-full": !showNav,
