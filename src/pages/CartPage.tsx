@@ -2,6 +2,7 @@ import OrganicSnacks from "../assets/images/black_friday_out_of_stock.png";
 import BerryBlissBites from "../assets/images/berry_bliss_bites.png";
 import CoconutCrunchies from "../assets/images/crispy_coconut_crunchies.png";
 import Button from "../ui/Button";
+import SimilarProduct from "../components/SimilarProduct";
 
 const carts = [
     {
@@ -109,11 +110,13 @@ const CartPage = () => {
                         <h2>Total</h2>
                         <h2>${(totalPrice - SAVINGS - TAX).toFixed(2)}</h2>
                     </div>
-                    <Button variant="secondary" className="w-full py-3">
+                    <Button variant="secondary" className="w-full py-3" url="/checkout">
                         Proceed to Check Out
                     </Button>
                 </div>
             </div>
+
+            <SimilarProduct />
         </section>
     );
 };
