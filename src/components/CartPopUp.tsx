@@ -51,7 +51,7 @@ const CartPopUp = ({
     return (
         <section
             className={clsx(
-                "absolute pt-28 top-0 left-0 w-full h-screen lg:px-20 px-5 transition-transform duration-300 flex flex-col items-center",
+                "absolute md:pt-28 pt-14 top-0 left-0 w-full h-screen lg:px-20 px-2 transition-transform duration-300 flex flex-col items-center",
                 {
                     "transform translate-y-0": openCart,
                     "transform translate-y-[calc(100vh+5rem)]": !openCart,
@@ -73,7 +73,7 @@ const CartPopUp = ({
                     {carts.map((cart, index) => (
                         <div key={index}>
                             <div className="flex justify-between py-3">
-                                <h6>item {index + 1}</h6>
+                                <h6>Item {index + 1}</h6>
                                 <div className="flex space-x-5 text-grey-600">
                                     <p className="relative before:absolute before:-bottom-1 before:left-0 before:h-px before:w-full before:bg-grey-600">
                                         Edit
