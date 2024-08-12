@@ -50,7 +50,7 @@ const NavBar = () => {
                 </div>
 
                 <nav className="flex-[1.8] lg:block hidden 2xl:flex flex-col items-center">
-                    <ul className="flex justify-between  max-w-[50rem] w-full">
+                    <ul className="flex justify-between max-w-[50rem] w-full">
                         {navlinks.map((link) => (
                             <li key={link.name} className="hover:font-bold" onClick={scrollUp}>
                                 <NavLink to={link.url}>{link.name}</NavLink>
@@ -116,7 +116,10 @@ const NavBar = () => {
                         className={clsx("cursor-pointer", {
                             "text-primaryGreen-700": pathname === "/wishlist",
                         })}
-                        onClick={() => navigate("/wishlist")}
+                        onClick={() => {
+                            navigate("/wishlist");
+                            scrollUp();
+                        }}
                     />
                     <span
                         onClick={() => {
