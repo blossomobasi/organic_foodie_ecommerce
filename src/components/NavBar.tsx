@@ -10,7 +10,7 @@ import { BsHandbag } from "react-icons/bs";
 import { SlMagnifier } from "react-icons/sl";
 import { GrMenu } from "react-icons/gr";
 import { FaArrowLeft } from "react-icons/fa";
-import Cart from "./Cart";
+import CartPopUp from "./CartPopUp";
 
 const NavBar = () => {
     const [showNav, setShowNav] = useState(false);
@@ -137,7 +137,7 @@ const NavBar = () => {
                     <GrMenu size={25} className="text-primaryGreen-400" />
                 </span>
 
-                <Cart onOpen={setOpencart} openCart={openCart} />
+                <CartPopUp onOpen={setOpencart} openCart={openCart} />
             </div>
         </header>
     );
