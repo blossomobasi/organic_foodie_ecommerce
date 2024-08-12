@@ -110,7 +110,12 @@ const CartPage = () => {
                         <h2>Total</h2>
                         <h2>${(totalPrice - SAVINGS - TAX).toFixed(2)}</h2>
                     </div>
-                    <Button variant="secondary" className="w-full py-3" url="/checkout">
+                    <Button
+                        variant="secondary"
+                        className="w-full py-3"
+                        url="/checkout"
+                        onClick={() => window.scrollTo(0, 0)}
+                    >
                         Proceed to Check Out
                     </Button>
                 </div>
