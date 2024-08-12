@@ -30,7 +30,7 @@ const carts = [
     },
 ];
 
-const Cart = ({
+const CartPopUp = ({
     onOpen,
     openCart,
 }: {
@@ -142,4 +142,4 @@ const Cart = ({
     );
 };
 
-export default Cart;
+export default CartPopUp;
