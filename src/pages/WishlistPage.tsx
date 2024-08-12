@@ -33,9 +33,11 @@ const WishlistPage = () => {
 
     return (
         <section className="flex flex-col items-center">
-            <div className="py-14 text-center lg:px-20 px-5 max-w-[120rem] w-full">
-                <h2 className="text-5xl font-bold nichrome pb-5">Wish List</h2>
-                <p className="mb-10 text-grey-600">{totalWishlist} items in your wishlist</p>
+            <div className="md:py-14 py-5 text-center lg:px-20 px-5 max-w-[120rem] w-full">
+                <h2 className="text-5xl font-bold nichrome md:pb-5 pb-3">Wish List</h2>
+                <p className="md:mb-10 mb-7 text-grey-600">
+                    {totalWishlist} items in your wishlist
+                </p>
 
                 <div className=" overflow-x-auto">
                     <table className="lg:w-full w-[70rem]">
