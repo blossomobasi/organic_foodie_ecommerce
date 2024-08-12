@@ -48,7 +48,7 @@ const HomeMain = () => {
                         <img
                             src={GreenPepper}
                             alt="green pepper"
-                            className="absolute bottom-28 -right-8"
+                            className="absolute bottom-28 md:-right-8 -right-5"
                         />
                         <img
                             src={Stars}
@@ -59,8 +59,8 @@ const HomeMain = () => {
                 </div>
 
                 <div className="flex justify-end md:px-20 px-5 pt-10 sm:pb-10 pb-16 max-w-[110rem] w-full md:bg-transparent bg-primaryGreen-100">
-                    <div className="flex md:flex-row flex-col items-end md:text-start text-end md:w-fit w-full md:space-x-10 space-y-5 md:text-white text-primaryGreen-700">
-                        <div className="flex items-center md:flex-row flex-row-reverse">
+                    <div className="flex flex-row items-center justify-center flex-wrap md:w-fit w-full md:space-x-10 gap-5 md:text-white text-primaryGreen-700">
+                        <div className="flex items-center flex-row">
                             <img src={FastDelivery} alt="Fast Delivery" />
                             <div>
                                 <h3 className="text-xl font-medium nichrome">Fast Delivery</h3>
@@ -69,7 +69,7 @@ const HomeMain = () => {
                                 </p>
                             </div>
                         </div>
-                        <div className="flex items-center md:flex-row flex-row-reverse">
+                        <div className="flex items-center flex-row">
                             <img src={DineIn} alt="Dine In" />
                             <div>
                                 <h3 className="text-xl font-medium nichrome">Dine in</h3>
@@ -78,7 +78,7 @@ const HomeMain = () => {
                                 </p>
                             </div>
                         </div>
-                        <div className="flex items-center md:flex-row flex-row-reverse">
+                        <div className="flex items-center flex-row">
                             <img src={PickUp} alt="Pick Up" />
                             <div>
                                 <h3 className="text-xl font-medium nichrome">Pick Up</h3>
