@@ -17,7 +17,7 @@ const PopularProducts = () => {
                 />
 
                 <div className="md:pt-20 flex flex-col items-center">
-                    <div className="flex md:flex-row flex-col-reverse items-center justify-between space-x-10 pt-14 max-w-[120rem]">
+                    <div className="flex md:flex-row flex-col-reverse items-center justify-between md:space-x-10 pt-14 max-w-[120rem]">
                         <div className="w-full flex flex-col items-center space-y-5">
                             <img
                                 src={OrganicSnacks}
