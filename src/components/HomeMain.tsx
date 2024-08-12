@@ -58,8 +58,8 @@ const HomeMain = () => {
                     </div>
                 </div>
 
-                <div className="flex justify-end px-20 py-10 max-w-[110rem] w-full md:bg-transparent bg-primaryGreen-100">
-                    <div className="flex md:flex-row flex-col  items-end md:text-start text-end md:w-fit w-full md:space-x-10 space-y-5 md:text-white text-primaryGreen-700">
+                <div className="flex justify-end md:px-20 px-5 pt-10 sm:pb-10 pb-16 max-w-[110rem] w-full md:bg-transparent bg-primaryGreen-100">
+                    <div className="flex md:flex-row flex-col items-end md:text-start text-end md:w-fit w-full md:space-x-10 space-y-5 md:text-white text-primaryGreen-700">
                         <div className="flex items-center md:flex-row flex-row-reverse">
                             <img src={FastDelivery} alt="Fast Delivery" />
                             <div>
@@ -92,7 +92,7 @@ const HomeMain = () => {
             </div>
 
             <div
-                className="shadow-2xl relative bg-primaryGreen-400 rounded-t-[3.5rem] h-[18rem] md:pt-20 pt-5 pb-20 px-5 flex flex-col justify-center"
+                className="shadow-2xl sm:-mt-0 -mt-12 relative bg-primaryGreen-400 rounded-t-[3.5rem] h-[18rem] md:pt-20 pt-5 pb-20 px-5 flex flex-col justify-center"
                 style={{
                     backgroundImage: `url(${GreenDesign})`,
                     boxShadow: "5rem 5rem 5rem 5rem rgba(255,255,255, 0.4)",
