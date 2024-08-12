@@ -117,13 +117,24 @@ const CartPopUp = ({
                         </div>
 
                         <div className="flex flex-col space-y-3">
-                            <Button url="cart" className="py-3" onClick={() => onOpen(false)}>
+                            <Button
+                                url="cart"
+                                className="py-3"
+                                onClick={() => {
+                                    onOpen(false);
+                                    window.scrollTo(0, 0);
+                                }}
+                            >
                                 View Cart
                             </Button>
                             <Button
+                                url="checkout"
                                 variant="secondary"
                                 className="py-3"
-                                onClick={() => onOpen(false)}
+                                onClick={() => {
+                                    onOpen(false);
+                                    window.scrollTo(0, 0);
+                                }}
                             >
                                 Check Out
                             </Button>
