@@ -27,7 +27,7 @@ const DisplayProducts = ({ data, title, description }: Props) => {
                     </p>
                     <div>
                         <Button
-                            url="products"
+                            url="/products"
                             variant="primary-outline"
                             className="w-full whitespace-nowrap"
                         >
