@@ -33,6 +33,7 @@ const HomeMain = () => {
                             You
                         </h1>
                         <Button
+                        url="/products"
                             icon={<img src={ShopNow} alt="Shop Now basket" />}
                             variant="secondary"
                             className="flex items-center gap-x-3 lg:self-start self-center"
