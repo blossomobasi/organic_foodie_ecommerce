@@ -54,7 +54,13 @@ const Offers = () => {
                     <h3 className="md:text-4xl text-3xl font-bold nichrome">
                         Hurry Do not Miss Out On {mobileView ? " " : <br />} This Offers
                     </h3>
-                    <Button className="rounded-none whitespace-nowrap">Browse All</Button>
+                    <Button
+                        className="rounded-none whitespace-nowrap"
+                        url="products"
+                        onClick={() => window.scrollTo(0, 0)}
+                    >
+                        Browse All
+                    </Button>
                 </div>
 
                 <div className="grid md:grid-cols-3 grid-cols-2 gap-5">
