@@ -30,6 +30,7 @@ const DisplayProducts = ({ data, title, description }: Props) => {
                             url="/products"
                             variant="primary-outline"
                             className="w-full whitespace-nowrap"
+                            onClick={() => window.scrollTo(0, 0)}
                         >
                             Browse All
                         </Button>
