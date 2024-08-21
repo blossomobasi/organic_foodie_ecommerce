@@ -133,7 +133,9 @@ const NavBar = () => {
                         <BsHandbag size={25} />
                     </span>
 
-                    <Button className="hidden sm:block">Contact Us</Button>
+                    <Button className="hidden sm:block" url="/signup">
+                        Contact Us
+                    </Button>
                 </span>
 
                 {/* Menu */}
