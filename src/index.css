@@ -1,3 +1,5 @@
+@import url("react-toastify/dist/ReactToastify.css");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -18,4 +20,9 @@ body {
 }
 .active {
     @apply lg:text-primaryGreen-300 lg:font-bold lg:border-l-4 lg:border-primaryGreen-700 lg:rounded-full lg:py-2 lg:pr-0 lg:pl-4;
+}
+
+button:disabled,
+input:disabled {
+    @apply cursor-not-allowed opacity-50;
 }
