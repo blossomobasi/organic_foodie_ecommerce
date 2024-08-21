@@ -1,6 +1,7 @@
+import React, { ForwardedRef } from "react";
 import { cn } from "../utils/cn";
 
-type Props = React.InputHTMLAttributes<HTMLInputElement> & {
+type Props = {
     type?: string;
     label?: string;
     error?: string;
@@ -9,15 +10,20 @@ type Props = React.InputHTMLAttributes<HTMLInputElement> & {
     className?: string;
 };
 
-const TextInput = ({ label, error, placeholder, inputId, type = "text", className }: Props) => {
-    return (
-        <form className="flex flex-col space-y-2.5">
+const TextInput = React.forwardRef<HTMLInputElement, Props>(
+    (
+        { label, error, placeholder, inputId, type = "text", className, ...rest },
+        ref: ForwardedRef<HTMLInputElement>
+    ) => (
+        <div className="flex flex-col space-y-2.5">
             {label && (
                 <label htmlFor={inputId} className="text-lg font-medium">
                     {label}
                 </label>
             )}
             <input
+                {...rest}
+                ref={ref}
                 type={type}
                 id={inputId}
                 className={cn(
@@ -29,8 +35,8 @@ const TextInput = ({ label, error, placeholder, inputId, type = "text", classNam
                 placeholder={placeholder}
             />
             {error && <span className="text-secondaryOrange-500">{error}</span>}
-        </form>
-    );
-};
+        </div>
+    )
+);
 
 export default TextInput;
