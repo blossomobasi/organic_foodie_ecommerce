@@ -4,6 +4,7 @@ import Cookies from "js-cookie";
 export const config: AxiosRequestConfig = {
     baseURL: import.meta.env.VITE_BACKEND_BASE_URL,
     timeout: 30000, // 30 seconds
+    // withCredentials: true,
     headers: {
         "Content-Type": "application/json",
     },
@@ -13,9 +14,9 @@ const $http: AxiosInstance = axios.create(config);
 
 $http.interceptors.request.use(
     (config) => {
-        const token = Cookies.get("token");
-        if (token) {
-            config.headers.Authorization = `Bearer ${token}`;
+        const refreshToken = Cookies.get("refreshToken");
+        if (refreshToken) {
+            config.headers.Authorization = `Bearer ${refreshToken}`;
         }
 
         return config;
