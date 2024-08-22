@@ -1,18 +1,20 @@
-import { popularProductsData } from "../data/productsData";
+// import { popularProductsData } from "../data/productsData";
 import Button from "../ui/Button";
 
 import OrganicSnacks from "../assets/images/organic_snacks.png";
 import DisplayProducts from "../ui/DisplayProducts";
+import { useProducts } from "../hooks/useProduct";
 
 const PopularProducts = () => {
-    const popularProducts = popularProductsData;
+    const { products } = useProducts();
+
     return (
         <section className="lg:px-20 px-5 rounded-t-[3.5rem] bg-white w-full md:pt-24 pt-14 -translate-y-14 flex flex-col items-center">
             <div className="w-full max-w-[120rem]">
                 <DisplayProducts
-                    data={popularProducts}
+                    data={products?.allProduct}
                     description=" Browse our most popular snacks and make your day <br /> more
-                                beautiful and glorious."
+                    beautiful and glorious."
                     title="Our Popular Products"
                 />
 
