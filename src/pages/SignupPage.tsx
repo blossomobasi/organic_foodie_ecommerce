@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 import { Link, useNavigate } from "react-router-dom";
 
-import { register as registerApi } from "../services/auth";
+import { register as registerApi } from "../services";
 
 import Button from "../ui/Button";
 import TextInput from "../ui/TextInput";
