@@ -36,6 +36,5 @@ export type RegisterData = {
     email: string;
     mobile: string;
     password: string;
-    role: string;
     address: string;
 };
