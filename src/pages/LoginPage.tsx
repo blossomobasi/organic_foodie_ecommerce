@@ -2,8 +2,9 @@ import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-toastify";
+import Cookies from "js-cookie";
 
-import { login as loginApi } from "../services/auth";
+import { login as loginApi } from "../services";
 
 import Button from "../ui/Button";
 import TextInput from "../ui/TextInput";
@@ -17,7 +18,9 @@ const LoginPage = () => {
         mutationFn: loginApi,
         onSuccess: (data) => {
             toast.success("Login successful");
-            localStorage.setItem("userId", data.findUser._id);
+            // localStorage.setItem("userId", data.findUser._id);
+            Cookies.set("refreshToken", data.refreshToken);
+
             navigate("/");
         },
         onError: (err: AxiosError) => {
