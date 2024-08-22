@@ -8,6 +8,7 @@ import { login as loginApi } from "../services/auth";
 import Button from "../ui/Button";
 import TextInput from "../ui/TextInput";
 import { AxiosError } from "axios";
+import { LoginData } from "../types/auth";
 
 const LoginPage = () => {
     const navigate = useNavigate();
@@ -25,10 +26,10 @@ const LoginPage = () => {
         },
     });
 
-    const { register, handleSubmit, formState } = useForm();
+    const { register, handleSubmit, formState } = useForm<LoginData>();
     const { errors } = formState;
 
-    function onSubmit(data) {
+    function onSubmit(data: LoginData) {
         mutate(data);
     }
 
@@ -43,7 +44,7 @@ const LoginPage = () => {
                     onSubmit={handleSubmit(onSubmit)}
                 >
                     <TextInput
-                        error={errors?.email?.message}
+                        error={errors?.email?.message?.toString()}
                         label="Email"
                         placeholder="Enter your email"
                         inputId="email"
@@ -51,7 +52,7 @@ const LoginPage = () => {
                     />
 
                     <TextInput
-                        error={errors?.password?.message}
+                        error={errors?.password?.message?.toString()}
                         type="password"
                         label="Password"
                         placeholder="Enter your password"
