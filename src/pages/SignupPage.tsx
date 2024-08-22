@@ -8,6 +8,7 @@ import Button from "../ui/Button";
 import TextInput from "../ui/TextInput";
 import { AxiosError } from "axios";
 import { toast } from "react-toastify";
+import { RegisterData } from "../types/auth";
 
 const SignupPage = () => {
     const navigate = useNavigate();
@@ -22,10 +23,10 @@ const SignupPage = () => {
             console.error(err.response?.data);
         },
     });
-    const { register, handleSubmit, getValues, formState } = useForm();
+    const { register, handleSubmit, formState } = useForm<RegisterData>();
     const { errors } = formState;
 
-    function onSubmit(data) {
+    function onSubmit(data: RegisterData) {
         mutate(data);
     }
 
@@ -40,21 +41,21 @@ const SignupPage = () => {
                     onSubmit={handleSubmit(onSubmit)}
                 >
                     <TextInput
-                        error={errors?.firstName?.message}
+                        error={errors?.firstname?.message?.toString()}
                         label="First Name"
                         placeholder="Enter your first name"
-                        inputId="firstName"
-                        {...register("firstName", { required: "First name is required" })}
+                        inputId="firstname"
+                        {...register("firstname", { required: "First name is required" })}
                     />
                     <TextInput
-                        error={errors?.lastName?.message}
+                        error={errors?.lastname?.message?.toString()}
                         label="Last Name"
                         placeholder="Enter your last name"
-                        inputId="lastName"
-                        {...register("lastName", { required: "Last name is required" })}
+                        inputId="lastname"
+                        {...register("lastname", { required: "Last name is required" })}
                     />
                     <TextInput
-                        error={errors?.email?.message}
+                        error={errors?.email?.message?.toString()}
                         label="Email"
                         placeholder="Enter your email"
                         inputId="email"
@@ -68,12 +69,12 @@ const SignupPage = () => {
                         })}
                     />
                     <TextInput
-                        error={errors?.phoneNumber?.message}
+                        error={errors?.mobile?.message?.toString()}
                         type="number"
                         label="Phone Number"
                         placeholder="Enter your phone number"
-                        inputId="phoneNumber"
-                        {...register("phoneNumber", {
+                        inputId="mobile"
+                        {...register("mobile", {
                             required: "Phone number is required",
                             minLength: {
                                 value: 8,
@@ -83,7 +84,7 @@ const SignupPage = () => {
                     />
 
                     <TextInput
-                        error={errors?.password?.message}
+                        error={errors?.password?.message?.toString()}
                         type="password"
                         label="Password"
                         placeholder="Enter your password"
@@ -97,19 +98,7 @@ const SignupPage = () => {
                         })}
                     />
                     <TextInput
-                        error={errors?.confirmPassword?.message}
-                        type="password"
-                        label="Confirm Password"
-                        placeholder="Confirm your password"
-                        inputId="confirmPassword"
-                        {...register("confirmPassword", {
-                            required: "Confirm password is required",
-                            validate: (value) =>
-                                value === getValues("password") || "Passwords do not match",
-                        })}
-                    />
-                    <TextInput
-                        error={errors?.address?.message}
+                        error={errors?.address?.message?.toString()}
                         label="Address"
                         placeholder="Enter your address"
                         inputId="address"
