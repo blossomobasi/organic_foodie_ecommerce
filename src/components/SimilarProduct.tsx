@@ -1,9 +1,7 @@
-// import { similarProductsData } from "../data/productsData";
 import { useProducts } from "../hooks/useProduct";
 import DisplayProducts from "../ui/DisplayProducts";
 
 const SimilarProduct = () => {
-    // const similarProducts = similarProductsData;
     const { products } = useProducts();
 
     return (
