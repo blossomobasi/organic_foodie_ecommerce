@@ -6,12 +6,25 @@ import Button from "../ui/Button";
 import { useState } from "react";
 import clsx from "clsx";
 import Spinner from "../ui/Spinner";
+import ReviewStats from "../components/ReviewStats";
+import CreateReview from "../components/CreateReview";
+import ShowReview from "../components/ShowReview";
+import { useAddToCart } from "../hooks/useCart";
 
 const ProductsIdPage = () => {
     const params = useParams();
     const productId = params.productId;
     const { data, isLoading } = useProduct(productId || "");
+    const { addToCart, isPending } = useAddToCart();
     const [imageSrc, setImageSrc] = useState(data?.images[0]);
+
+    function handleAddToCart(productId: string) {
+        if (isPending) return;
+
+        addToCart({
+            itemId: productId,
+        });
+    }
 
     return (
         <section className="lg:px-20 px-5 flex flex-col items-center">
@@ -78,7 +91,13 @@ const ProductsIdPage = () => {
                             </p>
 
                             <div className="flex flex-col space-y-4">
-                                <Button className="py-3.5">Add to Cart</Button>
+                                <Button
+                                    className="py-3.5"
+                                    onClick={() => handleAddToCart(data?._id || "")}
+                                    isLoading={isPending}
+                                >
+                                    Add to Cart
+                                </Button>
                                 <Button url="/checkout" variant="secondary" className="py-3.5">
                                     Checkout
                                 </Button>
@@ -86,6 +105,23 @@ const ProductsIdPage = () => {
                         </div>
                     </div>
                 )}
+
+                {/* Review */}
+                <section className="py-20">
+                    <div className="flex">
+                        <div className="w-full">
+                            <h3 className="text-xl font-bold">Customer Reviews</h3>
+
+                            <ReviewStats rating={data?.rating} />
+                        </div>
+
+                        <div className="w-full">
+                            <CreateReview />
+                        </div>
+                    </div>
+
+                    <ShowReview review={data?.rating} />
+                </section>
 
                 <SimilarProduct />
             </div>
