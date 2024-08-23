@@ -11,8 +11,10 @@ import { SlMagnifier } from "react-icons/sl";
 import { GrMenu } from "react-icons/gr";
 import { FaArrowLeft } from "react-icons/fa";
 import CartPopUp from "./CartPopUp";
+import { useCart } from "../hooks/useCart";
 
 const NavBar = () => {
+    const { cart } = useCart();
     const [showNav, setShowNav] = useState(false);
     const [openCart, setOpencart] = useState(false);
 
@@ -36,7 +38,8 @@ const NavBar = () => {
         { name: "FAQs", url: "faq" },
     ];
 
-    const FAKE_CART_LENGTH = 3;
+    const carts = cart?.cartData;
+    const CART_LENGTH = Object.keys(carts || {}).length;
 
     function scrollUp() {
         window.scrollTo(0, 0);
@@ -128,7 +131,7 @@ const NavBar = () => {
                         className="cursor-pointer relative"
                     >
                         <div className="h-5 w-5 bg-secondaryOrange-400 text-white rounded-full absolute -top-1.5 -right-1.5 flex items-center justify-center">
-                            {FAKE_CART_LENGTH}
+                            {CART_LENGTH || 0}
                         </div>
                         <BsHandbag size={25} />
                     </span>
