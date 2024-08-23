@@ -1,13 +1,25 @@
 import { useQuery } from "@tanstack/react-query";
-import { getProduct, getProducts } from "../services";
+import { getNewProducts, getPopularProducts, getProduct, getProducts } from "../services";
 
 const useProducts = () => {
-    const { data: products, isLoading } = useQuery({
+    const { data: products, isLoading: isLoadingProducts } = useQuery({
         queryKey: ["products"],
         queryFn: getProducts,
     });
 
-    return { products, isLoading };
+    const { data: newProducts, isLoading: isLoadingNewProducts } = useQuery({
+        queryKey: ["newProducts"],
+        queryFn: getNewProducts,
+    });
+
+    const { data: popularProducts, isLoading: isLoadingPopularProducts } = useQuery({
+        queryKey: ["popularProducts"],
+        queryFn: getPopularProducts,
+    });
+
+    const isLoading = isLoadingProducts || isLoadingNewProducts || isLoadingPopularProducts;
+
+    return { products, newProducts, popularProducts, isLoading };
 };
 
 const useProduct = (id: string) => {
@@ -20,16 +32,3 @@ const useProduct = (id: string) => {
 };
 
 export { useProducts, useProduct };
-
-// const popularProducts = popularProductsData;
-// const [products, setProducts] = useState<ProductResponse | undefined>(undefined);
-
-// useEffect(() => {
-//     const fetchProducts = async () => {
-//         const response = await $http.get("/api/product/all");
-//         const data = await response.data;
-//         setProducts(data);
-//     };
-
-//     fetchProducts();
-// }, []);
