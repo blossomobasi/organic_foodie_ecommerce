@@ -1,10 +1,14 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { addToCart as addToCartApi, getCart } from "../services";
+import {
+    addToCart as addToCartApi,
+    getCart,
+    removeItemFromCart as removeItemFromCartApi,
+} from "../services";
 import { toast } from "react-toastify";
 
 const useAddToCart = () => {
     const queryClient = useQueryClient();
-    const { mutate: addToCart, isPending } = useMutation({
+    const { mutate: addToCart, isPending: isAddingItemToCart } = useMutation({
         mutationFn: addToCartApi,
         onSuccess: () => {
             toast.success("Product added to cart");
@@ -17,7 +21,21 @@ const useAddToCart = () => {
         },
     });
 
-    return { addToCart, isPending };
+    const { mutate: removeItemFromCart, isPending: isRemovingItemFromCart } = useMutation({
+        mutationFn: removeItemFromCartApi,
+        onSuccess: () => {
+            toast.success("Product removed successfully");
+            queryClient.invalidateQueries({
+                queryKey: ["cart"],
+            });
+        },
+        onError: (err) => {
+            toast.error(err.message);
+        },
+    });
+    const isPending = isAddingItemToCart || isRemovingItemFromCart;
+
+    return { addToCart, isPending, removeItemFromCart };
 };
 
 const useCart = () => {
