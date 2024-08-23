@@ -130,9 +130,13 @@ const NavBar = () => {
                         }}
                         className="cursor-pointer relative"
                     >
-                        <div className="h-5 w-5 bg-secondaryOrange-400 text-white rounded-full absolute -top-1.5 -right-1.5 flex items-center justify-center">
-                            {CART_LENGTH || 0}
-                        </div>
+                        {!CART_LENGTH ? (
+                            ""
+                        ) : (
+                            <div className="h-5 w-5 bg-secondaryOrange-400 text-white rounded-full absolute -top-1.5 -right-1.5 flex items-center justify-center">
+                                {CART_LENGTH}
+                            </div>
+                        )}
                         <BsHandbag size={25} />
                     </span>
 
