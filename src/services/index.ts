@@ -1,4 +1,5 @@
 import { LoginData, LoginResponse, RegisterData, RegisterResponse, User } from "../types/auth";
+import { CartData, CartResponse } from "../types/cart";
 import { ProductResponse, SingleProductResponse } from "../types/products";
 import $http from "./config";
 
@@ -40,6 +41,25 @@ export const getProducts = async (): Promise<ProductResponse> => {
 
 export const getProduct = async (id: string): Promise<SingleProductResponse> => {
     const response = await $http.get(`/api/product/single/${id}`);
+    if (!response.data.success) {
+        throw new Error(response.data.message);
+    }
+
+    return response.data;
+};
+
+// Cart
+export const addToCart = async (CartData: CartData): Promise<CartResponse> => {
+    const response = await $http.post("/api/cart/addToCart", CartData);
+    if (!response.data.success) {
+        throw new Error(response.data.message);
+    }
+
+    return response.data;
+};
+
+export const getCart = async (): Promise<CartResponse> => {
+    const response = await $http.get("/api/cart/allCartItems");
     if (!response.data.success) {
         throw new Error(response.data.message);
     }
