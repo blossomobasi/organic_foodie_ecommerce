@@ -9,6 +9,7 @@ import { Product } from "../types/products";
 import Button from "./Button";
 import { useProducts } from "../hooks/useProduct";
 import Spinner from "./Spinner";
+import { useAddToCart } from "../hooks/useCart";
 
 type Props = {
     data: Product[] | undefined;
@@ -18,9 +19,19 @@ type Props = {
 
 const DisplayProducts = ({ data, title, description }: Props) => {
     const { isLoading } = useProducts();
+    const { addToCart, isPending: isAddingToCart } = useAddToCart();
     const navigate = useNavigate();
     const windowWidth = window.innerWidth;
     const mobileView = windowWidth < 500;
+
+    function handleAddToCart(e: React.MouseEvent, productId: string) {
+        e.stopPropagation();
+        if (isAddingToCart) return;
+
+        addToCart({
+            itemId: productId,
+        });
+    }
 
     return (
         <React.Fragment>
@@ -77,7 +88,11 @@ const DisplayProducts = ({ data, title, description }: Props) => {
                                 </span>
                                 <span className="font-medium">${product.price}</span>
                             </p>
-                            <Button variant="primary-outline" className="w-full mt-3">
+                            <Button
+                                variant="primary-outline"
+                                className="w-full mt-3"
+                                onClick={(e) => handleAddToCart(e, product._id)}
+                            >
                                 Add to Cart
                             </Button>
                         </div>
