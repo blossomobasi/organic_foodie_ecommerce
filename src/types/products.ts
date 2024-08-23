@@ -33,6 +33,17 @@ export type ProductResponse = {
     message: string;
     allProduct: Product[];
 };
+export type PopularProductsResponse = {
+    success: boolean;
+    message: string;
+    popularProducts: Product[];
+};
+
+export type NewProductsResponse = {
+    success: boolean;
+    message: string;
+    products: Product[];
+};
 
 export type SingleProductResponse = {
     success: boolean;
