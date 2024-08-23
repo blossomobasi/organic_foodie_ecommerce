@@ -1,5 +1,7 @@
+import ScrollToTop from "../ui/ScrollToTop";
+
 const ProductsPage = () => {
-    return <div>ProductsPage</div>;
+    return <ScrollToTop>ProductsPage</ScrollToTop>;
 };
 
 export default ProductsPage;

@@ -1,5 +1,7 @@
+import ScrollToTop from "../ui/ScrollToTop";
+
 const FaqPage = () => {
-    return <div>FaqPage</div>;
+    return <ScrollToTop>FaqPage</ScrollToTop>;
 };
 
 export default FaqPage;
