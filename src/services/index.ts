@@ -1,4 +1,4 @@
-import { LoginData, LoginResponse, RegisterData, RegisterResponse, User } from "../types/auth";
+import { LoginData, LoginResponse, RegisterData, RegisterResponse } from "../types/auth";
 import { CartData, CartResponse } from "../types/cart";
 import {
     NewProductsResponse,
@@ -21,15 +21,6 @@ const login = async (data: LoginData): Promise<LoginResponse> => {
     const response = await $http.post("/api/user/login", data);
     if (!response.data.success) {
         throw new Error(response.data.message);
-    }
-    return response.data;
-};
-
-const getUser = async (id: string): Promise<User> => {
-    const response = await $http.get(`/api/user/users/${id}`);
-
-    if (!response.data.success) {
-        throw new Error("User not found");
     }
     return response.data;
 };
@@ -79,6 +70,15 @@ const addToCart = async (CartData: CartData): Promise<CartResponse> => {
     return response.data;
 };
 
+const removeItemFromCart = async (): Promise<CartResponse> => {
+    const response = await $http.post("/api/cart/remove");
+    if (!response.data.success) {
+        throw new Error(response.data.message);
+    }
+
+    return response.data;
+};
+
 const getCart = async (): Promise<CartResponse> => {
     const response = await $http.get("/api/cart/allCartItems");
     if (!response.data.success) {
@@ -88,14 +88,19 @@ const getCart = async (): Promise<CartResponse> => {
     return response.data;
 };
 
+// Wishlist
+// const addToWishlist = async (prodId: string): Promise<> => {
+//     const response = await $http.put(`/api/product/wishlist/${prodId}`);
+// };
+
 export {
     register,
     login,
-    getUser,
     getProducts,
     getNewProducts,
     getPopularProducts,
     getProduct,
     addToCart,
+    removeItemFromCart,
     getCart,
 };
