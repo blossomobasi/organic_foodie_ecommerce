@@ -9,7 +9,8 @@ import Button from "../ui/Button";
 import React from "react";
 import clsx from "clsx";
 import { useProduct } from "../hooks/useProduct";
-import { useCart } from "../hooks/useCart";
+import { useAddToCart, useCart } from "../hooks/useCart";
+import EmptyCart from "./EmptyCart";
 
 // const carts = [
 //     {
@@ -40,6 +41,7 @@ const CartPopUp = ({
     openCart: boolean;
 }) => {
     const { cart } = useCart();
+    const { removeItemFromCart, isPending } = useAddToCart();
     const cartData = cart?.cartData;
     const cartKeys = Object.keys(cartData || {})[0];
     const { data } = useProduct(cartKeys);
@@ -57,6 +59,11 @@ const CartPopUp = ({
             document.body.style.overflowY = "auto";
         }
     }, [openCart]);
+
+    function handleItemRemove() {
+        if (isPending) return;
+        removeItemFromCart();
+    }
 
     return (
         <section
@@ -79,79 +86,95 @@ const CartPopUp = ({
                     "relative w-full max-w-[110rem] flex md:flex-row flex-col justify-between lg:space-x-28 md:space-x-10 space-y-10 md:space-y-0 bg-white md:px-14 px-8 py-8 h-full overflow-y-auto"
                 )}
             >
-                <div className="w-full">
-                    {/* {carts.map((cart, index) => ( */}
-                    {/* <div key={index}> */}
-                    <div>
-                        <div className="flex justify-between py-3">
-                            <h6>Item {1}</h6>
-                            <div className="flex space-x-5 text-grey-600">
-                                <p className="relative before:absolute before:-bottom-1 before:left-0 before:h-px before:w-full before:bg-grey-600">
-                                    Edit
-                                </p>
-                                <p className="relative before:absolute before:-bottom-1 before:left-0 before:h-px before:w-full before:bg-grey-600">
-                                    Remove
-                                </p>
+                {!cartLength ? (
+                    <EmptyCart />
+                ) : (
+                    <>
+                        <div className="w-full">
+                            {/* {carts.map((cart, index) => ( */}
+                            {/* <div key={index}> */}
+                            <div>
+                                <div className="flex justify-between py-3">
+                                    <h6>Item {1}</h6>
+                                    <div className="flex space-x-5 text-grey-600">
+                                        <p className="relative before:absolute before:-bottom-1 before:left-0 before:h-px before:w-full before:bg-grey-600 before:hover:bg-primaryGreen-900 hover:text-primaryGreen-900 cursor-pointer">
+                                            Edit
+                                        </p>
+                                        <p
+                                            className={clsx(
+                                                "relative before:absolute before:-bottom-1 before:left-0 before:h-px before:w-full before:bg-grey-600 before:hover:bg-red-600 hover:text-red-600 cursor-pointer",
+                                                {
+                                                    "cursor-not-allowed": isPending,
+                                                }
+                                            )}
+                                            onClick={handleItemRemove}
+                                        >
+                                            Remove
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <hr className="border-[#C4D1D0] border-1 " />
+
+                                <div className="flex items-center space-x-5 py-8">
+                                    <img
+                                        src={data?.images[0]}
+                                        alt={data?.title}
+                                        className="h-28 w-28 rounded-lg"
+                                    />
+                                    <div className="flex flex-col space-y-3">
+                                        <h4 className="text-xl font-medium nichrome">
+                                            {data?.title}
+                                        </h4>
+                                        <span className="text-grey-600">Cart ID: {data?._id}</span>
+                                        <p className="text-xl font-semibold">${data?.price}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            {/* ))} */}
+                        </div>
+
+                        <div className="w-full">
+                            <div className="flex flex-col">
+                                <div className="flex justify-between font-bold text-xl py-3">
+                                    <h3>Cart Order Total ({cartLength})</h3>
+                                    <h3>${totalPrice}</h3>
+                                </div>
+
+                                <hr className="border-[#C4D1D0] border-1 " />
+
+                                <div className="py-5 text-grey-600">
+                                    <p className="text-lg">Congrats! You Get Free Shipping.</p>
+                                    <p className="text-sm">Being your first purchase.</p>
+                                </div>
+
+                                <div className="flex flex-col space-y-3">
+                                    <Button
+                                        url="cart"
+                                        className="py-3"
+                                        onClick={() => {
+                                            onOpen(false);
+                                            window.scrollTo(0, 0);
+                                        }}
+                                    >
+                                        View Cart
+                                    </Button>
+                                    <Button
+                                        url="checkout"
+                                        variant="secondary"
+                                        className="py-3"
+                                        onClick={() => {
+                                            onOpen(false);
+                                            window.scrollTo(0, 0);
+                                        }}
+                                    >
+                                        Check Out
+                                    </Button>
+                                </div>
                             </div>
                         </div>
-
-                        <hr className="border-[#C4D1D0] border-1 " />
-
-                        <div className="flex items-center space-x-5 py-8">
-                            <img
-                                src={data?.images[0]}
-                                alt={data?.title}
-                                className="h-28 w-28 rounded-lg"
-                            />
-                            <div className="flex flex-col space-y-3">
-                                <h4 className="text-xl font-medium nichrome">{data?.title}</h4>
-                                <span className="text-grey-600">Cart ID: {data?._id}</span>
-                                <p className="text-xl font-semibold">${data?.price}</p>
-                            </div>
-                        </div>
-                    </div>
-                    {/* ))} */}
-                </div>
-
-                <div className="w-full">
-                    <div className="flex flex-col">
-                        <div className="flex justify-between font-bold text-xl py-3">
-                            <h3>Cart Order Total ({cartLength})</h3>
-                            <h3>${totalPrice}</h3>
-                        </div>
-
-                        <hr className="border-[#C4D1D0] border-1 " />
-
-                        <div className="py-5 text-grey-600">
-                            <p className="text-lg">Congrats! You Get Free Shipping.</p>
-                            <p className="text-sm">Being your first purchase.</p>
-                        </div>
-
-                        <div className="flex flex-col space-y-3">
-                            <Button
-                                url="cart"
-                                className="py-3"
-                                onClick={() => {
-                                    onOpen(false);
-                                    window.scrollTo(0, 0);
-                                }}
-                            >
-                                View Cart
-                            </Button>
-                            <Button
-                                url="checkout"
-                                variant="secondary"
-                                className="py-3"
-                                onClick={() => {
-                                    onOpen(false);
-                                    window.scrollTo(0, 0);
-                                }}
-                            >
-                                Check Out
-                            </Button>
-                        </div>
-                    </div>
-                </div>
+                    </>
+                )}
 
                 {/* <div className="w-full">
                     {carts.map((cart, index) => (
