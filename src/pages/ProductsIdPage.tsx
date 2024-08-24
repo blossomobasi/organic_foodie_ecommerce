@@ -15,8 +15,10 @@ import ScrollToTop from "../ui/ScrollToTop";
 const ProductsIdPage = () => {
     const params = useParams();
     const productId = params.productId;
+
     const { data, isLoading } = useProduct(productId || "");
-    const { addToCart, isPending } = useAddToCart();
+    const { addToCart, removeItemFromCart, isPending } = useAddToCart();
+
     const [imageSrc, setImageSrc] = useState(data?.images[0]);
 
     function handleAddToCart(productId: string) {
@@ -25,6 +27,12 @@ const ProductsIdPage = () => {
         addToCart({
             itemId: productId,
         });
+    }
+
+    function handleRemoveItemFromCart() {
+        if (isPending) return;
+
+        removeItemFromCart();
     }
 
     return (
@@ -77,15 +85,29 @@ const ProductsIdPage = () => {
 
                                 <div className="flex space-x-3 text-lg">
                                     <p className="font-semibold">Quantity: </p>
-                                    <button className="lg:h-6 lg:w-6 h-5 w-5 bg-grey-400">
+                                    <button
+                                        className={clsx("lg:h-6 lg:w-6 h-5 w-5 bg-grey-400", {
+                                            "cursor-not-allowed opacity-50": isPending,
+                                        })}
+                                        onClick={handleRemoveItemFromCart}
+                                    >
                                         &mdash;
                                     </button>
                                     <input
                                         type="text"
-                                        defaultValue={1}
+                                        defaultValue={data?.quantity}
+                                        disabled={isPending}
                                         className="lg:h-6 lg:w-6 h-5 w-5 border border-grey-400 text-center"
                                     />
-                                    <button className="lg:h-6 lg:w-6 h-5 w-5 bg-grey-400">+</button>
+                                    <button
+                                        disabled={isPending}
+                                        className={clsx("lg:h-6 lg:w-6 h-5 w-5 bg-grey-400", {
+                                            "cursor-not-allowed opacity-50": isPending,
+                                        })}
+                                        onClick={() => handleAddToCart(data?._id || "")}
+                                    >
+                                        +
+                                    </button>
                                 </div>
 
                                 <p className="py-5 first-letter:capitalize text-grey-600">
