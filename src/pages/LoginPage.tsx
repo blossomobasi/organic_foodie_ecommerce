@@ -8,7 +8,6 @@ import { login as loginApi } from "../services";
 
 import Button from "../ui/Button";
 import TextInput from "../ui/TextInput";
-import { AxiosError } from "axios";
 import { LoginData } from "../types/auth";
 import ScrollToTop from "../ui/ScrollToTop";
 
@@ -19,13 +18,13 @@ const LoginPage = () => {
         mutationFn: loginApi,
         onSuccess: (data) => {
             toast.success("Login successful");
-            // localStorage.setItem("userId", data.findUser._id);
             Cookies.set("refreshToken", data.refreshToken);
 
             navigate("/");
         },
-        onError: (err: AxiosError) => {
-            toast.error(err.message);
+        onError: (err: { response: { data: { message: string } } }) => {
+            // Get rid of TypeScript error
+            toast.error(err.response.data.message || "An error occurred");
             console.error(err.response?.data);
         },
     });
@@ -41,7 +40,7 @@ const LoginPage = () => {
         <ScrollToTop>
             <div className="bg-[#F8FAFB] flex items-center justify-center p-20">
                 <div className="bg-white px-32 py-20 rounded-xl">
-                    <h1 className="text-4xl font-bold text-[#171725]">Sign Up</h1>
+                    <h1 className="text-4xl font-bold text-[#171725]">Sign In</h1>
                     <p className="text-[#8D98AF] text-lg py-3">Enter details to get started</p>
 
                     <form
