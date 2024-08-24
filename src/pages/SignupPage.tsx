@@ -2,14 +2,15 @@ import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 import { Link, useNavigate } from "react-router-dom";
 
+import { AxiosError } from "axios";
 import { register as registerApi } from "../services";
+import { RegisterData } from "../types/auth";
+import { toast } from "react-toastify";
 
 import Button from "../ui/Button";
 import TextInput from "../ui/TextInput";
-import { AxiosError } from "axios";
-import { toast } from "react-toastify";
-import { RegisterData } from "../types/auth";
 import ScrollToTop from "../ui/ScrollToTop";
+import { FcGoogle } from "react-icons/fc";
 
 const SignupPage = () => {
     const navigate = useNavigate();
@@ -115,8 +116,10 @@ const SignupPage = () => {
 
                         <Button isLoading={isSigningUp}>Sign Up</Button>
 
-                        <div className="border p-3 rounded-md text-center">
-                            <span>logo</span>
+                        <div className="border p-3 rounded-md text-center flex justify-center space-x-3">
+                            <span>
+                                <FcGoogle size={25} />
+                            </span>
                             <span>Sign Up with Google</span>
                         </div>
 
