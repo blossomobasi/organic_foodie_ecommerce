@@ -3,6 +3,7 @@ import { CartData, CartResponse } from "../types/cart";
 import {
     NewProductsResponse,
     PopularProductsResponse,
+    Product,
     ProductResponse,
     SingleProductResponse,
 } from "../types/products";
@@ -31,6 +32,15 @@ const getProducts = async (): Promise<ProductResponse> => {
     if (!response.data.success) {
         throw new Error(response.data.message);
     }
+
+    return response.data;
+};
+const createReview = async (reviewData: {
+    star: number;
+    prodId: string;
+    comment: string;
+}): Promise<Product> => {
+    const response = await $http.put("/api/product/rating", reviewData);
 
     return response.data;
 };
@@ -97,6 +107,7 @@ export {
     register,
     login,
     getProducts,
+    createReview,
     getNewProducts,
     getPopularProducts,
     getProduct,
