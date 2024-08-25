@@ -42,12 +42,12 @@ const ProductsIdPage = () => {
                     {isLoading ? (
                         <Spinner />
                     ) : (
-                        <div className="flex space-x-20">
-                            <div className="w-1/2 flex flex-col space-y-3">
+                        <div className="flex md:space-x-20 sm:space-x-10 sm:space-y-0 space-y-14 sm:flex-row flex-col sm:items-start items-center">
+                            <div className="sm:w-1/2 flex flex-col space-y-3">
                                 <img
                                     src={imageSrc || data?.images[0]}
                                     alt={data?.title}
-                                    className="rounded-md h-[30rem] object-cover"
+                                    className="rounded-md sm:h-[30rem] w-full object-cover"
                                 />
 
                                 <div className="flex space-x-3 justify-center">
@@ -65,7 +65,7 @@ const ProductsIdPage = () => {
                                 </div>
                             </div>
 
-                            <div className="w-1/2">
+                            <div className="sm:w-1/2 w-full">
                                 <p className="text-sm text-grey-600 capitalize pb-5">
                                     {data?.category}
                                 </p>
@@ -132,14 +132,14 @@ const ProductsIdPage = () => {
 
                     {/* Review */}
                     <section className="py-20">
-                        <div className="flex">
+                        <div className="flex md:flex-row flex-col md:space-y-0 space-y-10">
                             <div className="w-full">
                                 <h3 className="text-xl font-bold">Customer Reviews</h3>
 
                                 <ReviewStats rating={data?.rating} />
                             </div>
 
-                            <div className="w-full">
+                            <div className="md:w-full sm:w-2/3 w-full">
                                 <CreateReview />
                             </div>
                         </div>
