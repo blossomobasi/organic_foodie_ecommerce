@@ -12,9 +12,12 @@ const ShowReview = ({ review }: { review: Rating[] | undefined }) => {
 
     return (
         <div className="py-10">
-            <div className="flex flex-wrap space-x-5">
+            <div className="flex justify-center flex-wrap gap-5">
                 {review?.slice(0, visibleReviews).map((item, index) => (
-                    <div key={index} className="border border-[#C4D1D0] p-3 rounded-xl">
+                    <div
+                        key={index}
+                        className="border border-[#C4D1D0] p-3 rounded-xl sm:w-[23rem] w-full"
+                    >
                         <figure>
                             <img
                                 src="/images/user.png"
