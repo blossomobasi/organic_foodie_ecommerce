@@ -84,7 +84,9 @@ const DisplayProducts = ({ data, title, description }: Props) => {
                             <p className="flex items-center justify-between py-3">
                                 <span className="flex items-center space-x-2 text-grey-600">
                                     <IoStarSharp size={20} className="text-secondaryOrange-400" />
-                                    <span>{product.totalRating}(5)</span>
+                                    <span>
+                                        {product.totalRating}({product.rating.length})
+                                    </span>
                                 </span>
                                 <span className="font-medium">${product.price}</span>
                             </p>
