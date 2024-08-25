@@ -15,16 +15,24 @@ const CreateReview = () => {
     const [star, setStar] = useState(1);
     const queryClient = useQueryClient();
 
-    const { mutate: createReview, isPending: isCreatingReview } = useMutation({
+    const {
+        mutate: createReview,
+        isPending: isCreatingReview,
+        reset,
+    } = useMutation({
         mutationFn: createReviewApi,
         onSuccess: () => {
             queryClient.invalidateQueries({
-                queryKey: ["review"],
+                queryKey: ["product", params.productId],
             });
             toast.success("Review Added Successfully");
         },
         onError: (err) => {
             toast.error(err.message);
+        },
+        onSettled: () => {
+            setStar(1);
+            reset();
         },
     });
 
