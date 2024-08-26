@@ -3,35 +3,11 @@ import { LiaTimesSolid } from "react-icons/lia";
 
 import Button from "../ui/Button";
 
-// import OrganicSnacks from "../assets/images/black_friday_out_of_stock.png";
-// import BerryBlissBites from "../assets/images/berry_bliss_bites.png";
-// import CoconutCrunchies from "../assets/images/crispy_coconut_crunchies.png";
 import React from "react";
 import clsx from "clsx";
 import { useProduct } from "../hooks/useProduct";
-import { useAddToCart, useCart } from "../hooks/useCart";
+import { useCart } from "../hooks/useCart";
 import EmptyCart from "./EmptyCart";
-
-// const carts = [
-//     {
-//         image: OrganicSnacks,
-//         title: "Coconut Date Energy Bars",
-//         cartId: "1234567890",
-//         price: 60,
-//     },
-//     {
-//         image: BerryBlissBites,
-//         title: "Organic Fruit Bites",
-//         cartId: "12345678911",
-//         price: 60,
-//     },
-//     {
-//         image: CoconutCrunchies,
-//         title: "Choco-chi Delight",
-//         cartId: "12345678912",
-//         price: 60,
-//     },
-// ];
 
 const CartPopUp = ({
     onOpen,
@@ -41,16 +17,14 @@ const CartPopUp = ({
     openCart: boolean;
 }) => {
     const { cart } = useCart();
-    const { removeItemFromCart, isPending } = useAddToCart();
     const cartData = cart?.cartData;
     const cartKeys = Object.keys(cartData || {})[0];
     const { data } = useProduct(cartKeys);
 
     const cartLength = Object.keys(cartData || {}).length;
-    const totalPrice = data?.price;
 
-    // const cartLength = carts.length;
-    // const totalPrice = carts.reduce((acc, cart) => acc + cart.price, 0);
+    const itemInCart = Object.values(cartData || {})[0];
+    const totalPrice = data?.price ? data.price * +itemInCart : 0;
 
     useEffect(() => {
         if (openCart) {
@@ -59,11 +33,6 @@ const CartPopUp = ({
             document.body.style.overflowY = "auto";
         }
     }, [openCart]);
-
-    function handleItemRemove() {
-        if (isPending) return;
-        removeItemFromCart();
-    }
 
     return (
         <section
@@ -91,23 +60,17 @@ const CartPopUp = ({
                 ) : (
                     <>
                         <div className="w-full">
-                            {/* {carts.map((cart, index) => ( */}
-                            {/* <div key={index}> */}
                             <div>
                                 <div className="flex justify-between py-3">
-                                    <h6>Item {1}</h6>
+                                    <h6>Item {cartLength}</h6>
                                     <div className="flex space-x-5 text-grey-600">
                                         <p className="relative before:absolute before:-bottom-1 before:left-0 before:h-px before:w-full before:bg-grey-600 before:hover:bg-primaryGreen-900 hover:text-primaryGreen-900 cursor-pointer">
                                             Edit
                                         </p>
                                         <p
-                                            className={clsx(
-                                                "relative before:absolute before:-bottom-1 before:left-0 before:h-px before:w-full before:bg-grey-600 before:hover:bg-red-600 hover:text-red-600 cursor-pointer",
-                                                {
-                                                    "cursor-not-allowed": isPending,
-                                                }
-                                            )}
-                                            onClick={handleItemRemove}
+                                            className={
+                                                "relative before:absolute before:-bottom-1 before:left-0 before:h-px before:w-full before:bg-grey-600 before:hover:bg-red-600 hover:text-red-600 cursor-pointer"
+                                            }
                                         >
                                             Remove
                                         </p>
@@ -175,79 +138,6 @@ const CartPopUp = ({
                         </div>
                     </>
                 )}
-
-                {/* <div className="w-full">
-                    {carts.map((cart, index) => (
-                        <div key={index}>
-                            <div className="flex justify-between py-3">
-                                <h6>Item {index + 1}</h6>
-                                <div className="flex space-x-5 text-grey-600">
-                                    <p className="relative before:absolute before:-bottom-1 before:left-0 before:h-px before:w-full before:bg-grey-600">
-                                        Edit
-                                    </p>
-                                    <p className="relative before:absolute before:-bottom-1 before:left-0 before:h-px before:w-full before:bg-grey-600">
-                                        Remove
-                                    </p>
-                                </div>
-                            </div>
-
-                            <hr className="border-[#C4D1D0] border-1 " />
-
-                            <div className="flex items-center space-x-5 py-8">
-                                <img
-                                    src={cart.image}
-                                    alt={cart.title}
-                                    className="h-28 w-28 rounded-lg"
-                                />
-                                <div className="flex flex-col space-y-3">
-                                    <h4 className="text-xl font-medium nichrome">{cart.title}</h4>
-                                    <span className="text-grey-600">Cart ID: {cart.cartId}</span>
-                                    <p className="text-xl font-semibold">${cart.price}</p>
-                                </div>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-
-                <div className="w-full">
-                    <div className="flex flex-col">
-                        <div className="flex justify-between font-bold text-xl py-3">
-                            <h3>Cart Order Total ({cartLength})</h3>
-                            <h3>${totalPrice}</h3>
-                        </div>
-
-                        <hr className="border-[#C4D1D0] border-1 " />
-
-                        <div className="py-5 text-grey-600">
-                            <p className="text-lg">Congrats! You Get Free Shipping.</p>
-                            <p className="text-sm">Being your first purchase.</p>
-                        </div>
-
-                        <div className="flex flex-col space-y-3">
-                            <Button
-                                url="cart"
-                                className="py-3"
-                                onClick={() => {
-                                    onOpen(false);
-                                    window.scrollTo(0, 0);
-                                }}
-                            >
-                                View Cart
-                            </Button>
-                            <Button
-                                url="checkout"
-                                variant="secondary"
-                                className="py-3"
-                                onClick={() => {
-                                    onOpen(false);
-                                    window.scrollTo(0, 0);
-                                }}
-                            >
-                                Check Out
-                            </Button>
-                        </div>
-                    </div>
-                </div> */}
 
                 <div
                     className="absolute md:top-0 -top-10 right-0 bg-secondaryOrange-400 p-2 text-white cursor-pointer"
