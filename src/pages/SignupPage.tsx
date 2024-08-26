@@ -10,9 +10,11 @@ import { toast } from "react-toastify";
 import Button from "../ui/Button";
 import TextInput from "../ui/TextInput";
 import ScrollToTop from "../ui/ScrollToTop";
-import { FcGoogle } from "react-icons/fc";
+import AuthLayout from "../ui/AuthLayout";
+import { useState } from "react";
 
 const SignupPage = () => {
+    const [agree, setAgree] = useState(false);
     const navigate = useNavigate();
     const { mutate, isPending: isSigningUp } = useMutation({
         mutationFn: registerApi,
@@ -22,7 +24,6 @@ const SignupPage = () => {
         },
         onError: (err: AxiosError) => {
             toast.error(err.message);
-            console.error(err.response?.data);
         },
     });
     const { register, handleSubmit, formState } = useForm<RegisterData>();
@@ -34,33 +35,38 @@ const SignupPage = () => {
 
     return (
         <ScrollToTop>
-            <div className="bg-[#F8FAFB] flex items-center justify-center p-20">
-                <div className="bg-white px-32 py-20 rounded-xl">
-                    <h1 className="text-4xl font-bold text-[#171725]">Sign Up</h1>
-                    <p className="text-[#8D98AF] text-lg py-3">Enter details to get started</p>
+            <AuthLayout>
+                <div className="w-[30rem]">
+                    <div>
+                        <h1 className="text-4xl mb-5 font-bold nichrome text-primaryGreen-700">
+                            Sign Up
+                        </h1>
+                        <p className="mb-8 text-[#566363]">
+                            Already have an account?{" "}
+                            <Link to="/login" className="text-secondaryOrange-400 font-semibold">
+                                Sign In
+                            </Link>
+                        </p>
+                    </div>
 
-                    <form
-                        className="pt-3 flex flex-col space-y-3 w-[25rem]"
-                        onSubmit={handleSubmit(onSubmit)}
-                    >
+                    <form className="flex flex-col space-y-3" onSubmit={handleSubmit(onSubmit)}>
                         <TextInput
                             error={errors?.firstname?.message?.toString()}
-                            label="First Name"
-                            placeholder="Enter your first name"
+                            placeholder="Your First name"
                             inputId="firstname"
                             {...register("firstname", { required: "First name is required" })}
+                            authInput
                         />
                         <TextInput
                             error={errors?.lastname?.message?.toString()}
-                            label="Last Name"
-                            placeholder="Enter your last name"
+                            placeholder="Your Last name"
                             inputId="lastname"
                             {...register("lastname", { required: "Last name is required" })}
+                            authInput
                         />
                         <TextInput
                             error={errors?.email?.message?.toString()}
-                            label="Email"
-                            placeholder="Enter your email"
+                            placeholder="Email Address"
                             inputId="email"
                             type="email"
                             {...register("email", {
@@ -70,12 +76,12 @@ const SignupPage = () => {
                                     message: "Invalid email address",
                                 },
                             })}
+                            authInput
                         />
                         <TextInput
                             error={errors?.mobile?.message?.toString()}
                             type="number"
-                            label="Phone Number"
-                            placeholder="Enter your phone number"
+                            placeholder="Phone Number"
                             inputId="mobile"
                             {...register("mobile", {
                                 required: "Phone number is required",
@@ -84,13 +90,19 @@ const SignupPage = () => {
                                     message: "Phone number must be at least 8 digits",
                                 },
                             })}
+                            authInput
                         />
-
+                        <TextInput
+                            error={errors?.address?.message?.toString()}
+                            placeholder="Enter your address"
+                            inputId="address"
+                            {...register("address", { required: "Address is required" })}
+                            authInput
+                        />
                         <TextInput
                             error={errors?.password?.message?.toString()}
                             type="password"
-                            label="Password"
-                            placeholder="Enter your password"
+                            placeholder="Password"
                             inputId="password"
                             {...register("password", {
                                 required: "Password is required",
@@ -99,39 +111,35 @@ const SignupPage = () => {
                                     message: "Password must be at least 8 characters",
                                 },
                             })}
-                        />
-                        <TextInput
-                            error={errors?.address?.message?.toString()}
-                            label="Address"
-                            placeholder="Enter your address"
-                            inputId="address"
-                            {...register("address", { required: "Address is required" })}
+                            authInput
                         />
 
-                        <p className="text-center py-2">
-                            By signup I agree with <span className="text-[#FE7086]">Terms </span>
-                            and
-                            <span className="text-[#FE7086]"> Conditions</span>
-                        </p>
-
-                        <Button isLoading={isSigningUp}>Sign Up</Button>
-
-                        <div className="border p-3 rounded-md text-center flex justify-center space-x-3">
-                            <span>
-                                <FcGoogle size={25} />
-                            </span>
-                            <span>Sign Up with Google</span>
+                        <div className="flex space-x-3 py-2">
+                            <input
+                                type="checkbox"
+                                id="agree"
+                                onChange={() => setAgree((agree) => !agree)}
+                            />
+                            <label htmlFor="agree" className="text-[#566363]">
+                                I agree with
+                                <span className="font-semibold text-primaryGreen-700">
+                                    {" "}
+                                    Privacy Policy{" "}
+                                </span>
+                                and
+                                <span className="font-semibold text-primaryGreen-700">
+                                    {" "}
+                                    Terms of Use
+                                </span>
+                            </label>
                         </div>
 
-                        <p className="text-center">
-                            Already have an account?{" "}
-                            <Link to="/login" className="text-primaryGreen-700">
-                                Sign In
-                            </Link>
-                        </p>
+                        <Button disabled={!agree} isLoading={isSigningUp}>
+                            Sign Up
+                        </Button>
                     </form>
                 </div>
-            </div>
+            </AuthLayout>
         </ScrollToTop>
     );
 };
