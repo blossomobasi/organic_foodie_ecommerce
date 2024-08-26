@@ -10,6 +10,7 @@ import Button from "../ui/Button";
 import TextInput from "../ui/TextInput";
 import { LoginData } from "../types/auth";
 import ScrollToTop from "../ui/ScrollToTop";
+import AuthLayout from "../ui/AuthLayout";
 
 const LoginPage = () => {
     const navigate = useNavigate();
@@ -25,7 +26,6 @@ const LoginPage = () => {
         onError: (err: { response: { data: { message: string } } }) => {
             // Get rid of TypeScript error
             toast.error(err.response.data.message || "An error occurred");
-            console.error(err.response?.data);
         },
     });
 
@@ -38,43 +38,58 @@ const LoginPage = () => {
 
     return (
         <ScrollToTop>
-            <div className="bg-[#F8FAFB] flex items-center justify-center p-20">
-                <div className="bg-white px-32 py-20 rounded-xl">
-                    <h1 className="text-4xl font-bold text-[#171725]">Sign In</h1>
-                    <p className="text-[#8D98AF] text-lg py-3">Enter details to get started</p>
+            <AuthLayout>
+                <div className="w-[30rem]">
+                    <div>
+                        <h1 className="text-4xl mb-5 font-bold nichrome text-primaryGreen-700">
+                            Login
+                        </h1>
+                        <p className="mb-8 text-[#566363]">
+                            Don't have an account yet?{" "}
+                            <Link to="/signup" className="text-secondaryOrange-400 font-semibold">
+                                Sign Up
+                            </Link>
+                        </p>
+                    </div>
 
-                    <form
-                        className="pt-3 flex flex-col space-y-3 w-[25rem]"
-                        onSubmit={handleSubmit(onSubmit)}
-                    >
+                    <form className="flex flex-col space-y-3" onSubmit={handleSubmit(onSubmit)}>
                         <TextInput
                             error={errors?.email?.message?.toString()}
-                            label="Email"
                             placeholder="Enter your email"
                             inputId="email"
                             {...register("email", { required: "Email is required" })}
+                            authInput
                         />
 
                         <TextInput
                             error={errors?.password?.message?.toString()}
                             type="password"
-                            label="Password"
                             placeholder="Enter your password"
                             inputId="password"
                             {...register("password", { required: "Password is required" })}
+                            authInput
                         />
 
-                        <Button isLoading={isLogginIn}>Login</Button>
+                        <div className="flex items-center justify-between py-3">
+                            <div className="flex space-x-3">
+                                <input type="checkbox" id="rememberMe" />
+                                <label htmlFor="rememberMe" className="text-[#566363]">
+                                    Remember me
+                                </label>
+                            </div>
 
-                        <p className="text-center">
-                            Don't have an account?{" "}
-                            <Link to="/signup" className="text-primaryGreen-700">
-                                Sign Up
+                            <Link
+                                to="/forgot-password"
+                                className="font-semibold text-primaryGreen-700"
+                            >
+                                Forgot Password?
                             </Link>
-                        </p>
+                        </div>
+
+                        <Button isLoading={isLogginIn}>Login</Button>
                     </form>
                 </div>
-            </div>
+            </AuthLayout>
         </ScrollToTop>
     );
 };
