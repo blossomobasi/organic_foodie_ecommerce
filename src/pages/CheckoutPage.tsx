@@ -4,11 +4,30 @@ import MasterCard from "../assets/images/masters_card.png";
 import Paypal from "../assets/images/paypal.png";
 import Button from "../ui/Button";
 import ScrollToTop from "../ui/ScrollToTop";
+import { useCart } from "../hooks/useCart";
+import { useProduct } from "../hooks/useProduct";
 
 const CheckoutPage = () => {
-    const totalPrice = 582;
-    const SAVINGS = 82;
-    const TAX = 3.5;
+    const {
+        cart,
+        isLoading: { isLoading: isLoadingCart },
+    } = useCart();
+
+    const cartItems = cart?.cartData;
+    const cartKeys = Object.keys(cartItems || {})[0];
+
+    const {
+        data,
+        isLoading: { isLoading: isLoadingProduct },
+    } = useProduct(cartKeys);
+
+    const itemInCart = Object.values(cartItems || {})[0];
+
+    const totalPrice = data?.price * itemInCart;
+
+    // const totalPrice = 582;
+    // const SAVINGS = 82;
+    // const TAX = 3.5;
 
     return (
         <ScrollToTop>
@@ -83,25 +102,26 @@ const CheckoutPage = () => {
                                     <p>Original Price</p>
                                     <p>${totalPrice.toFixed(2)}</p>
                                 </div>
-                                <div className="flex justify-between">
+                                {/* <div className="flex justify-between">
                                     <p>Savings</p>
                                     <p>${SAVINGS.toFixed(2)}</p>
-                                </div>
+                                </div> */}
                                 <div className="flex justify-between">
                                     <p>Shipping</p>
                                     <p>FREE</p>
                                 </div>
-                                <div className="flex justify-between">
+                                {/* <div className="flex justify-between">
                                     <p>Estimated Sales Tax</p>
                                     <p>${TAX}</p>
-                                </div>
+                                </div> */}
                             </div>
 
                             <hr className="border-[#C4D1D0] border-1" />
 
                             <div className="flex justify-between py-5 text-2xl font-semibold">
                                 <h2>Total</h2>
-                                <h2>${(totalPrice - SAVINGS - TAX).toFixed(2)}</h2>
+                                {/* <h2>${(totalPrice - SAVINGS - TAX).toFixed(2)}</h2> */}
+                                <h2>${totalPrice}</h2>
                             </div>
                         </div>
 
