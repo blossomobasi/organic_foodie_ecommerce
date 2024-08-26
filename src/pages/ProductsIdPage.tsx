@@ -9,7 +9,7 @@ import Spinner from "../ui/Spinner";
 import ReviewStats from "../components/ReviewStats";
 import CreateReview from "../components/CreateReview";
 import ShowReview from "../components/ShowReview";
-import { useAddToCart } from "../hooks/useCart";
+import { useAddToCart, useCart } from "../hooks/useCart";
 import ScrollToTop from "../ui/ScrollToTop";
 
 const ProductsIdPage = () => {
@@ -17,9 +17,13 @@ const ProductsIdPage = () => {
     const productId = params.productId;
 
     const { data, isLoading } = useProduct(productId || "");
+    const { cart } = useCart();
     const { addToCart, removeItemFromCart, isPending } = useAddToCart();
 
     const [imageSrc, setImageSrc] = useState(data?.images[0]);
+
+    const carts = cart?.cartData;
+    const itemInCart = Object.values(carts || {});
 
     function handleAddToCart(productId: string) {
         if (isPending) return;
@@ -29,10 +33,13 @@ const ProductsIdPage = () => {
         });
     }
 
-    function handleRemoveItemFromCart() {
+    function handleRemoveItemFromCart(productId: string) {
         if (isPending) return;
+        if (+itemInCart === 1) return; // Covert to number and compare
 
-        removeItemFromCart();
+        removeItemFromCart({
+            itemId: productId,
+        });
     }
 
     return (
@@ -89,13 +96,13 @@ const ProductsIdPage = () => {
                                         className={clsx("lg:h-6 lg:w-6 h-5 w-5 bg-grey-400", {
                                             "cursor-not-allowed opacity-50": isPending,
                                         })}
-                                        onClick={handleRemoveItemFromCart}
+                                        onClick={() => handleRemoveItemFromCart(data?._id || "")}
                                     >
                                         &mdash;
                                     </button>
                                     <input
                                         type="text"
-                                        defaultValue={data?.quantity}
+                                        value={itemInCart}
                                         disabled={isPending}
                                         className="lg:h-6 lg:w-6 h-5 w-5 border border-grey-400 text-center"
                                     />
