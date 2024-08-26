@@ -10,6 +10,7 @@ type ButtonProps = React.HTMLAttributes<HTMLButtonElement> & {
     url?: string;
     onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
     isLoading?: boolean;
+    disabled?: boolean;
 };
 
 const Button = ({
@@ -20,6 +21,7 @@ const Button = ({
     url,
     onClick,
     isLoading,
+    disabled,
     ...props
 }: ButtonProps) => {
     const navigate = useNavigate();
@@ -38,7 +40,7 @@ const Button = ({
             {...props}
             className={cn(buttonVariant({ variant }), className)}
             onClick={handleClick}
-            disabled={isLoading}
+            disabled={isLoading || disabled}
         >
             {isLoading ? (
                 <span className="flex items-center justify-center">
