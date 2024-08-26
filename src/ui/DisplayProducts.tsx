@@ -67,11 +67,7 @@ const DisplayProducts = ({ data, title, description }: Props) => {
                             className="w-[23.5rem] flex-shrink-0 cursor-pointer"
                             onClick={() => navigate(`/products/${product._id}`)}
                         >
-                            <img
-                                src={"https://i.ytimg.com/vi/S5TNp4v5s14/maxresdefault.jpg"}
-                                alt={product.title}
-                                className="w-full"
-                            />
+                            <img src={product.images[0]} alt={product.title} className="w-full" />
                             <p className="flex justify-between items-center py-3">
                                 <span className="text-grey-600">{product.category}</span>
                                 <span>
