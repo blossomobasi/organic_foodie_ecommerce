@@ -8,26 +8,16 @@ import { useCart } from "../hooks/useCart";
 import { useProduct } from "../hooks/useProduct";
 
 const CheckoutPage = () => {
-    const {
-        cart,
-        isLoading: { isLoading: isLoadingCart },
-    } = useCart();
+    const { cart } = useCart();
 
     const cartItems = cart?.cartData;
     const cartKeys = Object.keys(cartItems || {})[0];
 
-    const {
-        data,
-        isLoading: { isLoading: isLoadingProduct },
-    } = useProduct(cartKeys);
+    const { data } = useProduct(cartKeys);
 
     const itemInCart = Object.values(cartItems || {})[0];
 
-    const totalPrice = data?.price * itemInCart;
-
-    // const totalPrice = 582;
-    // const SAVINGS = 82;
-    // const TAX = 3.5;
+    const totalPrice = data?.price ? data.price * +itemInCart : 0;
 
     return (
         <ScrollToTop>
