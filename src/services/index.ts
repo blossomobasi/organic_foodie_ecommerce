@@ -70,6 +70,11 @@ const getProduct = async (id: string): Promise<SingleProductResponse> => {
     return response.data;
 };
 
+// Wishlist
+// const addToWishlist = async (prodId: string): Promise<> => {
+//     const response = await $http.put(`/api/product/wishlist/${prodId}`);
+// };
+
 // Cart
 const addToCart = async (CartData: CartData): Promise<CartResponse> => {
     const response = await $http.post("/api/cart/addToCart", CartData);
@@ -80,8 +85,8 @@ const addToCart = async (CartData: CartData): Promise<CartResponse> => {
     return response.data;
 };
 
-const removeItemFromCart = async (): Promise<CartResponse> => {
-    const response = await $http.post("/api/cart/remove");
+const removeItemFromCart = async (cartData: CartData): Promise<CartResponse> => {
+    const response = await $http.post("/api/cart/remove", cartData);
     if (!response.data.success) {
         throw new Error(response.data.message);
     }
@@ -97,11 +102,6 @@ const getCart = async (): Promise<CartResponse> => {
 
     return response.data;
 };
-
-// Wishlist
-// const addToWishlist = async (prodId: string): Promise<> => {
-//     const response = await $http.put(`/api/product/wishlist/${prodId}`);
-// };
 
 export {
     register,
