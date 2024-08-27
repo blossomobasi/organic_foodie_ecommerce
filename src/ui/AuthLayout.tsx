@@ -11,7 +11,7 @@ const AuthLayout = ({ children }: { children: React.ReactNode }) => {
                 </div>
             </div>
 
-            <div className="md:w-1/2 lg:p-10 p-5 h-full overflow-y-auto flex justify-center">
+            <div className="md:w-1/2 lg:p-10 p-5 h-full overflow-y-auto flex items-center justify-center">
                 {children}
             </div>
         </div>
