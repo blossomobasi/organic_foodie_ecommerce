@@ -20,6 +20,7 @@ const LoginPage = () => {
         onSuccess: (data) => {
             toast.success("Login successful");
             Cookies.set("refreshToken", data.refreshToken);
+            Cookies.set("userId", data.findUser._id);
 
             navigate("/");
         },
