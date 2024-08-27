@@ -15,6 +15,7 @@ import { useState } from "react";
 
 const SignupPage = () => {
     const [agree, setAgree] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
     const navigate = useNavigate();
     const { mutate, isPending: isSigningUp } = useMutation({
         mutationFn: registerApi,
@@ -101,7 +102,9 @@ const SignupPage = () => {
                         />
                         <TextInput
                             error={errors?.password?.message?.toString()}
-                            type="password"
+                            type={showPassword ? "text" : "password"}
+                            onIconClick={() => setShowPassword((showPassword) => !showPassword)}
+                            showPassword={showPassword}
                             placeholder="Password"
                             inputId="password"
                             {...register("password", {
