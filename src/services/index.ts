@@ -6,6 +6,7 @@ import {
     Product,
     ProductResponse,
     SingleProductResponse,
+    WishlistResponse,
 } from "../types/products";
 import $http from "./config";
 
@@ -71,9 +72,14 @@ const getProduct = async (id: string): Promise<SingleProductResponse> => {
 };
 
 // Wishlist
-// const addToWishlist = async (prodId: string): Promise<> => {
-//     const response = await $http.put(`/api/product/wishlist/${prodId}`);
-// };
+const addToWishlist = async (prodId: string, userId: string): Promise<WishlistResponse> => {
+    const response = await $http.put(`/api/product/wishlist/${userId}`, { prodId });
+    if (!response.data.success) {
+        throw new Error(response.data.message);
+    }
+
+    return response.data;
+};
 
 // Cart
 const addToCart = async (CartData: CartData): Promise<CartResponse> => {
@@ -111,6 +117,7 @@ export {
     getNewProducts,
     getPopularProducts,
     getProduct,
+    addToWishlist,
     addToCart,
     removeItemFromCart,
     getCart,
