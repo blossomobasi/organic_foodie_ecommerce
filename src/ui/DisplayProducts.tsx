@@ -1,15 +1,17 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
 
 import { FiHeart } from "react-icons/fi";
 import { IoStarSharp } from "react-icons/io5";
 
+import { useProducts } from "../hooks/useProduct";
+import { useAddToCart } from "../hooks/useCart";
+import useWishlist from "../hooks/useWishlist";
 import { Product } from "../types/products";
 
 import Button from "./Button";
-import { useProducts } from "../hooks/useProduct";
 import Spinner from "./Spinner";
-import { useAddToCart } from "../hooks/useCart";
 
 type Props = {
     data: Product[] | undefined;
@@ -18,8 +20,10 @@ type Props = {
 };
 
 const DisplayProducts = ({ data, title, description }: Props) => {
+    const userId = Cookies.get("userId");
     const { isLoading } = useProducts();
     const { addToCart, isPending: isAddingToCart } = useAddToCart();
+    const { isAddingToWishlist, addToWishlist } = useWishlist();
     const navigate = useNavigate();
     const windowWidth = window.innerWidth;
     const mobileView = windowWidth < 500;
@@ -30,6 +34,16 @@ const DisplayProducts = ({ data, title, description }: Props) => {
 
         addToCart({
             itemId: productId,
+        });
+    }
+
+    function handleAddToWishlist(e: React.MouseEvent, prodId: string) {
+        e.stopPropagation();
+        if (isAddingToWishlist) return;
+
+        addToWishlist({
+            prodId,
+            userId: userId || "",
         });
     }
 
@@ -70,9 +84,11 @@ const DisplayProducts = ({ data, title, description }: Props) => {
                             <img src={product.images[0]} alt={product.title} className="w-full" />
                             <p className="flex justify-between items-center py-3">
                                 <span className="text-grey-600">{product.category}</span>
-                                <span>
-                                    <FiHeart size={20} />
-                                </span>
+                                <FiHeart
+                                    size={20}
+                                    className="hover:text-red-600"
+                                    onClick={(e) => handleAddToWishlist(e, product._id)}
+                                />
                             </p>
                             <h4 className="font-semibold text-xl nichrome capitalize">
                                 {product.title}
