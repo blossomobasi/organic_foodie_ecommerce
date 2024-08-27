@@ -1,3 +1,5 @@
+import { User } from "./auth";
+
 export type ProductsType = {
     image: string;
     title: string;
@@ -49,4 +51,13 @@ export type SingleProductResponse = {
     success: boolean;
     message: string;
     singleProduct: Product;
+};
+
+export type WishlistResponse = {
+    success: boolean;
+    message: string;
+    updatedUser: User;
+    cartData: {
+        [productId: string]: number;
+    };
 };
