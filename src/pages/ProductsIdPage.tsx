@@ -24,6 +24,7 @@ const ProductsIdPage = () => {
 
     const carts = cart?.cartData;
     const itemInCart = Object.values(carts || {});
+    const price = data?.price ? data.price * +itemInCart : 0;
 
     function handleAddToCart(productId: string) {
         if (isPending) return;
@@ -80,7 +81,7 @@ const ProductsIdPage = () => {
                                     {data?.title}
                                 </h2>
                                 <p className="text-2xl font-bold text-secondaryOrange-500">
-                                    ${data?.price}
+                                    ${price}
                                 </p>
 
                                 <span className="flex items-center space-x-2 text-grey-600 text-lg py-3">
