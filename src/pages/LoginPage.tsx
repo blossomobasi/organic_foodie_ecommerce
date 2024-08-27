@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
@@ -14,6 +15,8 @@ import AuthLayout from "../ui/AuthLayout";
 
 const LoginPage = () => {
     const navigate = useNavigate();
+    const [showPassword, setShowPassword] = useState(false);
+    // const [rememberMe, setRememberMe] = useState(false);
 
     const { mutate, isPending: isLogginIn } = useMutation({
         mutationFn: loginApi,
@@ -64,7 +67,9 @@ const LoginPage = () => {
 
                         <TextInput
                             error={errors?.password?.message?.toString()}
-                            type="password"
+                            type={showPassword ? "text" : "password"}
+                            onIconClick={() => setShowPassword((showPassword) => !showPassword)}
+                            showPassword={showPassword}
                             placeholder="Enter your password"
                             inputId="password"
                             {...register("password", { required: "Password is required" })}
