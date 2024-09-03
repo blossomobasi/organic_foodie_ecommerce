@@ -39,7 +39,8 @@ const NavBar = () => {
     ];
 
     const carts = cart?.cartData;
-    const CART_LENGTH = Object.keys(carts || {}).length;
+    const cartObjectValues = Object.values(carts || {});
+    const CART_LENGTH = cartObjectValues.reduce((item, acc) => Number(item) + Number(acc), 0);
 
     function scrollUp() {
         window.scrollTo(0, 0);

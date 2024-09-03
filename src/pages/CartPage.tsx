@@ -1,6 +1,3 @@
-// import OrganicSnacks from "../assets/images/black_friday_out_of_stock.png";
-// import BerryBlissBites from "../assets/images/berry_bliss_bites.png";
-// import CoconutCrunchies from "../assets/images/crispy_coconut_crunchies.png";
 import Button from "../ui/Button";
 import SimilarProduct from "../components/SimilarProduct";
 import { useAddToCart, useCart } from "../hooks/useCart";
@@ -164,3 +161,23 @@ const CartPage = () => {
 };
 
 export default CartPage;
+
+// useEffect(() => {
+//     const fetchProducts = async () => {
+//         try {
+//             const fetchedProducts = await Promise.all(
+//                 cartKeys.map(async (productId) => {
+//                     const { data } = await $http.get(`/api/product/single/${productId}`);
+//                     return { data };
+//                 })
+//             );
+//             setProducts(fetchedProducts);
+//         } catch (error) {
+//             console.error("Failed to fetch products", error);
+//         }
+//     };
+
+//     if (cartKeys.length > 0) {
+//         fetchProducts();
+//     }
+// }, [cartKeys, cartData]);

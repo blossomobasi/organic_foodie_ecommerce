@@ -12,6 +12,7 @@ import TextInput from "../ui/TextInput";
 import { LoginData } from "../types/auth";
 import ScrollToTop from "../ui/ScrollToTop";
 import AuthLayout from "../ui/AuthLayout";
+import { AxiosError } from "axios";
 
 const LoginPage = () => {
     const navigate = useNavigate();
@@ -27,9 +28,10 @@ const LoginPage = () => {
 
             navigate("/");
         },
-        onError: (err: { response: { data: { message: string } } }) => {
-            // Get rid of TypeScript error
-            toast.error(err.response.data.message || "An error occurred");
+        onError: (err: AxiosError) => {
+            const errorMessage = (err.response?.data as { message: string}).message
+
+            toast.error(errorMessage);
         },
     });
 

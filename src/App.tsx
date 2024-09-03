@@ -16,7 +16,6 @@ import CheckoutPage from "./pages/CheckoutPage";
 import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
 import { ToastContainer } from "react-toastify";
-import ProtectRoute from "./ui/ProtectRoute";
 
 function App() {
     const queryClient = new QueryClient({
@@ -29,20 +28,13 @@ function App() {
 
     return (
         <QueryClientProvider client={queryClient}>
-            <ToastContainer newestOnTop={true} pauseOnHover={true} autoClose={3000} />
+            <ToastContainer newestOnTop={true} pauseOnHover={true} autoClose={3000} draggable />
 
             <ReactQueryDevtools initialIsOpen={false} />
 
             <BrowserRouter>
                 <Routes>
-                    <Route
-                        path="/"
-                        element={
-                            <ProtectRoute>
-                                <AppLayout />
-                            </ProtectRoute>
-                        }
-                    >
+                    <Route path="/" element={<AppLayout />}>
                         <Route index element={<HomePage />} />
                         <Route path="products" element={<ProductsPage />} />
                         <Route path="products/:productId" element={<ProductsIdPage />} />

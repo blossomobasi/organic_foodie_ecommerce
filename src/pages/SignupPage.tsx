@@ -24,7 +24,8 @@ const SignupPage = () => {
             navigate("/login");
         },
         onError: (err: AxiosError) => {
-            toast.error(err.message);
+            const errorMessage = (err.response?.data as { message: string}).message
+            toast.error(errorMessage);
         },
     });
     const { register, handleSubmit, formState } = useForm<RegisterData>();
