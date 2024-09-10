@@ -17,14 +17,15 @@ const CartPopUp = ({
     openCart: boolean;
 }) => {
     const { cart } = useCart();
-    const cartData = cart?.cartData;
-    const cartKeys = Object.keys(cartData || {})[0];
-    const { data } = useProduct(cartKeys);
+    const cartData = cart?.userOrdersCart;
+    const cartId = Object.keys(cartData || {})[0];
+    const { data } = useProduct(cartId);
 
     const cartLength = Object.keys(cartData || {}).length;
 
     const itemInCart = Object.values(cartData || {})[0];
     const totalPrice = data?.price ? data.price * +itemInCart : 0;
+    console.log("CArt", cart);
 
     useEffect(() => {
         if (openCart) {
@@ -40,7 +41,7 @@ const CartPopUp = ({
                 "absolute md:pt-28 pt-14 top-0 left-0 w-full h-screen lg:px-20 px-2 transition-transform duration-300 flex flex-col items-center",
                 {
                     "transform translate-y-0": openCart,
-                    "transform translate-y-[calc(100vh+5rem)]": !openCart,
+                    "transform translate-y-[calc(100vh+5rem)] invisible": !openCart,
                 }
             )}
         >
