@@ -82,8 +82,8 @@ const addToWishlist = async (prodId: string, userId: string): Promise<WishlistRe
 };
 
 // Cart
-const addToCart = async (CartData: CartData): Promise<CartResponse> => {
-    const response = await $http.post("/api/cart/addToCart", CartData);
+const addToCart = async (productId: string): Promise<CartResponse> => {
+    const response = await $http.post("/api/cart/addToCart", { productId });
     if (!response.data.success) {
         throw new Error(response.data.message);
     }
