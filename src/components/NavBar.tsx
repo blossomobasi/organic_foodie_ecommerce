@@ -38,7 +38,7 @@ const NavBar = () => {
         { name: "FAQs", url: "faq" },
     ];
 
-    const carts = cart?.cartData;
+    const carts = cart?.userOrdersCart;
     const cartObjectValues = Object.values(carts || {});
     const CART_LENGTH = cartObjectValues.reduce((item, acc) => Number(item) + Number(acc), 0);
 
