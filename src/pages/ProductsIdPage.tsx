@@ -22,16 +22,14 @@ const ProductsIdPage = () => {
 
     const [imageSrc, setImageSrc] = useState(data?.images[0]);
 
-    const carts = cart?.cartData;
+    const carts = cart?.userOrdersCart;
     const itemInCart = Object.values(carts || {});
     const price = data?.price ? data.price * +itemInCart : 0;
 
     function handleAddToCart(productId: string) {
         if (isPending) return;
 
-        addToCart({
-            itemId: productId,
-        });
+        addToCart(productId);
     }
 
     function handleRemoveItemFromCart(productId: string) {
@@ -103,7 +101,7 @@ const ProductsIdPage = () => {
                                     </button>
                                     <input
                                         type="text"
-                                        value={itemInCart}
+                                        // value={itemInCart}
                                         disabled={isPending}
                                         className="lg:h-6 lg:w-6 h-5 w-5 border border-grey-400 text-center"
                                     />
@@ -139,7 +137,7 @@ const ProductsIdPage = () => {
                     )}
 
                     {/* Review */}
-                    <section className="py-20">
+                    <section className="pt-20">
                         <div className="flex md:flex-row flex-col md:space-y-0 space-y-10">
                             <div className="w-full">
                                 <h3 className="text-xl font-bold">Customer Reviews</h3>
