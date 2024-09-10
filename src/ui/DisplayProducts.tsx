@@ -12,6 +12,7 @@ import { Product } from "../types/products";
 
 import Button from "./Button";
 import Spinner from "./Spinner";
+import { FaHeart } from "react-icons/fa";
 
 type Props = {
     data: Product[] | undefined;
@@ -32,9 +33,7 @@ const DisplayProducts = ({ data, title, description }: Props) => {
         e.stopPropagation();
         if (isAddingToCart) return;
 
-        addToCart({
-            itemId: productId,
-        });
+        addToCart(productId);
     }
 
     function handleAddToWishlist(e: React.MouseEvent, prodId: string) {
@@ -50,7 +49,7 @@ const DisplayProducts = ({ data, title, description }: Props) => {
     return (
         <React.Fragment>
             <div className="pb-5">
-                <h2 className="md:text-5xl text-4xl font-bold nichrome ">{title}</h2>
+                <h2 className="md:text-5xl text-4xl font-bold nichrome">{title}</h2>
                 <div className="flex justify-between items-center py-5 space-x-5">
                     <p className="text-grey-600 md:text-base text-sm">
                         {mobileView
@@ -81,7 +80,11 @@ const DisplayProducts = ({ data, title, description }: Props) => {
                             className="w-[23.5rem] flex-shrink-0 cursor-pointer"
                             onClick={() => navigate(`/products/${product._id}`)}
                         >
-                            <img src={product.images[0]} alt={product.title} className="w-full" />
+                            <img
+                                src={product.images[0]}
+                                alt={product.title}
+                                className="w-full h-[15rem]"
+                            />
                             <p className="flex justify-between items-center py-3">
                                 <span className="text-grey-600">{product.category}</span>
                                 <FiHeart
@@ -89,6 +92,7 @@ const DisplayProducts = ({ data, title, description }: Props) => {
                                     className="hover:text-red-600"
                                     onClick={(e) => handleAddToWishlist(e, product._id)}
                                 />
+                                {/* <FaHeart size={20} /> */}
                             </p>
                             <h4 className="font-semibold text-xl nichrome capitalize">
                                 {product.title}
