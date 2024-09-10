@@ -12,7 +12,7 @@ import { Product } from "../types/products";
 
 import Button from "./Button";
 import Spinner from "./Spinner";
-import { FaHeart } from "react-icons/fa";
+// import { FaHeart } from "react-icons/fa";
 
 type Props = {
     data: Product[] | undefined;
