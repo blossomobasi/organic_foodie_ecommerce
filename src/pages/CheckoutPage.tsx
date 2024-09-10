@@ -10,7 +10,7 @@ import { useProduct } from "../hooks/useProduct";
 const CheckoutPage = () => {
     const { cart } = useCart();
 
-    const cartItems = cart?.cartData;
+    const cartItems = cart?.userOrdersCart;
     const cartKeys = Object.keys(cartItems || {})[0];
 
     const { data } = useProduct(cartKeys);
