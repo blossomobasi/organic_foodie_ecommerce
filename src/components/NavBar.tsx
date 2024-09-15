@@ -22,6 +22,9 @@ const NavBar = () => {
     const location = useLocation();
     const pathname = location.pathname;
 
+    const CART_LENGTH = cart?.userOrdersCart[0].products.reduce((acc, item) => acc + item.count, 0)
+
+
     useEffect(() => {
         if (showNav) {
             document.body.style.overflowY = "hidden";
@@ -37,10 +40,6 @@ const NavBar = () => {
         { name: "Blogs", url: "blogs" },
         { name: "FAQs", url: "faq" },
     ];
-
-    const carts = cart?.userOrdersCart;
-    const cartObjectValues = Object.values(carts || {});
-    const CART_LENGTH = cartObjectValues.reduce((item, acc) => Number(item) + Number(acc), 0);
 
     function scrollUp() {
         window.scrollTo(0, 0);
