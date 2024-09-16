@@ -1,3 +1,5 @@
+import { Product } from "./products";
+
 export type CartData = {
     itemId: string;
 };
@@ -8,19 +10,18 @@ export type Cart = {
     createdAt: string;
     orderBy: string;
     orderStatus: string;
-    __v: number
+    __v: number;
     products: {
         _id: string;
-        count: string;
+        count: number;
         date: string;
         price: number;
-        productId: string
-    }[]
-}
-
+        productId: Product;
+    }[];
+};
 
 export type CartResponse = {
     success: boolean;
     message: string;
-    userOrdersCart: Cart[]
+    userOrdersCart: Cart[];
 };
