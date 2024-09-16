@@ -72,6 +72,15 @@ const getProduct = async (id: string): Promise<SingleProductResponse> => {
 };
 
 // Wishlist
+const getAllProductsInWishlist = async (userId: string): Promise<WishlistResponse> => {
+    const response = await $http.get(`/api/product/allwishlist/${userId}`);
+    if (!response.data.success) {
+        throw new Error(response.data.message);
+    }
+
+    return response.data;
+};
+
 const addToWishlist = async (productId: string, userId: string): Promise<WishlistResponse> => {
     const response = await $http.post(`/api/product/wishlist/`, { productId, userId });
     if (!response.data.success) {
@@ -133,6 +142,7 @@ export {
     getNewProducts,
     getPopularProducts,
     getProduct,
+    getAllProductsInWishlist,
     addToWishlist,
     addToCart,
     removeItemFromCart,
