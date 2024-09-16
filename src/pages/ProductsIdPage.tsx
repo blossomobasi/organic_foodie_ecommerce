@@ -1,3 +1,4 @@
+import Cookies from "js-cookie";
 import { useParams } from "react-router-dom";
 import SimilarProduct from "../components/SimilarProduct";
 import { useProduct } from "../hooks/useProduct";
@@ -9,37 +10,33 @@ import Spinner from "../ui/Spinner";
 import ReviewStats from "../components/ReviewStats";
 import CreateReview from "../components/CreateReview";
 import ShowReview from "../components/ShowReview";
-import { useAddToCart, useCart } from "../hooks/useCart";
+import { useAddToCart } from "../hooks/useCart";
 import ScrollToTop from "../ui/ScrollToTop";
 
 const ProductsIdPage = () => {
     const params = useParams();
     const productId = params.productId;
+    const userId = Cookies.get("userId") || "";
 
     const { data, isLoading } = useProduct(productId || "");
-    const { cart } = useCart();
-    const { addToCart, removeItemFromCart, isPending } = useAddToCart();
+    const { addToCart, isPending } = useAddToCart();
 
     const [imageSrc, setImageSrc] = useState(data?.images[0]);
 
-    const carts = cart?.userOrdersCart;
-    const itemInCart = Object.values(carts || {});
-    const price = data?.price ? data.price * +itemInCart : 0;
+    const price = data?.price;
 
     function handleAddToCart(productId: string) {
         if (isPending) return;
 
-        addToCart(productId);
+        addToCart({ productId, count: 1, userId });
     }
 
-    function handleRemoveItemFromCart(productId: string) {
-        if (isPending) return;
-        if (+itemInCart === 1) return; // Covert to number and compare
+    // function handleRemoveItemFromCart(productId: string) {
+    //     if (isPending) return;
+    //     if (carts?.map((cart) => cart.products.length === 1)) return;
 
-        removeItemFromCart({
-            itemId: productId,
-        });
-    }
+    //     removeItemFromCart({ productId, count: 1, userId });
+    // }
 
     return (
         <ScrollToTop>
@@ -89,7 +86,7 @@ const ProductsIdPage = () => {
                                     </span>
                                 </span>
 
-                                <div className="flex space-x-3 text-lg">
+                                {/* <div className="flex space-x-3 text-lg">
                                     <p className="font-semibold">Quantity: </p>
                                     <button
                                         className={clsx("lg:h-6 lg:w-6 h-5 w-5 bg-grey-400", {
@@ -99,12 +96,9 @@ const ProductsIdPage = () => {
                                     >
                                         &mdash;
                                     </button>
-                                    <input
-                                        type="text"
-                                        // value={itemInCart}
-                                        disabled={isPending}
-                                        className="lg:h-6 lg:w-6 h-5 w-5 border border-grey-400 text-center"
-                                    />
+                                    <span className="lg:h-6 lg:w-6 h-5 w-5 border border-grey-400 text-center">
+                                        {data?.quantity}
+                                    </span>
                                     <button
                                         disabled={isPending}
                                         className={clsx("lg:h-6 lg:w-6 h-5 w-5 bg-grey-400", {
@@ -114,7 +108,7 @@ const ProductsIdPage = () => {
                                     >
                                         +
                                     </button>
-                                </div>
+                                </div> */}
 
                                 <p className="py-5 first-letter:capitalize text-grey-600">
                                     {data?.description}

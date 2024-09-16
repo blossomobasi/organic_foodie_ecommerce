@@ -5,19 +5,11 @@ import Paypal from "../assets/images/paypal.png";
 import Button from "../ui/Button";
 import ScrollToTop from "../ui/ScrollToTop";
 import { useCart } from "../hooks/useCart";
-import { useProduct } from "../hooks/useProduct";
 
 const CheckoutPage = () => {
     const { cart } = useCart();
 
-    const cartItems = cart?.userOrdersCart;
-    const cartKeys = Object.keys(cartItems || {})[0];
-
-    const { data } = useProduct(cartKeys);
-
-    const itemInCart = Object.values(cartItems || {})[0];
-
-    const totalPrice = data?.price ? data.price * +itemInCart : 0;
+    const totalPrice = cart?.userOrdersCart[0].cartTotal;
 
     return (
         <ScrollToTop>
@@ -90,7 +82,7 @@ const CheckoutPage = () => {
                             <div className="py-5 flex flex-col space-y-3 text-grey-600">
                                 <div className="flex justify-between">
                                     <p>Original Price</p>
-                                    <p>${totalPrice.toFixed(2)}</p>
+                                    <p>${Number(totalPrice).toFixed(2)}</p>
                                 </div>
                                 {/* <div className="flex justify-between">
                                     <p>Savings</p>

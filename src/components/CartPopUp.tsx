@@ -5,7 +5,6 @@ import Button from "../ui/Button";
 
 import React from "react";
 import clsx from "clsx";
-import { useProduct } from "../hooks/useProduct";
 import { useCart } from "../hooks/useCart";
 import EmptyCart from "./EmptyCart";
 
@@ -17,16 +16,9 @@ const CartPopUp = ({
     openCart: boolean;
 }) => {
     const { cart } = useCart();
-    const cartData = cart?.userOrdersCart;
-    const cartId = Object.keys(cartData || {})[0];
-    const { data } = useProduct(cartId);
+    const CART_LENGTH = cart?.userOrdersCart[0].products.length;
 
-    const cartLength = Object.keys(cartData || {}).length;
-
-    const itemInCart = Object.values(cartData || {})[0];
-    const totalPrice = data?.price ? data.price * +itemInCart : 0;
-    console.log("CArt", cart);
-
+    const totalPrice = cart?.userOrdersCart[0].cartTotal;
     useEffect(() => {
         if (openCart) {
             document.body.style.overflowY = "hidden";
@@ -53,55 +45,62 @@ const CartPopUp = ({
 
             <div
                 className={clsx(
-                    "relative w-full max-w-[110rem] flex md:flex-row flex-col justify-between lg:space-x-28 md:space-x-10 space-y-10 md:space-y-0 bg-white md:px-14 px-8 py-8 h-full overflow-y-auto"
+                    "relative w-full max-w-[110rem] flex md:flex-row flex-col justify-between lg:space-x-28 md:space-x-10 space-y-10 md:space-y-0 bg-white lg:px-14 px-8 py-8 h-full overflow-y-auto"
                 )}
             >
-                {!cartLength ? (
+                {!CART_LENGTH ? (
                     <EmptyCart />
                 ) : (
-                    <>
-                        <div className="w-full">
-                            <div>
-                                <div className="flex justify-between py-3">
-                                    <h6>Item {cartLength}</h6>
-                                    <div className="flex space-x-5 text-grey-600">
-                                        <p className="relative before:absolute before:-bottom-1 before:left-0 before:h-px before:w-full before:bg-grey-600 before:hover:bg-primaryGreen-900 hover:text-primaryGreen-900 cursor-pointer">
-                                            Edit
-                                        </p>
-                                        <p
-                                            className={
-                                                "relative before:absolute before:-bottom-1 before:left-0 before:h-px before:w-full before:bg-grey-600 before:hover:bg-red-600 hover:text-red-600 cursor-pointer"
-                                            }
-                                        >
-                                            Remove
-                                        </p>
-                                    </div>
-                                </div>
+                    <div className="flex justify-between md:flex-row flex-col w-full gap-10">
+                        {cart.userOrdersCart.map((item) => (
+                            <div className="w-full" key={item._id}>
+                                {item.products.map((product, index) => (
+                                    <div className="w-full">
+                                        <div className="flex justify-between py-3">
+                                            <h6>Item {index + 1}</h6>
+                                            {/* <div className="flex space-x-5 text-grey-600">
+                                                <p className="relative before:absolute before:-bottom-1 before:left-0 before:h-px before:w-full before:bg-grey-600 before:hover:bg-primaryGreen-900 hover:text-primaryGreen-900 cursor-pointer">
+                                                    Edit
+                                                </p>
+                                                <p
+                                                    className={
+                                                        "relative before:absolute before:-bottom-1 before:left-0 before:h-px before:w-full before:bg-grey-600 before:hover:bg-red-600 hover:text-red-600 cursor-pointer"
+                                                    }
+                                                >
+                                                    Remove
+                                                </p>
+                                            </div> */}
+                                        </div>
 
-                                <hr className="border-[#C4D1D0] border-1 " />
+                                        <hr className="border-[#C4caD1D0] border-1 " />
 
-                                <div className="flex items-center space-x-5 py-8">
-                                    <img
-                                        src={data?.images[0]}
-                                        alt={data?.title}
-                                        className="h-28 w-28 rounded-lg"
-                                    />
-                                    <div className="flex flex-col space-y-3">
-                                        <h4 className="text-xl font-medium nichrome">
-                                            {data?.title}
-                                        </h4>
-                                        <span className="text-grey-600">Cart ID: {data?._id}</span>
-                                        <p className="text-xl font-semibold">${data?.price}</p>
+                                        <div className="flex items-center space-x-5 py-8">
+                                            <img
+                                                src={product.productId.images[0]}
+                                                alt={product?.productId.title}
+                                                className="h-28 w-28 rounded-lg"
+                                            />
+                                            <div className="flex flex-col space-y-3">
+                                                <h4 className="text-xl font-medium nichrome">
+                                                    {product.productId.title}
+                                                </h4>
+                                                <span className="text-grey-600">
+                                                    Cart ID: {item._id}
+                                                </span>
+                                                <p className="text-xl font-semibold">
+                                                    ${product.price}
+                                                </p>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
+                                ))}
                             </div>
-                            {/* ))} */}
-                        </div>
+                        ))}
 
                         <div className="w-full">
                             <div className="flex flex-col">
                                 <div className="flex justify-between font-bold text-xl py-3">
-                                    <h3>Cart Order Total ({cartLength})</h3>
+                                    <h3>Cart Order Total ({CART_LENGTH})</h3>
                                     <h3>${totalPrice}</h3>
                                 </div>
 
@@ -137,7 +136,7 @@ const CartPopUp = ({
                                 </div>
                             </div>
                         </div>
-                    </>
+                    </div>
                 )}
 
                 <div
