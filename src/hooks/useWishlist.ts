@@ -15,7 +15,8 @@ const useWishlist = () => {
             toast.success("Added to wishlist");
         },
         onError: (err: AxiosError) => {
-            toast.error(err.message);
+            const errorMessage = (err.response?.data as { message: string }).message;
+            toast.error(errorMessage);
         },
     });
 
