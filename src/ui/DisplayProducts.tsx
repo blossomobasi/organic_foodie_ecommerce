@@ -21,7 +21,7 @@ type Props = {
 };
 
 const DisplayProducts = ({ data, title, description }: Props) => {
-    const userId = Cookies.get("userId");
+    const userId = Cookies.get("userId") || "";
     const { isLoading } = useProducts();
     const { addToCart, isPending: isAddingToCart } = useAddToCart();
     const { isAddingToWishlist, addToWishlist } = useWishlist();
@@ -33,7 +33,7 @@ const DisplayProducts = ({ data, title, description }: Props) => {
         e.stopPropagation();
         if (isAddingToCart) return;
 
-        addToCart(productId);
+        addToCart({ productId, count: 1, userId });
     }
 
     function handleAddToWishlist(e: React.MouseEvent, prodId: string) {
@@ -42,7 +42,7 @@ const DisplayProducts = ({ data, title, description }: Props) => {
 
         addToWishlist({
             prodId,
-            userId: userId || "",
+            userId,
         });
     }
 
