@@ -11,12 +11,21 @@ const CartPage = () => {
     const { removeItemFromCart, addToCart, isPending } = useAddToCart();
     const userId = Cookies.get("userId") || "";
 
-    const CART_LENGTH = cart?.userOrdersCart[0]?.products.length;
+    const CART_LENGTH = cart?.userOrdersCart[0]?.products?.reduce(
+        (acc, item) => acc + item.count,
+        0
+    );
+
     const totalPrice = cart?.userOrdersCart[0]?.cartTotal;
 
     function handleRemoveItem(productId: string) {
         if (isPending) return;
         removeItemFromCart({ productId, count: 1, userId });
+    }
+
+    function handleClearItem(productId: string, count: number) {
+        if (isPending) return;
+        removeItemFromCart({ productId, count, userId });
     }
 
     function handleAddItem(productId: string) {
@@ -31,13 +40,13 @@ const CartPage = () => {
                 {!CART_LENGTH ? (
                     <EmptyCart />
                 ) : (
-                    <div className="flex md:flex-row flex-col w-full lg:gap-20 gap-10 pb-10">
+                    <div className="flex md:flex-row flex-col w-full lg:gap-20 gap-10 pb-10 max-w-[110rem]">
                         <div className="w-full">
                             <h2 className="nichrome font-medium text-xl py-3">
                                 Shopping Cart ({CART_LENGTH} {CART_LENGTH === 1 ? "item" : "items"})
                             </h2>
 
-                            {cart.userOrdersCart.map((item) =>
+                            {cart?.userOrdersCart.map((item) =>
                                 item.products.map((product, index) => (
                                     <div key={product._id}>
                                         <div className="flex justify-between py-3">
@@ -55,6 +64,12 @@ const CartPage = () => {
                                                             "cursor-not-allowed": isPending,
                                                         }
                                                     )}
+                                                    onClick={() =>
+                                                        handleClearItem(
+                                                            product.productId._id,
+                                                            product.count
+                                                        )
+                                                    }
                                                 >
                                                     Remove
                                                 </p>
@@ -69,7 +84,6 @@ const CartPage = () => {
                                                                 isPending,
                                                         }
                                                     )}
-                                                    // disabled={product.count === 1}
                                                     onClick={() =>
                                                         handleRemoveItem(product.productId._id)
                                                     }
