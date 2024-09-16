@@ -9,7 +9,7 @@ import { FiHeart } from "react-icons/fi";
 import { BsHandbag } from "react-icons/bs";
 import { SlMagnifier } from "react-icons/sl";
 import { GrMenu } from "react-icons/gr";
-import { FaArrowLeft } from "react-icons/fa";
+import { FaArrowLeft, FaHeart } from "react-icons/fa";
 import CartPopUp from "./CartPopUp";
 import { useCart } from "../hooks/useCart";
 
@@ -118,16 +118,25 @@ const NavBar = () => {
                 </div>
 
                 <span className="flex items-center gap-x-4">
-                    <FiHeart
-                        size={25}
-                        className={clsx("cursor-pointer", {
-                            "text-primaryGreen-700": pathname === "/wishlist",
-                        })}
-                        onClick={() => {
-                            navigate("/wishlist");
-                            scrollUp();
-                        }}
-                    />
+                    {pathname !== "/wishlist" ? (
+                        <FiHeart
+                            size={25}
+                            className="cursor-pointer"
+                            onClick={() => {
+                                navigate("/wishlist");
+                                scrollUp();
+                            }}
+                        />
+                    ) : (
+                        <FaHeart
+                            size={25}
+                            className="cursor-pointer text-primaryGreen-700"
+                            onClick={() => {
+                                navigate("/wishlist");
+                                scrollUp();
+                            }}
+                        />
+                    )}
                     <span
                         onClick={() => {
                             if (pathname !== "/cart") setOpencart(true);
