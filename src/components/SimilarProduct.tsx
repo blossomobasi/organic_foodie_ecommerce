@@ -5,7 +5,7 @@ const SimilarProduct = () => {
     const { products } = useProducts();
 
     return (
-        <section className="bg-white w-full pt-10 pb-20 flex flex-col items-center">
+        <section className="bg-white w-full pb-20 flex flex-col items-center">
             <div className="max-w-[110rem] w-full">
                 <DisplayProducts
                     data={products?.allProduct}
