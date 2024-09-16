@@ -16,9 +16,13 @@ const CartPopUp = ({
     openCart: boolean;
 }) => {
     const { cart } = useCart();
-    const CART_LENGTH = cart?.userOrdersCart[0]?.products.length;
+    const CART_LENGTH = cart?.userOrdersCart[0]?.products?.reduce(
+        (acc, item) => acc + item.count,
+        0
+    );
 
     const totalPrice = cart?.userOrdersCart[0]?.cartTotal;
+
     useEffect(() => {
         if (openCart) {
             document.body.style.overflowY = "hidden";
@@ -52,7 +56,7 @@ const CartPopUp = ({
                     <EmptyCart />
                 ) : (
                     <div className="flex justify-between md:flex-row flex-col w-full gap-10">
-                        {cart.userOrdersCart.map((item) => (
+                        {cart?.userOrdersCart.map((item) => (
                             <div className="w-full" key={item._id}>
                                 {item.products.map((product, index) => (
                                     <div className="w-full">
