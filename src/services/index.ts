@@ -1,5 +1,5 @@
 import { LoginData, LoginResponse, RegisterData, RegisterResponse } from "../types/auth";
-import { CartData, CartResponse } from "../types/cart";
+import { CartResponse } from "../types/cart";
 import {
     NewProductsResponse,
     PopularProductsResponse,
@@ -72,8 +72,8 @@ const getProduct = async (id: string): Promise<SingleProductResponse> => {
 };
 
 // Wishlist
-const addToWishlist = async (prodId: string, userId: string): Promise<WishlistResponse> => {
-    const response = await $http.put(`/api/product/wishlist/${userId}`, { prodId });
+const addToWishlist = async (productId: string, userId: string): Promise<WishlistResponse> => {
+    const response = await $http.post(`/api/product/wishlist/`, { productId, userId });
     if (!response.data.success) {
         throw new Error(response.data.message);
     }
@@ -82,8 +82,16 @@ const addToWishlist = async (prodId: string, userId: string): Promise<WishlistRe
 };
 
 // Cart
-const addToCart = async (productId: string): Promise<CartResponse> => {
-    const response = await $http.post("/api/cart/addToCart", { productId });
+const addToCart = async ({
+    userId,
+    productId,
+    count,
+}: {
+    userId: string;
+    productId: string;
+    count: number;
+}): Promise<CartResponse> => {
+    const response = await $http.post("/api/cart/addToCart", { userId, productId, count });
     if (!response.data.success) {
         throw new Error(response.data.message);
     }
@@ -91,8 +99,16 @@ const addToCart = async (productId: string): Promise<CartResponse> => {
     return response.data;
 };
 
-const removeItemFromCart = async (cartData: CartData): Promise<CartResponse> => {
-    const response = await $http.post("/api/cart/remove", cartData);
+const removeItemFromCart = async ({
+    userId,
+    productId,
+    count,
+}: {
+    userId: string;
+    productId: string;
+    count: number;
+}): Promise<CartResponse> => {
+    const response = await $http.post("/api/cart/remove", { userId, productId, count });
     if (!response.data.success) {
         throw new Error(response.data.message);
     }
