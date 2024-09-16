@@ -35,27 +35,27 @@ const ReviewStats = ({ rating }: { rating: Rating[] | undefined }) => {
             </span>
 
             <div className="flex flex-col space-y-3">
-                <div className="flex items-center space-x-5 w-[25rem]">
+                <div className="flex items-center space-x-5 sm:w-[25rem] w-full ">
                     <p className="whitespace-nowrap">5 Stars</p>
                     {createProgressBar(FIVES_STARS)}
                     <p>{FIVES_STARS}</p>
                 </div>
-                <div className="flex items-center space-x-5 w-[25rem]">
+                <div className="flex items-center space-x-5 sm:w-[25rem] w-full">
                     <p className="whitespace-nowrap">4 Stars</p>
                     {createProgressBar(FOUR_STARS)}
                     <p>{FOUR_STARS}</p>
                 </div>
-                <div className="flex items-center space-x-5 w-[25rem]">
+                <div className="flex items-center space-x-5 sm:w-[25rem] w-full">
                     <p className="whitespace-nowrap">3 Stars</p>
                     {createProgressBar(THREE_STARS)}
                     <p>{THREE_STARS}</p>
                 </div>
-                <div className="flex items-center space-x-5 w-[25rem]">
+                <div className="flex items-center space-x-5 sm:w-[25rem] w-full">
                     <p className="whitespace-nowrap">2 Stars</p>
                     {createProgressBar(TWO_STARS)}
                     <p>{TWO_STARS}</p>
                 </div>
-                <div className="flex items-center space-x-5 w-[25rem]">
+                <div className="flex items-center space-x-5 sm:w-[25rem] w-full">
                     <p className="whitespace-nowrap mr-3">1 Star</p>
                     {createProgressBar(ONE_STAR)}
                     <p>{ONE_STAR}</p>
