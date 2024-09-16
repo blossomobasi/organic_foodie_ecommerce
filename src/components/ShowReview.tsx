@@ -12,7 +12,7 @@ const ShowReview = ({ review }: { review: Rating[] | undefined }) => {
 
     return (
         <div className="py-10">
-            <div className="flex justify-center flex-wrap gap-5">
+            <div className="flex flex-wrap gap-5">
                 {review?.slice(0, visibleReviews).map((item, index) => (
                     <div
                         key={index}
