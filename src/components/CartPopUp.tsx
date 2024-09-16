@@ -16,9 +16,9 @@ const CartPopUp = ({
     openCart: boolean;
 }) => {
     const { cart } = useCart();
-    const CART_LENGTH = cart?.userOrdersCart[0].products.length;
+    const CART_LENGTH = cart?.userOrdersCart[0]?.products.length;
 
-    const totalPrice = cart?.userOrdersCart[0].cartTotal;
+    const totalPrice = cart?.userOrdersCart[0]?.cartTotal;
     useEffect(() => {
         if (openCart) {
             document.body.style.overflowY = "hidden";

@@ -22,8 +22,10 @@ const NavBar = () => {
     const location = useLocation();
     const pathname = location.pathname;
 
-    const CART_LENGTH = cart?.userOrdersCart[0].products.reduce((acc, item) => acc + item.count, 0)
-
+    const CART_LENGTH = cart?.userOrdersCart[0]?.products?.reduce(
+        (acc, item) => acc + item.count,
+        0
+    );
 
     useEffect(() => {
         if (showNav) {

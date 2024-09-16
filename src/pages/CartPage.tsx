@@ -11,8 +11,8 @@ const CartPage = () => {
     const { removeItemFromCart, addToCart, isPending } = useAddToCart();
     const userId = Cookies.get("userId") || "";
 
-    const CART_LENGTH = cart?.userOrdersCart[0].products.length;
-    const totalPrice = cart?.userOrdersCart[0].cartTotal;
+    const CART_LENGTH = cart?.userOrdersCart[0]?.products.length;
+    const totalPrice = cart?.userOrdersCart[0]?.cartTotal;
 
     function handleRemoveItem(productId: string) {
         if (isPending) return;
@@ -22,7 +22,7 @@ const CartPage = () => {
     function handleAddItem(productId: string) {
         if (isPending) return;
 
-        addToCart({ productId, count: 1 , userId });
+        addToCart({ productId, count: 1, userId });
     }
 
     return (
@@ -71,9 +71,7 @@ const CartPage = () => {
                                                     )}
                                                     // disabled={product.count === 1}
                                                     onClick={() =>
-                                                        handleRemoveItem(
-                                                            product.productId._id,
-                                                        )
+                                                        handleRemoveItem(product.productId._id)
                                                     }
                                                 >
                                                     &mdash;
@@ -90,9 +88,7 @@ const CartPage = () => {
                                                         }
                                                     )}
                                                     onClick={() =>
-                                                        handleAddItem(
-                                                            product.productId._id,
-                                                        )
+                                                        handleAddItem(product.productId._id)
                                                     }
                                                 >
                                                     +
