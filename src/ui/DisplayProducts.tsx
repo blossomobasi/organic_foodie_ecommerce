@@ -42,7 +42,7 @@ const DisplayProducts = ({ data, title, description }: Props) => {
 
         addToWishlist({
             prodId,
-            userId,
+            userId: userId || "",
         });
     }
 
