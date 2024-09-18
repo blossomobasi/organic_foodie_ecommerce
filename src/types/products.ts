@@ -54,5 +54,18 @@ export type SingleProductResponse = {
 export type WishlistResponse = {
     success: boolean;
     message: string;
-    products: Product[];
+    products: {
+        productId: string;
+        _id: string;
+        title: string;
+        description: string;
+        price: number;
+        category: string;
+        brand: string;
+        quantity: string;
+        sold: string;
+        images: string[];
+        totalRating: number;
+        rating: Rating[];
+    }[];
 };
