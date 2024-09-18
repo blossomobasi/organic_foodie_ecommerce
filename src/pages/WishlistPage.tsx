@@ -1,9 +1,13 @@
 import Cookies from "js-cookie";
-import Button from "../ui/Button";
-import { LiaTimesSolid } from "react-icons/lia";
-import ScrollToTop from "../ui/ScrollToTop";
-import useWishlist from "../hooks/useWishlist";
 import { useAddToCart } from "../hooks/useCart";
+import useWishlist from "../hooks/useWishlist";
+
+import { LiaTimesSolid } from "react-icons/lia";
+
+import ScrollToTop from "../ui/ScrollToTop";
+import Button from "../ui/Button";
+import Spinner from "../ui/Spinner";
+import { AxiosError } from "axios";
 
 const WishlistPage = () => {
     const userId = Cookies.get("userId") || "";
@@ -15,14 +19,23 @@ const WishlistPage = () => {
     } = useWishlist(userId);
     const { addToCart, isPending } = useAddToCart();
 
-    if (isLoadingWishlist) return <p>Loading...</p>;
-    if (error) return <p>Error: {error.message}</p>;
+    if (isLoadingWishlist) return <Spinner />;
+    if (error) {
+        const err = error as AxiosError;
+        const errorMessage = (err.response?.data as { message: string }).message;
 
+        return (
+            <h2 className="text-4xl font-medium text-stone-800 nichrome py-20 text-center">
+                {errorMessage}
+            </h2>
+        );
+    }
     const WISHLIST_LENGTH = wishlist?.products.length;
     const TOTAL_PRICE = wishlist?.products?.reduce((acc, item) => acc + item.price, 0);
 
     function handleAddToCart(productId: string) {
         if (isPending) return;
+
         addToCart({ productId, count: 1, userId });
     }
     function handleRemoveWishlistItem(prodId: string) {
@@ -58,7 +71,7 @@ const WishlistPage = () => {
                                             <span
                                                 className="cursor-pointer"
                                                 onClick={() =>
-                                                    handleRemoveWishlistItem(product._id)
+                                                    handleRemoveWishlistItem(product.productId)
                                                 }
                                             >
                                                 <LiaTimesSolid size={25} />
@@ -79,7 +92,9 @@ const WishlistPage = () => {
                                                 : "Out of Stock"}
                                         </td>
                                         <td>
-                                            <Button onClick={() => handleAddToCart(product._id)}>
+                                            <Button
+                                                onClick={() => handleAddToCart(product.productId)}
+                                            >
                                                 Add to Cart
                                             </Button>
                                         </td>
@@ -94,7 +109,7 @@ const WishlistPage = () => {
                         <h2 className="text-2xl font-bold">
                             ${Math.round(Number(TOTAL_PRICE) * 100) / 100}
                         </h2>
-                        <Button className="py-4 px-28">Add All to Cart</Button>
+                        {/* <Button className="py-4 px-28">Add All to Cart</Button> */}
                     </div>
                 </div>
             </section>
