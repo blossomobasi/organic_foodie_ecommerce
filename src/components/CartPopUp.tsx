@@ -59,7 +59,7 @@ const CartPopUp = ({
                         {cart?.userOrdersCart.map((item) => (
                             <div className="w-full" key={item._id}>
                                 {item.products.map((product, index) => (
-                                    <div className="w-full">
+                                    <div className="w-full" key={product._id}>
                                         <div className="flex justify-between py-3">
                                             <h6>Item {index + 1}</h6>
                                             {/* <div className="flex space-x-5 text-grey-600">
