@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 
@@ -7,14 +7,13 @@ import { IoStarSharp } from "react-icons/io5";
 
 import { useProducts } from "../hooks/useProduct";
 import { useAddToCart } from "../hooks/useCart";
-import useWishlist from "../hooks/useWishlist";
 import { Product } from "../types/products";
 
 import Button from "./Button";
 import Spinner from "./Spinner";
 import { RxDoubleArrowRight } from "react-icons/rx";
 import clsx from "clsx";
-// import { FaHeart } from "react-icons/fa";
+import { FaHeart } from "react-icons/fa";
 
 type Props = {
     data: Product[] | undefined;
@@ -26,11 +25,17 @@ const DisplayProducts = ({ data, title, description }: Props) => {
     const userId = Cookies.get("userId") || "";
     const { isLoading } = useProducts();
     const { addToCart, isPending: isAddingToCart } = useAddToCart();
-    const { isAddingToWishlist, addToWishlist } = useWishlist();
     const [isScrolling, setIsScrolling] = useState(false);
     const navigate = useNavigate();
     const windowWidth = window.innerWidth;
     const mobileView = windowWidth < 500;
+    const [wishlist, setWishlist] = useState<Product[]>();
+
+    // Load wishlist from localstorage on initial render
+    useEffect(() => {
+        const storedWishlist = JSON.parse(localStorage.getItem(`wishlist_${userId}`) || "[]");
+        setWishlist(storedWishlist);
+    }, [userId]);
 
     function handleAddToCart(e: React.MouseEvent, productId: string) {
         e.stopPropagation();
@@ -39,15 +44,30 @@ const DisplayProducts = ({ data, title, description }: Props) => {
         addToCart({ productId, count: 1, userId });
     }
 
-    function handleAddToWishlist(e: React.MouseEvent, prodId: string) {
+    function handleAddToWishlist(e: React.MouseEvent, product: Product) {
         e.stopPropagation();
-        if (isAddingToWishlist) return;
 
-        addToWishlist({
-            prodId,
-            userId: userId || "",
-        });
+        const storedWishlist = JSON.parse(localStorage.getItem(`wishlist_${userId}`) || "[]");
+
+        // Check if product already exists in the wishlist
+        const isInWishlist = storedWishlist.some((item: Product) => item._id === product._id);
+
+        let updatedWishlist;
+
+        if (isInWishlist) {
+            // Remove from wishlist if it already exists
+            updatedWishlist = storedWishlist.filter((item: Product) => item._id !== product._id);
+        } else {
+            // Add product to wishlist
+            updatedWishlist = [...storedWishlist, product];
+        }
+
+        localStorage.setItem(`wishlist_${userId}`, JSON.stringify(updatedWishlist));
+        setWishlist(updatedWishlist);
     }
+
+    const isProductInWishlist = (productId: string) =>
+        wishlist?.some((item) => item._id === productId);
 
     return (
         <React.Fragment>
@@ -93,12 +113,19 @@ const DisplayProducts = ({ data, title, description }: Props) => {
                             />
                             <p className="flex justify-between items-center py-3">
                                 <span className="text-grey-600">{product.category}</span>
-                                <FiHeart
-                                    size={20}
-                                    className="hover:text-red-600"
-                                    onClick={(e) => handleAddToWishlist(e, product._id)}
-                                />
-                                {/* <FaHeart size={20} /> */}
+                                {isProductInWishlist(product._id) ? (
+                                    <FaHeart
+                                        size={20}
+                                        className="text-primaryGreen-700"
+                                        onClick={(e) => handleAddToWishlist(e, product)}
+                                    />
+                                ) : (
+                                    <FiHeart
+                                        size={20}
+                                        className="hover:text-primaryGreen-700"
+                                        onClick={(e) => handleAddToWishlist(e, product)}
+                                    />
+                                )}
                             </p>
                             <h4 className="font-semibold text-xl nichrome capitalize">
                                 {product.title}
