@@ -1,15 +1,36 @@
+import Cookies from "js-cookie";
 import TextInput from "../ui/TextInput";
-import Visa from "../assets/images/visa.png";
-import MasterCard from "../assets/images/masters_card.png";
-import Paypal from "../assets/images/paypal.png";
+// import Visa from "../assets/images/visa.png";
+// import MasterCard from "../assets/images/masters_card.png";
+// import Paypal from "../assets/images/paypal.png";
 import Button from "../ui/Button";
 import ScrollToTop from "../ui/ScrollToTop";
 import { useCart } from "../hooks/useCart";
+import { useOrder } from "../hooks/useOrder";
+import { useForm } from "react-hook-form";
+import MiniSpinner from "../ui/MiniSpinner";
 
 const CheckoutPage = () => {
+    const userId = Cookies.get("userId");
+
+    const { register, formState, handleSubmit } = useForm<{ address: string }>();
+    const { errors } = formState;
+
     const { cart } = useCart();
+    const { placeOrder, isPlacingOrder } = useOrder();
 
     const totalPrice = cart?.userOrdersCart[0].cartTotal;
+
+    function onSubmit(data: { address: string }) {
+        if (isPlacingOrder) return;
+
+        placeOrder({
+            address: data.address,
+            amount: Number(totalPrice),
+            userId: userId as string,
+            items: [],
+        });
+    }
 
     return (
         <ScrollToTop>
@@ -19,7 +40,7 @@ const CheckoutPage = () => {
                         <h2 className="font-medium text-xl nichrome mb-8">Billing Details</h2>
 
                         <div className="flex flex-col space-y-4">
-                            <TextInput placeholder="Your email address" type="email" />
+                            {/* <TextInput placeholder="Your email address" type="email" />
                             <TextInput
                                 placeholder="Residence"
                                 label="Deliver to"
@@ -35,11 +56,18 @@ const CheckoutPage = () => {
                                 <div className="flex-1">
                                     <TextInput placeholder="Your last name" />
                                 </div>
-                            </div>
+                            </div> */}
 
-                            <TextInput className="rounded-none" placeholder="Your address" />
+                            <TextInput
+                                error={errors.address?.message}
+                                className="rounded-none"
+                                placeholder="Your address"
+                                {...register("address", {
+                                    required: "This field is required!",
+                                })}
+                            />
 
-                            <div className="flex space-x-5">
+                            {/* <div className="flex space-x-5">
                                 <div className="flex-1">
                                     <TextInput placeholder="City" className="rounded-none" />
                                 </div>
@@ -49,15 +77,15 @@ const CheckoutPage = () => {
                                 <div className="flex-1">
                                     <TextInput placeholder="Zip code" className="rounded-none" />
                                 </div>
-                            </div>
+                            </div> */}
 
-                            <TextInput
+                            {/* <TextInput
                                 placeholder="Phone number"
                                 type="number"
                                 className="rounded-none"
-                            />
+                            /> */}
 
-                            <div className="flex flex-col space-y-3">
+                            {/* <div className="flex flex-col space-y-3">
                                 <label htmlFor="orderNote" className="text-lg font-medium">
                                     Order Note <span className="text-[#566363]">(optional)</span>
                                 </label>
@@ -69,7 +97,7 @@ const CheckoutPage = () => {
                                     rows={6}
                                     className="border px-2 py-3 w-full placeholder:text-[#566363] text-[#566363] focus-within:outline-none"
                                 />
-                            </div>
+                            </div> */}
                         </div>
                     </div>
 
@@ -103,11 +131,20 @@ const CheckoutPage = () => {
                             <div className="flex justify-between py-5 text-2xl font-semibold">
                                 <h2>Total</h2>
                                 {/* <h2>${(totalPrice - SAVINGS - TAX).toFixed(2)}</h2> */}
-                                <h2>${totalPrice}</h2>
+                                <h2>${Number(totalPrice)?.toFixed(2)}</h2>
                             </div>
                         </div>
 
-                        <div>
+                        <Button
+                            variant="secondary"
+                            className="w-full py-3 flex items-center justify-center gap-x-2"
+                            onClick={handleSubmit(onSubmit)}
+                            disabled={isPlacingOrder}
+                        >
+                            Place Order {isPlacingOrder && <MiniSpinner />}
+                        </Button>
+
+                        {/* <div>
                             <h2 className="text-2xl font-semibold nichrome">Pay With</h2>
 
                             <div className="flex justify-between py-5">
@@ -176,10 +213,14 @@ const CheckoutPage = () => {
                                 <img src={Paypal} alt="Paypal" />
                             </div>
 
-                            <Button variant="secondary" className="w-full py-3">
+                            <Button
+                                variant="secondary"
+                                className="w-full py-3"
+                                onClick={() => handlePlaceOrder}
+                            >
                                 Place Order
                             </Button>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </section>
