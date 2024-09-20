@@ -5,6 +5,9 @@ export default {
     content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
     theme: {
         extend: {
+            screens: {
+                "3xl": "1600px",
+            },
             colors: {
                 darkBlue: "#1B2432",
                 grey: {
