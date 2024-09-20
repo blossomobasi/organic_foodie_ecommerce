@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 import { useForm } from "react-hook-form";
 import clsx from "clsx";
 import { useParams } from "react-router-dom";
+import MiniSpinner from "../ui/MiniSpinner";
 
 const CreateReview = () => {
     const params = useParams();
@@ -94,7 +95,9 @@ const CreateReview = () => {
                 />
                 <span className="text-red-600">{errors?.comment?.message}</span>
 
-                <Button className="self-start">Submit Review</Button>
+                <Button className="self-start flex items-center gap-x-2">
+                    Submit Review {isCreatingReview && <MiniSpinner />}
+                </Button>
             </form>
         </div>
     );
