@@ -109,7 +109,6 @@ const WishlistPage = () => {
                         <h2 className="text-2xl font-bold">
                             ${Math.round(Number(TOTAL_PRICE) * 100) / 100}
                         </h2>
-                        {/* <Button className="py-4 px-28">Add All to Cart</Button> */}
                     </div>
                 </div>
             </section>
