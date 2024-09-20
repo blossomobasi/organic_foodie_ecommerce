@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 
@@ -12,6 +12,8 @@ import { Product } from "../types/products";
 
 import Button from "./Button";
 import Spinner from "./Spinner";
+import { RxDoubleArrowRight } from "react-icons/rx";
+import clsx from "clsx";
 // import { FaHeart } from "react-icons/fa";
 
 type Props = {
@@ -25,6 +27,7 @@ const DisplayProducts = ({ data, title, description }: Props) => {
     const { isLoading } = useProducts();
     const { addToCart, isPending: isAddingToCart } = useAddToCart();
     const { isAddingToWishlist, addToWishlist } = useWishlist();
+    const [isScrolling, setIsScrolling] = useState(false);
     const navigate = useNavigate();
     const windowWidth = window.innerWidth;
     const mobileView = windowWidth < 500;
@@ -73,7 +76,10 @@ const DisplayProducts = ({ data, title, description }: Props) => {
             {isLoading ? (
                 <Spinner />
             ) : (
-                <div className="flex space-x-6 overflow-x-auto pb-8 scrollbar-thin scrollbar-thumb-grey-900 scrollbar-track-grey-500">
+                <div
+                    className="relative flex space-x-6 overflow-x-auto pb-8 scrollbar-thin scrollbar-thumb-grey-900 scrollbar-track-grey-500"
+                    onScroll={() => setIsScrolling(true)}
+                >
                     {data?.map((product) => (
                         <div
                             key={product.title + crypto.randomUUID()}
@@ -115,6 +121,17 @@ const DisplayProducts = ({ data, title, description }: Props) => {
                             </Button>
                         </div>
                     ))}
+                    <span
+                        className={clsx(
+                            "absolute top-1/2 -translate-y-1/2 right-5 text-primaryGreen-700",
+                            {
+                                hidden: isScrolling,
+                                "arrow-animate": !isScrolling,
+                            }
+                        )}
+                    >
+                        <RxDoubleArrowRight size={50} />
+                    </span>
                 </div>
             )}
         </React.Fragment>
