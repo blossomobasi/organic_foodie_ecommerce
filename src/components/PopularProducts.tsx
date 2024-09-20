@@ -9,7 +9,7 @@ const PopularProducts = () => {
 
     return (
         <section className="lg:px-20 px-5 rounded-t-[3.5rem] bg-white w-full md:pt-24 pt-14 -translate-y-14 flex flex-col items-center">
-            <div className="w-full max-w-[120rem]">
+            <div className="w-full max-w-[110rem]">
                 <DisplayProducts
                     data={popularProducts?.popularProducts}
                     description=" Browse our most popular snacks and make your day <br /> more
@@ -18,7 +18,7 @@ const PopularProducts = () => {
                 />
 
                 <div className="md:pt-20 flex flex-col items-center">
-                    <div className="flex md:flex-row flex-col-reverse items-center justify-between md:space-x-10 pt-14 max-w-[120rem]">
+                    <div className="flex md:flex-row flex-col-reverse items-center justify-between md:space-x-10 pt-14 max-w-[110rem]">
                         <div className="w-full flex flex-col items-center space-y-5">
                             <img
                                 src={OrganicSnacks}
