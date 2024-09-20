@@ -26,3 +26,16 @@ button:disabled,
 input:disabled {
     @apply cursor-not-allowed opacity-50;
 }
+
+.arrow-animate {
+    animation: arrowAnimate 1s infinite;
+}
+
+@keyframes arrowAnimate {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(1rem);
+    }
+}
