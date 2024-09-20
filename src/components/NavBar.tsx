@@ -14,6 +14,7 @@ import { FaArrowLeft, FaHeart } from "react-icons/fa";
 import CartPopUp from "./CartPopUp";
 import { useCart } from "../hooks/useCart";
 import { FaCircleUser } from "react-icons/fa6";
+import { Product } from "../types/products";
 
 const NavBar = () => {
     const { cart } = useCart();
@@ -24,6 +25,12 @@ const NavBar = () => {
     const location = useLocation();
     const pathname = location.pathname;
     const userId = Cookies.get("userId");
+
+    const storedWishlist = JSON.parse(
+        localStorage.getItem(`wishlist_${userId}`) || "[]"
+    ) as Product[];
+
+    const WISHLIST_LENGTH = storedWishlist.length;
 
     const CART_LENGTH = cart?.userOrdersCart[0]?.products?.reduce(
         (acc, item) => acc + item.count,
@@ -121,25 +128,41 @@ const NavBar = () => {
                 </div>
 
                 <span className="flex items-center gap-x-4">
-                    {pathname !== "/wishlist" ? (
-                        <FiHeart
-                            size={25}
-                            className="cursor-pointer"
-                            onClick={() => {
-                                navigate("/wishlist");
-                                scrollUp();
-                            }}
-                        />
-                    ) : (
-                        <FaHeart
-                            size={25}
-                            className="cursor-pointer text-primaryGreen-700"
-                            onClick={() => {
-                                navigate("/wishlist");
-                                scrollUp();
-                            }}
-                        />
-                    )}
+                    <span className="relative">
+                        {pathname !== "/wishlist" ? (
+                            <>
+                                {!WISHLIST_LENGTH ? (
+                                    ""
+                                ) : (
+                                    <div className="h-3 w-3 bg-secondaryOrange-400 rounded-full absolute -top-px -right-px" />
+                                )}
+                                <FiHeart
+                                    size={25}
+                                    className="cursor-pointer"
+                                    onClick={() => {
+                                        navigate("/wishlist");
+                                        scrollUp();
+                                    }}
+                                />
+                            </>
+                        ) : (
+                            <>
+                                {!WISHLIST_LENGTH ? (
+                                    ""
+                                ) : (
+                                    <div className="h-3 w-3 bg-secondaryOrange-400 rounded-full absolute -top-px -right-px" />
+                                )}
+                                <FaHeart
+                                    size={25}
+                                    className="cursor-pointer text-primaryGreen-700"
+                                    onClick={() => {
+                                        navigate("/wishlist");
+                                        scrollUp();
+                                    }}
+                                />
+                            </>
+                        )}
+                    </span>
                     <span
                         onClick={() => {
                             if (pathname !== "/cart") setOpencart(true);
