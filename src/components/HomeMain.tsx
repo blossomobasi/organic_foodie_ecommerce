@@ -21,6 +21,7 @@ const HomeMain = () => {
     return (
         <section>
             <div className="flex flex-col items-center">
+                {/* <div className="flex lg:flex-row flex-col justify-between items-center lg:space-y-0 space-y-14 3xl:w-full 3xl:px-0 lg:px-20 px-5 pt-10 max-w-[110rem]"> */}
                 <div className="flex lg:flex-row flex-col justify-between items-center lg:space-y-0 space-y-14 lg:px-20 px-5 pt-10 max-w-[110rem]">
                     <div className="lg:w-1/2 flex flex-col items-start space-y-3 lg:text-start text-center">
                         <p className="lg:self-start self-center">
@@ -33,7 +34,7 @@ const HomeMain = () => {
                             You
                         </h1>
                         <Button
-                        url="/products"
+                            url="/products"
                             icon={<img src={ShopNow} alt="Shop Now basket" />}
                             variant="secondary"
                             className="flex items-center gap-x-3 lg:self-start self-center"
