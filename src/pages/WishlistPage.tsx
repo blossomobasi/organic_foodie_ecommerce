@@ -1,46 +1,50 @@
 import Cookies from "js-cookie";
 import { useAddToCart } from "../hooks/useCart";
-import useWishlist from "../hooks/useWishlist";
+import { Product } from "../types/products";
 
 import { LiaTimesSolid } from "react-icons/lia";
 
 import ScrollToTop from "../ui/ScrollToTop";
 import Button from "../ui/Button";
-import Spinner from "../ui/Spinner";
-import { AxiosError } from "axios";
+import { useEffect, useState } from "react";
 
 const WishlistPage = () => {
     const userId = Cookies.get("userId") || "";
-    const {
-        wishlist,
-        isLoadingWishlist,
-        error,
-        addToWishlist: removeFromWishlist,
-    } = useWishlist(userId);
+    const [wishlist, setWishlist] = useState<Product[]>([]);
     const { addToCart, isPending } = useAddToCart();
 
-    if (isLoadingWishlist) return <Spinner />;
-    if (error) {
-        const err = error as AxiosError;
-        const errorMessage = (err.response?.data as { message: string }).message;
+    useEffect(() => {
+        const storedWishlist = JSON.parse(localStorage.getItem(`wishlist_${userId}`) || "[]");
+        setWishlist(storedWishlist);
+    }, [userId]);
 
-        return (
-            <h2 className="text-4xl font-medium text-stone-800 nichrome py-20 text-center">
-                {errorMessage}
-            </h2>
-        );
-    }
-    const WISHLIST_LENGTH = wishlist?.products.length;
-    const TOTAL_PRICE = wishlist?.products?.reduce((acc, item) => acc + item.price, 0);
+    const WISHLIST_LENGTH = wishlist.length;
+    const TOTAL_PRICE = wishlist.reduce((acc, item) => acc + item.price, 0);
 
     function handleAddToCart(productId: string) {
         if (isPending) return;
 
         addToCart({ productId, count: 1, userId });
     }
-    function handleRemoveWishlistItem(prodId: string) {
-        if (isPending) return;
-        removeFromWishlist({ prodId, userId });
+
+    if (!WISHLIST_LENGTH) {
+        return (
+            <div className="text-center h-[70vh] flex items-center justify-center flex-col">
+                <h2 className="text-6xl font-bold nichrome md:pb-5 pb-3">Wish List</h2>
+                <p>No product in your wishlist</p>
+            </div>
+        );
+    }
+
+    function handleRemoveWishlistItem(product: Product) {
+        const storedWishlist = JSON.parse(localStorage.getItem(`wishlist_${userId}`) || "[]");
+        const updatedWishlist = storedWishlist.filter((item: Product) => item._id !== product._id);
+
+        // Update the wishlist in the state
+        setWishlist(updatedWishlist);
+
+        // Update localStorage
+        localStorage.setItem(`wishlist_${userId}`, JSON.stringify(updatedWishlist));
     }
 
     return (
@@ -65,14 +69,12 @@ const WishlistPage = () => {
                             </thead>
 
                             <tbody>
-                                {wishlist?.products?.map((product, index) => (
+                                {wishlist.map((product, index) => (
                                     <tr key={index} className="border">
                                         <td className="p-5 flex items-center space-x-5">
                                             <span
                                                 className="cursor-pointer"
-                                                onClick={() =>
-                                                    handleRemoveWishlistItem(product.productId)
-                                                }
+                                                onClick={() => handleRemoveWishlistItem(product)}
                                             >
                                                 <LiaTimesSolid size={25} />
                                             </span>
@@ -92,9 +94,7 @@ const WishlistPage = () => {
                                                 : "Out of Stock"}
                                         </td>
                                         <td>
-                                            <Button
-                                                onClick={() => handleAddToCart(product.productId)}
-                                            >
+                                            <Button onClick={() => handleAddToCart(product._id)}>
                                                 Add to Cart
                                             </Button>
                                         </td>
