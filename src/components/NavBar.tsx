@@ -1,3 +1,4 @@
+import Cookies from "js-cookie";
 import { useEffect, useState } from "react";
 import { NavLink, useNavigate, useLocation } from "react-router-dom";
 import clsx from "clsx";
@@ -12,6 +13,7 @@ import { GrMenu } from "react-icons/gr";
 import { FaArrowLeft, FaHeart } from "react-icons/fa";
 import CartPopUp from "./CartPopUp";
 import { useCart } from "../hooks/useCart";
+import { FaCircleUser } from "react-icons/fa6";
 
 const NavBar = () => {
     const { cart } = useCart();
@@ -21,6 +23,7 @@ const NavBar = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const pathname = location.pathname;
+    const userId = Cookies.get("userId");
 
     const CART_LENGTH = cart?.userOrdersCart[0]?.products?.reduce(
         (acc, item) => acc + item.count,
@@ -153,17 +156,21 @@ const NavBar = () => {
                         <BsHandbag size={25} />
                     </span>
 
-                    <Button className="hidden sm:block" url="/signup">
-                        Contact Us
-                    </Button>
+                    <span
+                        className="text-gray-300 cursor-pointer relative"
+                        onClick={() => navigate(!userId?.toString() ? "/login" : "")}
+                    >
+                        <span className="absolute h-3 w-3 rounded-full bg-secondaryOrange-400 right-0" />
+                        <FaCircleUser size={40} />
+                    </span>
                 </span>
 
                 {/* Menu */}
                 <span
-                    className="border border-primaryGreen-700 p-2 cursor-pointer lg:hidden ml-5 hover:bg-primaryGreen-100"
+                    className="cursor-pointer lg:hidden ml-5 hover:bg-primaryGreen-100"
                     onClick={() => setShowNav(true)}
                 >
-                    <GrMenu size={25} className="text-primaryGreen-400" />
+                    <GrMenu size={25} className="" />
                 </span>
 
                 <CartPopUp onOpen={setOpencart} openCart={openCart} />
