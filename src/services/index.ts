@@ -1,5 +1,6 @@
 import { LoginData, LoginResponse, RegisterData, RegisterResponse } from "../types/auth";
 import { CartResponse } from "../types/cart";
+import { OrderResponse, PlaceOrder } from "../types/order";
 import {
     NewProductsResponse,
     PopularProductsResponse,
@@ -134,6 +135,16 @@ const getCart = async (): Promise<CartResponse> => {
     return response.data;
 };
 
+// Order
+const placeOrder = async (data: PlaceOrder): Promise<OrderResponse> => {
+    const response = await $http.post("/api/order/place", data);
+    if (!response.data.success) {
+        throw new Error(response.data.message);
+    }
+
+    return response.data;
+};
+
 export {
     register,
     login,
@@ -147,4 +158,5 @@ export {
     addToCart,
     removeItemFromCart,
     getCart,
+    placeOrder,
 };
