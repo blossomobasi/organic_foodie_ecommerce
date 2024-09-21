@@ -1,12 +1,13 @@
 import Cookies from "js-cookie";
-import { useAddToCart } from "../hooks/useCart";
-import { Product } from "../types/products";
+import { useEffect, useState } from "react";
 
 import { LiaTimesSolid } from "react-icons/lia";
 
+import { Product } from "../types/products";
+import { useAddToCart } from "../hooks/useCart";
+
 import ScrollToTop from "../ui/ScrollToTop";
 import Button from "../ui/Button";
-import { useEffect, useState } from "react";
 
 const WishlistPage = () => {
     const userId = Cookies.get("userId") || "";
