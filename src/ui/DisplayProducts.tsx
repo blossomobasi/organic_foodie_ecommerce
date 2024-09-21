@@ -14,6 +14,7 @@ import Spinner from "./Spinner";
 import { RxDoubleArrowRight } from "react-icons/rx";
 import clsx from "clsx";
 import { FaHeart } from "react-icons/fa";
+import { toast } from "react-toastify";
 
 type Props = {
     data: Product[] | undefined;
@@ -23,6 +24,7 @@ type Props = {
 
 const DisplayProducts = ({ data, title, description }: Props) => {
     const userId = Cookies.get("userId") || "";
+    const refreshToken = Cookies.get("refreshToken") || "";
     const { isLoading } = useProducts();
     const { addToCart, isPending: isAddingToCart } = useAddToCart();
     const [isScrolling, setIsScrolling] = useState(false);
@@ -39,6 +41,13 @@ const DisplayProducts = ({ data, title, description }: Props) => {
 
     function handleAddToCart(e: React.MouseEvent, productId: string) {
         e.stopPropagation();
+
+        if (!userId || !refreshToken) {
+            toast.error("Please login to add to cart");
+            navigate("/login");
+            return;
+        }
+
         if (isAddingToCart) return;
 
         addToCart({ productId, count: 1, userId });
@@ -104,7 +113,15 @@ const DisplayProducts = ({ data, title, description }: Props) => {
                         <div
                             key={product.title + crypto.randomUUID()}
                             className="w-[23.5rem] flex-shrink-0 cursor-pointer"
-                            onClick={() => navigate(`/products/${product._id}`)}
+                            onClick={() => {
+                                if (!userId || !refreshToken) {
+                                    toast.error("Please login to view product details");
+                                    navigate("/login");
+                                    return;
+                                }
+
+                                navigate(`/products/${product._id}`);
+                            }}
                         >
                             <img
                                 src={product.images[0]}
