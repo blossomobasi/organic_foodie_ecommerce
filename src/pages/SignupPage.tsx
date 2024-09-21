@@ -1,17 +1,17 @@
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 import { Link, useNavigate } from "react-router-dom";
-
 import { AxiosError } from "axios";
+import { toast } from "react-toastify";
+
 import { register as registerApi } from "../services";
 import { RegisterData } from "../types/auth";
-import { toast } from "react-toastify";
 
 import Button from "../ui/Button";
 import TextInput from "../ui/TextInput";
 import ScrollToTop from "../ui/ScrollToTop";
 import AuthLayout from "../ui/AuthLayout";
-import { useState } from "react";
 
 const SignupPage = () => {
     const [agree, setAgree] = useState(false);
