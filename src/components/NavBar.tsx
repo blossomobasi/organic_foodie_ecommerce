@@ -108,9 +108,11 @@ const NavBar = () => {
                             </li>
                         ))}
 
-                        <Button className="sm:hidden" url="/signup">
-                            Contact Us
-                        </Button>
+                        {!userId && (
+                            <Button className="sm:hidden" url="/login">
+                                Login
+                            </Button>
+                        )}
                     </ul>
                 </nav>
 
