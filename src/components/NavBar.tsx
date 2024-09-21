@@ -1,9 +1,13 @@
-import Cookies from "js-cookie";
 import { useEffect, useState } from "react";
 import { NavLink, useNavigate, useLocation } from "react-router-dom";
 import clsx from "clsx";
+import Cookies from "js-cookie";
+
+import { useCart } from "../hooks/useCart";
+import { Product } from "../types/products";
 
 import Button from "../ui/Button";
+import CartPopUp from "./CartPopUp";
 import Logo from "./Logo";
 
 import { FiHeart } from "react-icons/fi";
@@ -11,10 +15,7 @@ import { BsHandbag } from "react-icons/bs";
 import { SlMagnifier } from "react-icons/sl";
 import { GrMenu } from "react-icons/gr";
 import { FaArrowLeft, FaHeart } from "react-icons/fa";
-import CartPopUp from "./CartPopUp";
-import { useCart } from "../hooks/useCart";
 import { FaCircleUser } from "react-icons/fa6";
-import { Product } from "../types/products";
 
 const NavBar = () => {
     const { cart } = useCart();
@@ -183,7 +184,9 @@ const NavBar = () => {
                         className="text-gray-300 cursor-pointer relative"
                         onClick={() => navigate(!userId?.toString() ? "/login" : "")}
                     >
-                        <span className="absolute h-3 w-3 rounded-full bg-secondaryOrange-400 right-0" />
+                        {userId && (
+                            <span className="absolute h-3 w-3 rounded-full bg-secondaryOrange-400 right-0" />
+                        )}
                         <FaCircleUser size={40} />
                     </span>
                 </span>
