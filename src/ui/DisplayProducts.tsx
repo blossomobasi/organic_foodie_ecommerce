@@ -154,7 +154,7 @@ const DisplayProducts = ({ data, title, description }: Props) => {
                                         {product.totalRating}({product.rating.length})
                                     </span>
                                 </span>
-                                <span className="font-medium">${product.price}</span>
+                                <span className="font-medium">₦{product.price}</span>
                             </p>
                             <Button
                                 variant="primary-outline"

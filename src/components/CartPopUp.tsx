@@ -92,7 +92,7 @@ const CartPopUp = ({
                                                     Cart ID: {item._id}
                                                 </span>
                                                 <p className="text-xl font-semibold">
-                                                    ${product.price}
+                                                    ₦{product.price}
                                                 </p>
                                             </div>
                                         </div>
@@ -105,7 +105,7 @@ const CartPopUp = ({
                             <div className="flex flex-col">
                                 <div className="flex justify-between font-bold text-xl py-3">
                                     <h3>Cart Order Total ({CART_LENGTH})</h3>
-                                    <h3>${totalPrice}</h3>
+                                    <h3>₦{totalPrice}</h3>
                                 </div>
 
                                 <hr className="border-[#C4D1D0] border-1 " />

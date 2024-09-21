@@ -88,7 +88,7 @@ const WishlistPage = () => {
                                                 {product.title}
                                             </h3>
                                         </td>
-                                        <td>${product.price}</td>
+                                        <td>₦{product.price}</td>
                                         <td>
                                             {Number(product.quantity) > 0
                                                 ? "In Stock"
@@ -108,7 +108,7 @@ const WishlistPage = () => {
                     <div className="py-14 text-end flex flex-col items-end space-y-3">
                         <p className="text-lg text-grey-600">Estimated Total:</p>
                         <h2 className="text-2xl font-bold">
-                            ${Math.round(Number(TOTAL_PRICE) * 100) / 100}
+                            ₦{Math.round(Number(TOTAL_PRICE) * 100) / 100}
                         </h2>
                     </div>
                 </div>

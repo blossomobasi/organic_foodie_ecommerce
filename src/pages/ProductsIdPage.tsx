@@ -78,7 +78,7 @@ const ProductsIdPage = () => {
                                     {data?.title}
                                 </h2>
                                 <p className="text-2xl font-bold text-secondaryOrange-500">
-                                    ${price}
+                                    ₦{price}
                                 </p>
 
                                 <span className="flex items-center space-x-2 text-grey-600 text-lg py-3">

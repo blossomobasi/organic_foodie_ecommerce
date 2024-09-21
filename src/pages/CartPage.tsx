@@ -126,7 +126,7 @@ const CartPage = () => {
                                                     Cart ID: {product.productId._id}
                                                 </span>
                                                 <p className="text-xl font-semibold">
-                                                    ${product.productId.price}
+                                                    ₦{product.productId.price}
                                                 </p>
                                             </div>
                                         </div>
@@ -143,7 +143,7 @@ const CartPage = () => {
                                 <div className="py-5 flex flex-col space-y-3 text-grey-600">
                                     <div className="flex justify-between">
                                         <p>Original Price</p>
-                                        <p>${totalPrice}</p>
+                                        <p>₦{totalPrice}</p>
                                     </div>
                                 </div>
                                 <div className="flex justify-between">
@@ -156,7 +156,7 @@ const CartPage = () => {
 
                             <div className="flex justify-between py-5 text-2xl font-semibold">
                                 <h2>Total</h2>
-                                <h2>${totalPrice}</h2>
+                                <h2>₦{totalPrice}</h2>
                             </div>
                             <Button
                                 variant="secondary"

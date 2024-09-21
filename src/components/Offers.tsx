@@ -99,7 +99,7 @@ const Offers = () => {
                                         {product.totalReview}({product.averageReview})
                                     </span>
                                 </span>
-                                <span className="font-medium">${product.price}</span>
+                                <span className="font-medium">₦{product.price}</span>
                             </p>
                             <Button variant="primary-outline" className="w-full mt-3 pt-1.5">
                                 Add to Cart
