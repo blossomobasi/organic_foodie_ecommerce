@@ -5,7 +5,7 @@ const Logo = () => {
     return (
         <div className="w-fit" onClick={() => window.scrollTo(0, 0)}>
             <Link to="/">
-                <img src={OrganicLogo} alt="Organic Foodie Logo" />
+                <img src={OrganicLogo} alt="Organic Foodie Logo" className="sm:w-fit w-14" />
             </Link>
         </div>
     );
