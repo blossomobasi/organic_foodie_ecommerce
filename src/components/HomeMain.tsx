@@ -1,4 +1,5 @@
 import Button from "../ui/Button";
+
 import OrganicSnacks from "../assets/images/main_image.png";
 import FastDelivery from "../assets/images/fast_delivery.png";
 import DineIn from "../assets/images/dine_in.png";

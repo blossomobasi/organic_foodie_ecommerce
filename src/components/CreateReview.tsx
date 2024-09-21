@@ -1,13 +1,15 @@
-import { IoStarSharp } from "react-icons/io5";
-import Button from "../ui/Button";
 import { useState } from "react";
+import { useParams } from "react-router-dom";
 import { createReview as createReviewApi } from "../services";
+import { useForm } from "react-hook-form";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
-import { useForm } from "react-hook-form";
 import clsx from "clsx";
-import { useParams } from "react-router-dom";
+
+import Button from "../ui/Button";
 import MiniSpinner from "../ui/MiniSpinner";
+
+import { IoStarSharp } from "react-icons/io5";
 
 const CreateReview = () => {
     const params = useParams();
@@ -77,11 +79,6 @@ const CreateReview = () => {
             </div>
 
             <form className="flex flex-col space-y-3" onSubmit={handleSubmit(onCreateReview)}>
-                {/* <TextInput
-                    label="Add a headline"
-                    placeholder="Write a summary of you review"
-                    inputId="headline"
-                /> */}
                 <label htmlFor="reveiw" className="text-lg font-medium">
                     Write a Review
                 </label>

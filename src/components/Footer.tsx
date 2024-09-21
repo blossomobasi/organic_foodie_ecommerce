@@ -1,7 +1,8 @@
-import Logo from "./Logo";
 import { Link } from "react-router-dom";
 import { TiSocialFacebook } from "react-icons/ti";
 import { FaLinkedinIn, FaTwitter } from "react-icons/fa";
+
+import Logo from "./Logo";
 
 import WhiteStar from "../assets/images/white_star.png";
 import GreenStar from "../assets/images/green_star.png";

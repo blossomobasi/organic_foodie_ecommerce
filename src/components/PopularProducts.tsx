@@ -1,8 +1,8 @@
-import Button from "../ui/Button";
-
-import OrganicSnacks from "../assets/images/organic_snacks.png";
-import DisplayProducts from "../ui/DisplayProducts";
 import { useProducts } from "../hooks/useProduct";
+
+import Button from "../ui/Button";
+import DisplayProducts from "../ui/DisplayProducts";
+import OrganicSnacks from "../assets/images/organic_snacks.png";
 
 const PopularProducts = () => {
     const { popularProducts } = useProducts();

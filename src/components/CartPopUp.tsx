@@ -1,11 +1,11 @@
+import React from "react";
+import clsx from "clsx";
 import { useEffect } from "react";
 import { LiaTimesSolid } from "react-icons/lia";
 
-import Button from "../ui/Button";
-
-import React from "react";
-import clsx from "clsx";
 import { useCart } from "../hooks/useCart";
+
+import Button from "../ui/Button";
 import EmptyCart from "./EmptyCart";
 
 const CartPopUp = ({
