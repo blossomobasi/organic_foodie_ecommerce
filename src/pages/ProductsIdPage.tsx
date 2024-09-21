@@ -1,16 +1,18 @@
-import Cookies from "js-cookie";
-import { useParams } from "react-router-dom";
-import SimilarProduct from "../components/SimilarProduct";
-import { useProduct } from "../hooks/useProduct";
-import { IoStarSharp } from "react-icons/io5";
-import Button from "../ui/Button";
 import { useState } from "react";
 import clsx from "clsx";
+import Cookies from "js-cookie";
+import { useParams } from "react-router-dom";
+import { useProduct } from "../hooks/useProduct";
+
+import { IoStarSharp } from "react-icons/io5";
+
+import { useAddToCart } from "../hooks/useCart";
+import Button from "../ui/Button";
+import SimilarProduct from "../components/SimilarProduct";
 import Spinner from "../ui/Spinner";
 import ReviewStats from "../components/ReviewStats";
 import CreateReview from "../components/CreateReview";
 import ShowReview from "../components/ShowReview";
-import { useAddToCart } from "../hooks/useCart";
 import ScrollToTop from "../ui/ScrollToTop";
 
 const ProductsIdPage = () => {
