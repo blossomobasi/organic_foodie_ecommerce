@@ -11,6 +11,7 @@ import {
 } from "../types/products";
 import $http from "./config";
 
+// User
 const register = async (data: RegisterData): Promise<RegisterResponse> => {
     const response = await $http.post("/api/user/register", data);
     if (!response.data.success) {
@@ -25,6 +26,24 @@ const login = async (data: LoginData): Promise<LoginResponse> => {
     if (!response.data.success) {
         throw new Error(response.data.message);
     }
+    return response.data;
+};
+
+const forgotPassword = async (email: string): Promise<string> => {
+    const response = await $http.post("/api/user/users/forget_password", { email });
+    if (!response.data) {
+        throw new Error("An error occurred");
+    }
+
+    return response.data;
+};
+
+const resetpassword = async (password: string): Promise<string> => {
+    const response = await $http.post("/api/user/users/reset_password", { password });
+    if (!response.data) {
+        throw new Error("An error occurred");
+    }
+
     return response.data;
 };
 
@@ -148,6 +167,8 @@ const placeOrder = async (data: PlaceOrder): Promise<OrderResponse> => {
 export {
     register,
     login,
+    forgotPassword,
+    resetpassword,
     getProducts,
     createReview,
     getNewProducts,
