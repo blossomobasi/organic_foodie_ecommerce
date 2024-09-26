@@ -7,6 +7,7 @@ import { forgotPassword as forgotPasswordApi } from "../services";
 import AuthLayout from "../ui/AuthLayout";
 import TextInput from "../ui/TextInput";
 import Button from "../ui/Button";
+import { Link } from "react-router-dom";
 
 const ForgotPasswordPage = () => {
     const { register, handleSubmit, formState } = useForm<{ email: string }>();
@@ -14,8 +15,8 @@ const ForgotPasswordPage = () => {
 
     const { mutate: forgotPassword, isPending } = useMutation({
         mutationFn: forgotPasswordApi,
-        onSuccess: () => {
-            toast.success("Reset token sent to email");
+        onSuccess: (data) => {
+            toast.success(data.message);
         },
         onError: (err) => {
             toast.error(err.message || "An error occurred");
@@ -35,7 +36,14 @@ const ForgotPasswordPage = () => {
                     <h1 className="text-4xl mb-5 font-bold text-primaryGreen-700">
                         Forgot Password
                     </h1>
-                    <p className="mb-8 text-gray-600">Enter your email to reset your password</p>
+                    <p className="text-gray-600 mb-2">Enter your email to reset your password</p>
+                    <p className="mb-8 text-gray-600">
+                        Go back to
+                        <Link to="/login" className="text-primaryGreen-700 underline">
+                            {" "}
+                            Login
+                        </Link>
+                    </p>
                 </div>
 
                 <form className="flex flex-col space-y-3" onSubmit={handleSubmit(onSubmit)}>
