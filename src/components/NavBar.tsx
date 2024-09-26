@@ -187,7 +187,7 @@ const NavBar = () => {
                         onClick={() => navigate(!userId?.toString() ? "/login" : "")}
                     >
                         {userId && (
-                            <span className="absolute h-3 w-3 rounded-full bg-secondaryOrange-400 right-0" />
+                            <span className="absolute h-3 w-3 rounded-full bg-primaryGreen-700 right-0" />
                         )}
                         <FaCircleUser size={40} />
                     </span>
