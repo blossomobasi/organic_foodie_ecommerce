@@ -29,19 +29,19 @@ const login = async (data: LoginData): Promise<LoginResponse> => {
     return response.data;
 };
 
-const forgotPassword = async (email: string): Promise<string> => {
+const forgotPassword = async (email: string): Promise<{ success: boolean; message: string }> => {
     const response = await $http.post("/api/user/users/forget_password", { email });
     if (!response.data) {
-        throw new Error("An error occurred");
+        throw new Error(response.data.message || "An error occurred");
     }
 
     return response.data;
 };
 
-const resetpassword = async (password: string): Promise<string> => {
-    const response = await $http.post("/api/user/users/reset_password", { password });
+const updatePassword = async (password: string, userId: string): Promise<string> => {
+    const response = await $http.post(`/api/user/users/update/${userId}`, { password });
     if (!response.data) {
-        throw new Error("An error occurred");
+        throw new Error(response.data.message || "An error occurred");
     }
 
     return response.data;
@@ -168,7 +168,7 @@ export {
     register,
     login,
     forgotPassword,
-    resetpassword,
+    updatePassword,
     getProducts,
     createReview,
     getNewProducts,
