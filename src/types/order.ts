@@ -1,6 +1,6 @@
 export type PlaceOrder = {
     userId: string;
-    items: [];
+    items: string[];
     amount: number;
     address: string;
 };
