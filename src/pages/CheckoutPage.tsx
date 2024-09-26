@@ -20,6 +20,7 @@ const CheckoutPage = () => {
     const { placeOrder, isPlacingOrder } = useOrder();
 
     const totalPrice = cart?.userOrdersCart[0].cartTotal;
+    const productInCart = cart?.userOrdersCart[0].products.map((item) => item.productId._id);
 
     function onSubmit(data: { address: string }) {
         if (isPlacingOrder) return;
@@ -28,7 +29,7 @@ const CheckoutPage = () => {
             address: data.address,
             amount: Number(totalPrice),
             userId: userId as string,
-            items: [],
+            items: productInCart as string[],
         });
     }
 
@@ -110,7 +111,7 @@ const CheckoutPage = () => {
                             <div className="py-5 flex flex-col space-y-3 text-grey-600">
                                 <div className="flex justify-between">
                                     <p>Original Price</p>
-                                    <p>${Number(totalPrice).toFixed(2)}</p>
+                                    <p>₦{Number(totalPrice).toFixed(2)}</p>
                                 </div>
                                 {/* <div className="flex justify-between">
                                     <p>Savings</p>
@@ -131,7 +132,7 @@ const CheckoutPage = () => {
                             <div className="flex justify-between py-5 text-2xl font-semibold">
                                 <h2>Total</h2>
                                 {/* <h2>${(totalPrice - SAVINGS - TAX).toFixed(2)}</h2> */}
-                                <h2>${Number(totalPrice)?.toFixed(2)}</h2>
+                                <h2>₦{Number(totalPrice)?.toFixed(2)}</h2>
                             </div>
                         </div>
 
