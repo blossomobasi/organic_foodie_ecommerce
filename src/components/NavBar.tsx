@@ -16,11 +16,14 @@ import { SlMagnifier } from "react-icons/sl";
 import { GrMenu } from "react-icons/gr";
 import { FaArrowLeft, FaHeart } from "react-icons/fa";
 import { FaCircleUser } from "react-icons/fa6";
+import { IoMdLogOut } from "react-icons/io";
+import { toast } from "react-toastify";
 
 const NavBar = () => {
     const { cart } = useCart();
     const [showNav, setShowNav] = useState(false);
     const [openCart, setOpencart] = useState(false);
+    const [showDetails, setShowDetails] = useState(false);
 
     const navigate = useNavigate();
     const location = useLocation();
@@ -37,6 +40,13 @@ const NavBar = () => {
         (acc, item) => acc + item.count,
         0
     );
+
+    function handleLogout() {
+        Cookies.remove("userId");
+        Cookies.remove("refreshToken");
+        toast.success("Logout successful");
+        navigate("/login");
+    }
 
     useEffect(() => {
         if (showNav) {
@@ -182,15 +192,35 @@ const NavBar = () => {
                         <BsHandbag size={25} />
                     </span>
 
-                    <span
-                        className="text-gray-300 cursor-pointer relative"
-                        onClick={() => navigate(!userId?.toString() ? "/login" : "")}
-                    >
-                        {userId && (
-                            <span className="absolute h-3 w-3 rounded-full bg-primaryGreen-700 right-0" />
+                    <div className="relative">
+                        <span
+                            className="text-gray-300 cursor-pointer"
+                            onClick={() => {
+                                if (!userId) navigate("/login");
+                                setShowDetails((prev) => !prev);
+                            }}
+                        >
+                            {userId && (
+                                <span className="absolute h-3 w-3 rounded-full bg-primaryGreen-700 right-0" />
+                            )}
+                            <FaCircleUser size={40} />
+                        </span>
+                        {showDetails && (
+                            <div
+                                onClick={handleLogout}
+                                className="absolute flex items-center justify-center gap-x-2 rounded-md bg-gray-100 hover:bg-gray-200 p-2 w-40 left-1/2 -translate-x-1/2 mt-5 cursor-pointer"
+                            >
+                                <IoMdLogOut size={25} />
+                                Logout
+                            </div>
                         )}
-                        <FaCircleUser size={40} />
-                    </span>
+                    </div>
+                    {/* {showDetails && (
+                        <div
+                            onClick={() => setShowDetails(false)}
+                            className="h-screen w-screen absolute bg-black/20 -z-20 left-0 top-0"
+                        />
+                    )} */}
                 </span>
 
                 {/* Menu */}
@@ -198,7 +228,7 @@ const NavBar = () => {
                     className="cursor-pointer lg:hidden ml-5 hover:bg-primaryGreen-100"
                     onClick={() => setShowNav(true)}
                 >
-                    <GrMenu size={25} className="" />
+                    <GrMenu size={25} />
                 </span>
 
                 <CartPopUp onOpen={setOpencart} openCart={openCart} />
