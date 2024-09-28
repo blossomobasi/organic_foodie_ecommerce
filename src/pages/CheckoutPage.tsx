@@ -20,8 +20,8 @@ const CheckoutPage = () => {
     const { cart } = useCart();
     const { placeOrder, isPlacingOrder } = useOrder();
 
-    const totalPrice = cart?.userOrdersCart[0].cartTotal;
-    const productInCart = cart?.userOrdersCart[0].products.map((item) => item.productId._id);
+    const totalPrice = cart?.userOrdersCart[0]?.cartTotal;
+    const productInCart = cart?.userOrdersCart[0]?.products.map((item) => item.productId._id);
 
     function onSubmit(data: { address: string }) {
         if (isPlacingOrder) return;

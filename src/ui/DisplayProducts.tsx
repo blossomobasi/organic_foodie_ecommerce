@@ -81,7 +81,7 @@ const DisplayProducts = ({ data, title, description }: Props) => {
         wishlist?.some((item) => item._id === productId);
 
     const isProductInCart = (productId: string) => {
-        return cart?.userOrdersCart[0].products.some((item) => item.productId._id === productId);
+        return cart?.userOrdersCart[0]?.products.some((item) => item.productId._id === productId);
     };
 
     return (

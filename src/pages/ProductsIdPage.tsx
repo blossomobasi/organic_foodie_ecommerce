@@ -36,15 +36,8 @@ const ProductsIdPage = () => {
     }
 
     function isProductInCart(productId: string) {
-        return cart?.userOrdersCart[0].products.some((item) => item.productId._id === productId);
+        return cart?.userOrdersCart[0]?.products.some((item) => item.productId._id === productId);
     }
-
-    // function handleRemoveItemFromCart(productId: string) {
-    //     if (isPending) return;
-    //     if (carts?.map((cart) => cart.products.length === 1)) return;
-
-    //     removeItemFromCart({ productId, count: 1, userId });
-    // }
 
     return (
         <ScrollToTop>
