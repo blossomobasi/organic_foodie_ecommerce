@@ -1,6 +1,8 @@
+import Cookies from "js-cookie";
+import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
-import { resetpassword as resetPasswordApi } from "../services";
+import { updatePassword as updatePasswordApi } from "../services";
 import { AxiosError } from "axios";
 import { toast } from "react-toastify";
 
@@ -9,13 +11,17 @@ import TextInput from "../ui/TextInput";
 import Button from "../ui/Button";
 
 const ResetPasswordPage = () => {
+    const userId = Cookies.get("userId") || "";
+    const navigate = useNavigate();
     const { register, handleSubmit, formState } = useForm<{ password: string }>();
     const { errors } = formState;
 
     const { mutate: resetPassword, isPending } = useMutation({
-        mutationFn: resetPasswordApi,
+        mutationFn: ({ password, userId }: { password: string; userId: string }) =>
+            updatePasswordApi(password, userId),
         onSuccess: () => {
-            // toast.success("Reset token sent to email");
+            toast.success("Password updated successfully");
+            navigate("/login");
         },
         onError: (err: AxiosError) => {
             const errorMessage = (err.response?.data as { message: string }).message;
@@ -26,7 +32,7 @@ const ResetPasswordPage = () => {
     const onSubmit = (data: { password: string }) => {
         if (isPending) return;
 
-        resetPassword(data.password);
+        resetPassword({ password: data.password, userId });
     };
 
     return (
