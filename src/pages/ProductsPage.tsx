@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
 import { Product } from "../types/products";
-import { useAddToCart } from "../hooks/useCart";
+import { useAddToCart, useCart } from "../hooks/useCart";
 import { useProducts } from "../hooks/useProduct";
 
 import { IoStarSharp } from "react-icons/io5";
@@ -19,7 +19,7 @@ const ProductsPage = () => {
     const userId = Cookies.get("userId") || "";
     const refreshToken = Cookies.get("refreshToken") || "";
     const { products, isLoading } = useProducts();
-
+    const { cart } = useCart();
     const { addToCart, isPending: isAddingToCart } = useAddToCart();
     const navigate = useNavigate();
     const [wishlist, setWishlist] = useState<Product[]>();
@@ -70,6 +70,10 @@ const ProductsPage = () => {
 
     const isProductInWishlist = (productId: string) =>
         wishlist?.some((item) => item._id === productId);
+
+    const isProductInCart = (productId: string) => {
+        return cart?.userOrdersCart[0].products.some((item) => item.productId._id === productId);
+    };
 
     return (
         <ScrollToTop>
@@ -133,9 +137,10 @@ const ProductsPage = () => {
                                 <Button
                                     variant="primary-outline"
                                     className="w-full mt-3"
+                                    disabled={isProductInCart(product._id)}
                                     onClick={(e) => handleAddToCart(e, product._id)}
                                 >
-                                    Add to Cart
+                                    {isProductInCart(product._id) ? "In cart" : "Add to Cart"}
                                 </Button>
                             </div>
                         ))}
