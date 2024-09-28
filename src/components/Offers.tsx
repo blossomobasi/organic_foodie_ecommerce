@@ -7,6 +7,7 @@ import BlackFridayOutOfStock from "../assets/images/black_friday_out_of_stock.pn
 
 import { FiHeart } from "react-icons/fi";
 import { IoStarSharp } from "react-icons/io5";
+import currencyFormatter from "../utils/currencyFormatter";
 
 const Offers = () => {
     const blackFriday = [
@@ -99,7 +100,9 @@ const Offers = () => {
                                         {product.totalReview}({product.averageReview})
                                     </span>
                                 </span>
-                                <span className="font-medium">₦{product.price}</span>
+                                <span className="font-medium">
+                                    {currencyFormatter(product.price)}
+                                </span>
                             </p>
                             <Button variant="primary-outline" className="w-full mt-3 pt-1.5">
                                 Add to Cart

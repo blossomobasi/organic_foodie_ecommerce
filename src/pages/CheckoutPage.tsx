@@ -9,6 +9,7 @@ import { useCart } from "../hooks/useCart";
 import { useOrder } from "../hooks/useOrder";
 import { useForm } from "react-hook-form";
 import MiniSpinner from "../ui/MiniSpinner";
+import currencyFormatter from "../utils/currencyFormatter";
 
 const CheckoutPage = () => {
     const userId = Cookies.get("userId");
@@ -111,7 +112,7 @@ const CheckoutPage = () => {
                             <div className="py-5 flex flex-col space-y-3 text-grey-600">
                                 <div className="flex justify-between">
                                     <p>Original Price</p>
-                                    <p>₦{Number(totalPrice).toFixed(2)}</p>
+                                    <p>{currencyFormatter(Number(totalPrice))}</p>
                                 </div>
                                 {/* <div className="flex justify-between">
                                     <p>Savings</p>
@@ -132,7 +133,7 @@ const CheckoutPage = () => {
                             <div className="flex justify-between py-5 text-2xl font-semibold">
                                 <h2>Total</h2>
                                 {/* <h2>${(totalPrice - SAVINGS - TAX).toFixed(2)}</h2> */}
-                                <h2>₦{Number(totalPrice)?.toFixed(2)}</h2>
+                                <h2>{currencyFormatter(Number(totalPrice))}</h2>
                             </div>
                         </div>
 

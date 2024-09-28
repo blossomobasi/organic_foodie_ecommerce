@@ -6,7 +6,7 @@ import { FiHeart } from "react-icons/fi";
 import { IoStarSharp } from "react-icons/io5";
 
 import { useProducts } from "../hooks/useProduct";
-import { useAddToCart } from "../hooks/useCart";
+import { useAddToCart, useCart } from "../hooks/useCart";
 import { Product } from "../types/products";
 
 import Button from "./Button";
@@ -15,6 +15,7 @@ import { RxDoubleArrowRight } from "react-icons/rx";
 import clsx from "clsx";
 import { FaHeart } from "react-icons/fa";
 import { toast } from "react-toastify";
+import currencyFormatter from "../utils/currencyFormatter";
 
 type Props = {
     data: Product[] | undefined;
@@ -27,6 +28,7 @@ const DisplayProducts = ({ data, title, description }: Props) => {
     const refreshToken = Cookies.get("refreshToken") || "";
     const { isLoading } = useProducts();
     const { addToCart, isPending: isAddingToCart } = useAddToCart();
+    const { cart } = useCart();
     const [isScrolling, setIsScrolling] = useState(false);
     const navigate = useNavigate();
     const windowWidth = window.innerWidth;
@@ -77,6 +79,10 @@ const DisplayProducts = ({ data, title, description }: Props) => {
 
     const isProductInWishlist = (productId: string) =>
         wishlist?.some((item) => item._id === productId);
+
+    const isProductInCart = (productId: string) => {
+        return cart?.userOrdersCart[0].products.some((item) => item.productId._id === productId);
+    };
 
     return (
         <React.Fragment>
@@ -154,14 +160,17 @@ const DisplayProducts = ({ data, title, description }: Props) => {
                                         {product.totalRating}({product.rating.length})
                                     </span>
                                 </span>
-                                <span className="font-medium">₦{product.price}</span>
+                                <span className="font-medium">
+                                    {currencyFormatter(product.price)}
+                                </span>
                             </p>
                             <Button
                                 variant="primary-outline"
                                 className="w-full mt-3"
                                 onClick={(e) => handleAddToCart(e, product._id)}
+                                disabled={isProductInCart(product._id)}
                             >
-                                Add to Cart
+                                {isProductInCart(product._id) ? "In cart" : "Add to Cart"}
                             </Button>
                         </div>
                     ))}

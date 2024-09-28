@@ -8,6 +8,7 @@ import { useAddToCart } from "../hooks/useCart";
 
 import ScrollToTop from "../ui/ScrollToTop";
 import Button from "../ui/Button";
+import currencyFormatter from "../utils/currencyFormatter";
 
 const WishlistPage = () => {
     const userId = Cookies.get("userId") || "";
@@ -88,7 +89,7 @@ const WishlistPage = () => {
                                                 {product.title}
                                             </h3>
                                         </td>
-                                        <td>₦{product.price}</td>
+                                        <td>{currencyFormatter(Number(product.price))}</td>
                                         <td>
                                             {Number(product.quantity) > 0
                                                 ? "In Stock"
@@ -107,9 +108,7 @@ const WishlistPage = () => {
 
                     <div className="py-14 text-end flex flex-col items-end space-y-3">
                         <p className="text-lg text-grey-600">Estimated Total:</p>
-                        <h2 className="text-2xl font-bold">
-                            ₦{Math.round(Number(TOTAL_PRICE) * 100) / 100}
-                        </h2>
+                        <h2 className="text-2xl font-bold">{currencyFormatter(TOTAL_PRICE)}</h2>
                     </div>
                 </div>
             </section>

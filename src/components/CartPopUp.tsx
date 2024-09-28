@@ -7,6 +7,7 @@ import { useCart } from "../hooks/useCart";
 
 import Button from "../ui/Button";
 import EmptyCart from "./EmptyCart";
+import currencyFormatter from "../utils/currencyFormatter";
 
 const CartPopUp = ({
     onOpen,
@@ -92,7 +93,7 @@ const CartPopUp = ({
                                                     Cart ID: {item._id}
                                                 </span>
                                                 <p className="text-xl font-semibold">
-                                                    ₦{product.price}
+                                                    {currencyFormatter(product.price)}
                                                 </p>
                                             </div>
                                         </div>
@@ -105,7 +106,7 @@ const CartPopUp = ({
                             <div className="flex flex-col">
                                 <div className="flex justify-between font-bold text-xl py-3">
                                     <h3>Cart Order Total ({CART_LENGTH})</h3>
-                                    <h3>₦{totalPrice}</h3>
+                                    <h3>{currencyFormatter(Number(totalPrice))}</h3>
                                 </div>
 
                                 <hr className="border-[#C4D1D0] border-1 " />

@@ -6,7 +6,7 @@ import { useProduct } from "../hooks/useProduct";
 
 import { IoStarSharp } from "react-icons/io5";
 
-import { useAddToCart } from "../hooks/useCart";
+import { useAddToCart, useCart } from "../hooks/useCart";
 import Button from "../ui/Button";
 import SimilarProduct from "../components/SimilarProduct";
 import Spinner from "../ui/Spinner";
@@ -14,6 +14,7 @@ import ReviewStats from "../components/ReviewStats";
 import CreateReview from "../components/CreateReview";
 import ShowReview from "../components/ShowReview";
 import ScrollToTop from "../ui/ScrollToTop";
+import currencyFormatter from "../utils/currencyFormatter";
 
 const ProductsIdPage = () => {
     const params = useParams();
@@ -22,6 +23,7 @@ const ProductsIdPage = () => {
 
     const { data, isLoading } = useProduct(productId || "");
     const { addToCart, isPending } = useAddToCart();
+    const { cart } = useCart();
 
     const [imageSrc, setImageSrc] = useState(data?.images[0]);
 
@@ -31,6 +33,10 @@ const ProductsIdPage = () => {
         if (isPending) return;
 
         addToCart({ productId, count: 1, userId });
+    }
+
+    function isProductInCart(productId: string) {
+        return cart?.userOrdersCart[0].products.some((item) => item.productId._id === productId);
     }
 
     // function handleRemoveItemFromCart(productId: string) {
@@ -78,7 +84,7 @@ const ProductsIdPage = () => {
                                     {data?.title}
                                 </h2>
                                 <p className="text-2xl font-bold text-secondaryOrange-500">
-                                    ₦{price}
+                                    {currencyFormatter(Number(price))}
                                 </p>
 
                                 <span className="flex items-center space-x-2 text-grey-600 text-lg py-3">
@@ -121,8 +127,12 @@ const ProductsIdPage = () => {
                                         className="py-3.5"
                                         onClick={() => handleAddToCart(data?._id || "")}
                                         isLoading={isPending}
+                                        disabled={isProductInCart(data?._id || "")}
                                     >
-                                        Add to Cart
+                                        {/* Add to Cart */}
+                                        {isProductInCart(data?._id || "")
+                                            ? "In Cart"
+                                            : "Add to Cart"}
                                     </Button>
                                     <Button url="/checkout" variant="secondary" className="py-3.5">
                                         Checkout
