@@ -1,4 +1,10 @@
-import { LoginData, LoginResponse, RegisterData, RegisterResponse } from "../types/auth";
+import {
+    DistributorResponse,
+    LoginData,
+    LoginResponse,
+    RegisterData,
+    RegisterResponse,
+} from "../types/auth";
 import { CartResponse } from "../types/cart";
 import { OrderResponse, PlaceOrder } from "../types/order";
 import {
@@ -43,6 +49,28 @@ const updatePassword = async (password: string, userId: string): Promise<string>
     if (!response.data) {
         throw new Error(response.data.message || "An error occurred");
     }
+
+    return response.data;
+};
+
+const resetPassword = async (
+    email: string,
+    password: string
+): Promise<{ success: boolean; message: string }> => {
+    const response = await $http.post(`/api/user/users/reset`, { email, password });
+    if (!response.data) {
+        throw new Error(response.data.message || "An error occurred");
+    }
+
+    return response.data;
+};
+const verifyOTP = async (
+    otp: string,
+    email: string
+): Promise<{ success: boolean; message: string }> => {
+    const response = await $http.post(`/api/user/users/otp`, { otp, email });
+
+    if (!response.data) throw new Error(response.data.message || "An error occured");
 
     return response.data;
 };
@@ -144,9 +172,8 @@ const removeItemFromCart = async ({
 
     return response.data;
 };
-
-const getCart = async (): Promise<CartResponse> => {
-    const response = await $http.get("/api/cart/allCartItems");
+const getCart = async (userId: string): Promise<CartResponse> => {
+    const response = await $http.get(`/api/cart/allCartItems/${userId}`);
     if (!response.data.success) {
         throw new Error(response.data.message);
     }
@@ -164,11 +191,22 @@ const placeOrder = async (data: PlaceOrder): Promise<OrderResponse> => {
     return response.data;
 };
 
+const getAllDistributors = async (): Promise<DistributorResponse> => {
+    const response = await $http.get("/api/user/distributor");
+    if (!response.data.success) {
+        throw new Error(response.data.message);
+    }
+
+    return response.data;
+};
+
 export {
     register,
     login,
     forgotPassword,
     updatePassword,
+    resetPassword,
+    verifyOTP,
     getProducts,
     createReview,
     getNewProducts,
@@ -180,4 +218,5 @@ export {
     removeItemFromCart,
     getCart,
     placeOrder,
+    getAllDistributors,
 };
