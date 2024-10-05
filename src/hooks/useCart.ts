@@ -41,10 +41,10 @@ const useAddToCart = () => {
     return { addToCart, isPending, removeItemFromCart };
 };
 
-const useCart = () => {
+const useCart = (userId: string) => {
     const { data: cart, isLoading } = useQuery({
-        queryKey: ["cart"],
-        queryFn: getCart,
+        queryKey: ["cart", userId],
+        queryFn: () => getCart(userId),
     });
 
     return { cart, isLoading };
