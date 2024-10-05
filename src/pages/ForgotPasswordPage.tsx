@@ -7,9 +7,10 @@ import { forgotPassword as forgotPasswordApi } from "../services";
 import AuthLayout from "../ui/AuthLayout";
 import TextInput from "../ui/TextInput";
 import Button from "../ui/Button";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const ForgotPasswordPage = () => {
+    const navigate = useNavigate();
     const { register, handleSubmit, formState } = useForm<{ email: string }>();
     const { errors } = formState;
 
@@ -17,6 +18,7 @@ const ForgotPasswordPage = () => {
         mutationFn: forgotPasswordApi,
         onSuccess: (data) => {
             toast.success(data.message);
+            navigate("/OTP");
         },
         onError: (err) => {
             toast.error(err.message || "An error occurred");
@@ -27,6 +29,7 @@ const ForgotPasswordPage = () => {
         if (isPending) return;
 
         forgotPassword(data.email);
+        localStorage.setItem("email", data.email);
     };
 
     return (
