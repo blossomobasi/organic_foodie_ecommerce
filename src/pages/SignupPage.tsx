@@ -122,6 +122,7 @@ const SignupPage = () => {
                             <input
                                 type="checkbox"
                                 id="agree"
+                                className="accent-primaryGreen-700"
                                 onChange={() => setAgree((agree) => !agree)}
                             />
                             <label htmlFor="agree" className="text-[#566363]">

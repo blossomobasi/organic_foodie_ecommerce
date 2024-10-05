@@ -73,14 +73,14 @@ const LoginPage = () => {
                             onIconClick={() => setShowPassword((showPassword) => !showPassword)}
                             showPassword={showPassword}
                             placeholder="Enter your password"
-                            inputId="password"
+                            inputId="password"  
                             {...register("password", { required: "Password is required" })}
                             authInput
                         />
 
                         <div className="flex items-center justify-between py-3">
                             <div className="flex space-x-3">
-                                <input type="checkbox" id="rememberMe" />
+                                <input type="checkbox" id="rememberMe" className="accent-primaryGreen-700" />
                                 <label htmlFor="rememberMe" className="text-[#566363]">
                                     Remember me
                                 </label>
