@@ -10,28 +10,40 @@ import { useOrder } from "../hooks/useOrder";
 import { useForm } from "react-hook-form";
 import MiniSpinner from "../ui/MiniSpinner";
 import currencyFormatter from "../utils/currencyFormatter";
+import { useQuery } from "@tanstack/react-query";
+import { getAllDistributors as getAllDistributorsApi } from "../services";
+import { useState } from "react";
 
 const CheckoutPage = () => {
     const userId = Cookies.get("userId");
+    const [distEmail, setDistEmail] = useState("");
 
-    const { register, formState, handleSubmit } = useForm<{ address: string }>();
+    const { register, formState, handleSubmit } = useForm<{
+        address: string;
+        distributor: string;
+    }>();
     const { errors } = formState;
 
-    const { cart } = useCart();
+    const { cart } = useCart(userId as string);
     const { placeOrder, isPlacingOrder } = useOrder();
 
     const totalPrice = cart?.userOrdersCart[0]?.cartTotal;
-    const productInCart = cart?.userOrdersCart[0]?.products.map((item) => item.productId._id);
 
-    function onSubmit(data: { address: string }) {
+    const { data: distributors } = useQuery({
+        queryKey: ["distributor"],
+        queryFn: getAllDistributorsApi,
+    });
+
+    function onSubmit(data: { address: string; distributor: string }) {
         if (isPlacingOrder) return;
-
-        placeOrder({
+        const payload = {
             address: data.address,
-            amount: Number(totalPrice),
             userId: userId as string,
-            items: productInCart as string[],
-        });
+            distEmail,
+            location: data.distributor,
+        };
+
+        placeOrder(payload);
     }
 
     return (
@@ -61,6 +73,7 @@ const CheckoutPage = () => {
                             </div> */}
 
                             <TextInput
+                                label="Address"
                                 error={errors.address?.message}
                                 className="rounded-none"
                                 placeholder="Your address"
@@ -68,6 +81,46 @@ const CheckoutPage = () => {
                                     required: "This field is required!",
                                 })}
                             />
+
+                            <>
+                                <label htmlFor="distributor" className="font-medium text-lg">
+                                    Distributor
+                                </label>
+                                <select
+                                    id="distributor"
+                                    defaultValue=""
+                                    {...register("distributor", {
+                                        required: "This field is required",
+                                    })}
+                                    className={`w-full p-3 bg-white border border-gray-300 text-stone-500 ${
+                                        errors?.distributor?.message && "border-secondaryOrange-500"
+                                    }`}
+                                    onChange={(e) => {
+                                        const selectedDistributor = distributors?.distributors.find(
+                                            (d) => d.location === e.target.value
+                                        );
+                                        setDistEmail(selectedDistributor?.email || "");
+                                    }}
+                                >
+                                    <option
+                                        value=""
+                                        defaultValue="Select location close to you"
+                                        disabled
+                                    >
+                                        Select location close to you
+                                    </option>
+                                    {distributors?.distributors?.map((d) => (
+                                        <option key={d._id} value={d.location}>
+                                            {d.location}
+                                        </option>
+                                    ))}
+                                </select>
+                                {errors?.distributor && (
+                                    <span className="text-secondaryOrange-500">
+                                        {errors.distributor.message}
+                                    </span>
+                                )}
+                            </>
 
                             {/* <div className="flex space-x-5">
                                 <div className="flex-1">
