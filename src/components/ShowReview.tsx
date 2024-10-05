@@ -1,6 +1,10 @@
 import { useState } from "react";
-import { IoStarSharp } from "react-icons/io5";
+
 import { Rating } from "../types/products";
+
+import { FaCircleUser } from "react-icons/fa6";
+import { IoStarSharp } from "react-icons/io5";
+
 import Button from "../ui/Button";
 
 const ShowReview = ({ review }: { review: Rating[] | undefined }) => {
@@ -19,11 +23,7 @@ const ShowReview = ({ review }: { review: Rating[] | undefined }) => {
                         className="border border-[#C4D1D0] p-3 rounded-xl sm:w-[23rem] w-full"
                     >
                         <figure>
-                            <img
-                                src="/images/user.png"
-                                alt="user"
-                                className="w-10 h-10 rounded-full"
-                            />
+                            <FaCircleUser size={35} className="text-gray-400" />
                             <figcaption className="">postedBy: {item.postedBy}</figcaption>
                         </figure>
 
