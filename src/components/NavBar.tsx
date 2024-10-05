@@ -20,7 +20,6 @@ import { IoMdLogOut } from "react-icons/io";
 import { toast } from "react-toastify";
 
 const NavBar = () => {
-    const { cart } = useCart();
     const [showNav, setShowNav] = useState(false);
     const [openCart, setOpencart] = useState(false);
     const [showDetails, setShowDetails] = useState(false);
@@ -28,7 +27,9 @@ const NavBar = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const pathname = location.pathname;
+
     const userId = Cookies.get("userId");
+    const { cart } = useCart(userId as string);
 
     const storedWishlist = JSON.parse(
         localStorage.getItem(`wishlist_${userId}`) || "[]"
@@ -208,19 +209,19 @@ const NavBar = () => {
                         {showDetails && (
                             <div
                                 onClick={handleLogout}
-                                className="absolute flex items-center justify-center gap-x-2 rounded-md bg-gray-100 hover:bg-gray-200 p-2 w-40 left-1/2 -translate-x-1/2 mt-5 cursor-pointer"
+                                className="absolute flex items-center justify-center gap-x-2 rounded-md bg-gray-100 hover:bg-gray-200 p-2 w-40 left-1/2 -translate-x-1/2 mt-5 cursor-pointer z-50"
                             >
                                 <IoMdLogOut size={25} />
                                 Logout
                             </div>
                         )}
                     </div>
-                    {/* {showDetails && (
+                    {showDetails && (
                         <div
                             onClick={() => setShowDetails(false)}
-                            className="h-screen w-screen absolute bg-black/20 -z-20 left-0 top-0"
+                            className="h-screen w-screen absolute left-0 top-0"
                         />
-                    )} */}
+                    )}
                 </span>
 
                 {/* Menu */}

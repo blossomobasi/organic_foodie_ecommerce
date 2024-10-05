@@ -8,9 +8,9 @@ import clsx from "clsx";
 import currencyFormatter from "../utils/currencyFormatter";
 
 const CartPage = () => {
-    const { cart } = useCart();
     const { removeItemFromCart, addToCart, isPending } = useAddToCart();
     const userId = Cookies.get("userId") || "";
+    const { cart } = useCart(userId as string);
 
     const CART_LENGTH = cart?.userOrdersCart[0]?.products?.reduce(
         (acc, item) => acc + item.count,

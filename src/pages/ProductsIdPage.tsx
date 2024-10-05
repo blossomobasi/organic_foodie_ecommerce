@@ -23,7 +23,7 @@ const ProductsIdPage = () => {
 
     const { data, isLoading } = useProduct(productId || "");
     const { addToCart, isPending } = useAddToCart();
-    const { cart } = useCart();
+    const { cart } = useCart(userId as string);
 
     const [imageSrc, setImageSrc] = useState(data?.images[0]);
 

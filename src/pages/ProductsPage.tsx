@@ -19,7 +19,7 @@ const ProductsPage = () => {
     const userId = Cookies.get("userId") || "";
     const refreshToken = Cookies.get("refreshToken") || "";
     const { products, isLoading } = useProducts();
-    const { cart } = useCart();
+    const { cart } = useCart(userId as string);
     const { addToCart, isPending: isAddingToCart } = useAddToCart();
     const navigate = useNavigate();
     const [wishlist, setWishlist] = useState<Product[]>();

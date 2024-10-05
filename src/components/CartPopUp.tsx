@@ -1,4 +1,5 @@
 import React from "react";
+import Cookies from "js-cookie";
 import clsx from "clsx";
 import { useEffect } from "react";
 import { LiaTimesSolid } from "react-icons/lia";
@@ -16,7 +17,8 @@ const CartPopUp = ({
     onOpen: React.Dispatch<React.SetStateAction<boolean>>;
     openCart: boolean;
 }) => {
-    const { cart } = useCart();
+    const userId = Cookies.get("userId") || "";
+    const { cart } = useCart(userId as string);
     const CART_LENGTH = cart?.userOrdersCart[0]?.products?.reduce(
         (acc, item) => acc + item.count,
         0
