@@ -26,9 +26,11 @@ type Props = {
 const DisplayProducts = ({ data, title, description }: Props) => {
     const userId = Cookies.get("userId") || "";
     const refreshToken = Cookies.get("refreshToken") || "";
+
     const { isLoading } = useProducts();
     const { addToCart, isPending: isAddingToCart } = useAddToCart();
-    const { cart } = useCart();
+    const { cart } = useCart(userId as string);
+
     const [isScrolling, setIsScrolling] = useState(false);
     const navigate = useNavigate();
     const windowWidth = window.innerWidth;
@@ -168,7 +170,7 @@ const DisplayProducts = ({ data, title, description }: Props) => {
                                 variant="primary-outline"
                                 className="w-full mt-3"
                                 onClick={(e) => handleAddToCart(e, product._id)}
-                                disabled={isProductInCart(product._id)}
+                                disabled={isProductInCart(product._id) || isAddingToCart}
                             >
                                 {isProductInCart(product._id) ? "In cart" : "Add to Cart"}
                             </Button>
