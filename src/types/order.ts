@@ -1,8 +1,8 @@
 export type PlaceOrder = {
     userId: string;
-    items: string[];
-    amount: number;
     address: string;
+    distEmail: string;
+    location: string;
 };
 
 export type OrderResponse = {

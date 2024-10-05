@@ -8,6 +8,7 @@ export type User = {
     role: string;
     isBlocked: boolean;
     address: string;
+    location?: string;
     wislist: string[];
     __v: number;
 };
@@ -38,3 +39,9 @@ export type RegisterData = {
     password: string;
     address: string;
 };
+
+export type DistributorResponse = {
+    success: boolean;
+    message: string;
+    distributors: User[];
+}
