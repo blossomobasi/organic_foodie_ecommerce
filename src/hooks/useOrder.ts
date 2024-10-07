@@ -11,8 +11,15 @@ export const useOrder = () => {
         onSuccess: (data) => {
             toast.success(data.message);
             // Redirect to the payment page in a blank tab
-            window.open(data.authorization_url, "_blank");
-            navigate("/");
+            const newTab = window.open(data.authorization_url, "_blank");
+            navigate(data.authorization_url);
+
+            // Fallback if the popup blocker prevents the new tab from opening - Safari
+            if (!newTab || newTab.closed) {
+                window.location.href = data.authorization_url;
+            } else {
+                navigate("/");
+            }
         },
         onError: (err: AxiosError) => {
             const errorMessage = (err.response?.data as { message: string }).message;
