@@ -12,7 +12,6 @@ export const useOrder = () => {
             toast.success(data.message);
             // Redirect to the payment page in a blank tab
             const newTab = window.open(data.authorization_url, "_blank");
-            navigate(data.authorization_url);
 
             // Fallback if the popup blocker prevents the new tab from opening - Safari
             if (!newTab || newTab.closed) {
