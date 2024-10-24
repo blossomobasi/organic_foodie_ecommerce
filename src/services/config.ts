@@ -4,7 +4,6 @@ import Cookies from "js-cookie";
 export const config: AxiosRequestConfig = {
     baseURL: import.meta.env.VITE_BACKEND_BASE_URL,
     timeout: 30000, // 30 seconds
-    // withCredentials: true,
     headers: {
         "Content-Type": "application/json",
     },
@@ -25,16 +24,5 @@ $http.interceptors.request.use(
         return Promise.reject(error); // handle request error
     }
 );
-
-// $http.interceptors.response.use(
-//     (response) => {
-//         return response;
-//     },
-//     (error) => {
-//         if (error.response?.status === 401) {
-//             // handle 401 error
-//         }
-//     }
-// );
 
 export default $http;
