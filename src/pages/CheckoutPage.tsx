@@ -111,7 +111,7 @@ const CheckoutPage = () => {
                                     </option>
                                     {distributors?.distributors?.map((d) => (
                                         <option key={d._id} value={d.location}>
-                                            {d.location}
+                                            {d.location} - {d.address}
                                         </option>
                                     ))}
                                 </select>
